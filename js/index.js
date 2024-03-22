@@ -247,7 +247,7 @@ class Testing {
     }
     
     compareAnswer(answer) {
-        console.warn(this.tests[this.currentTestCounter].a);
+        answer = answer.trim();
         if (answer === this.tests[this.currentTestCounter].a) {
             this.currentTestCounter++;
             return true;
@@ -324,6 +324,10 @@ inputField.addEventListener('input', (event) => {
     if (currentType === 'level2' && answer.length !== 3) {
         return;
     }
+    // 檢查是否為 special 且長度為 2
+    if (currentType === 'special' && answer.length !== 3) {
+        return;
+    }
 
     if (testing.compareAnswer(answer)) {
         cssAnimation.moveTestsTray(cssAnimation.calculateSpanTargetDifference());
@@ -331,10 +335,11 @@ inputField.addEventListener('input', (event) => {
             cssAnimation.removeFrontTest();
         }
         cssAnimation.addTest(testing.nextTest().q);
+        wrongCounter = 0;
     }                                
     else {                        
         wrongCounter++;
-        if (wrongCounter >= 3) {
+        if (wrongCounter >= 2) {
             const answer = testing.getAnswer();
             cssAnimation.showAnswer(answer);
             wrongCounter = 0;
@@ -345,5 +350,16 @@ inputField.addEventListener('input', (event) => {
         }
     }
     inputField.value = '';
+});
 
+document.addEventListener("keydown", function(e) {
+    if (e.which === 116) { //F5
+        e.preventDefault();
+        alert("F5 key is disabled on this website");
+    }
+
+    if (e.which === 123) { //F12
+        e.preventDefault();
+        alert("F12 key is disabled on this website");
+    }
 });
