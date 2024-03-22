@@ -100,7 +100,7 @@ class CSSAnimation {
     }
     
     hideAnswer() {
-        document.getElementById('input_field').readOnly = true;
+        document.getElementById('input_field').readOnly = false;
         document.getElementById('input_field').style.color = 'black';
         document.getElementById('input_field').value = '';
     }
