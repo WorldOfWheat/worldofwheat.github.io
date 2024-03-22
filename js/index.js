@@ -42,6 +42,7 @@ class CSSAnimation {
     constructor() {
         this.frontTestCounter = 0
         this.tray = document.getElementById('tests_tray');
+        this.inputField = document.getElementById('input_field');
     }
     
     #getSpanPosition(span) {
@@ -94,15 +95,17 @@ class CSSAnimation {
     }
     
     showAnswer(answer) {
-        document.getElementById('input_field').readOnly = true;
-        document.getElementById('input_field').style.color = 'red';
-        document.getElementById('input_field').value = answer;
+        this.inputField.readOnly = true;
+        this.inputField.style.color = 'red';
+        this.inputField.value = answer;
+        this.inputField.focus();
     }
     
     hideAnswer() {
-        document.getElementById('input_field').readOnly = false;
-        document.getElementById('input_field').style.color = 'black';
-        document.getElementById('input_field').value = '';
+        this.inputField.readOnly = false;
+        this.inputField.style.color = 'black';
+        this.inputField.value = '';
+        this.inputField.focus();
     }
 }
 
