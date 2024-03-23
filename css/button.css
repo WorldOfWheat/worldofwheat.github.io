@@ -1,0 +1,55 @@
+.button {
+    font-size: large;
+    border: solid 1px #42BD85;
+    color: #42BD85;
+    background-color: #42BD8500;
+    min-width: 10vw;
+    border-radius: 5px;
+    transition: all .2s ease-out;
+}
+
+.button:hover {
+    color: #BD427A;
+    background-color: #42BD85;
+    transition: all .2s ease-in;
+}
+
+.button:active, .button:disabled {
+    color: #BD427A;
+    background-color: #42BD85;
+    transition: all .2s ease-in;
+}
+
+.buttons_table {
+    text-align: center;
+    vertical-align: middle;
+}
+
+/* start button */
+
+#start_button {
+    background-color: #42BD85;
+    color: #BD427A;
+    font-size: 3vw;
+    position: relative;
+    border:  2px solid;
+    border-radius: 10px;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 30vh;
+    height: 25vh;
+    transition: all .1s ease-out;
+}
+
+#start_button:hover {
+    background-color: #B8BD42A0;
+    transition: all .1s ease-out;
+}
+
+#start_button:active, #start_button:disabled {
+    background-color: #B8BD42A0;
+    box-shadow: 0 0 10px 5px #00000050;
+    transition: box-shawdow .2s ease-out,
+                all .1s ease-out;
+}

@@ -1,0 +1,54 @@
+.target {
+    transform: translate(-50%, -50%);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20vh;
+    height: 20vh;
+    border: #1ECBE1 5px solid;
+    border-radius: 10px;
+}
+
+#tests {
+    position: absolute;
+    top: 50%;
+    height: 25vh;
+    width: 100%;
+    font-size: 9vw;
+    color: white;
+    background-color: #4242BD;
+    transform: translate(0, -50%);
+    overflow-x: hidden;
+}
+
+#tests_tray {
+    display: flex;
+    justify-content: flex-start;
+    transform: translate(40.5vw,0);
+    transition: transform 0.3s ease-out;
+}
+
+#tests_tray span {
+    display: inline-block;
+    margin-left: 5vw;
+    transition: transform 0.5s ease-out;
+}
+
+#input {
+    position: absolute;
+    top: 72%;
+    width: 100%;
+    text-align: center;
+    transform: translate(0, -50%);
+}
+
+#input_field {
+    width: 20vw;
+    height: 12vh;
+    font-size: 1.2vh;
+    text-align: center;
+    vertical-align: middle;
+    border: solid 1px #42BD85;
+    border-radius: 5px;
+    font-size: 5vw;
+}
