@@ -1,24 +1,23 @@
-.target {
-    transform: translate(-50%, -50%);
-    position: absolute;
+#tests {
+    position: fixed;
     top: 50%;
+    height: 25vh;
+    width: 100%;
+    transform: translate(0, -50%);
+    font-size: 9vw;
+    color: white;
+    background-color: #4242BD;
+    overflow-x: hidden;
+}
+
+#target {
+    position: fixed;
+    transform: translate(-50%, 9%);
     left: 50%;
     width: 20vh;
     height: 20vh;
     border: #1ECBE1 5px solid;
     border-radius: 10px;
-}
-
-#tests {
-    position: absolute;
-    top: 50%;
-    height: 25vh;
-    width: 100%;
-    font-size: 9vw;
-    color: white;
-    background-color: #4242BD;
-    transform: translate(0, -50%);
-    overflow-x: hidden;
 }
 
 #tests_tray {
