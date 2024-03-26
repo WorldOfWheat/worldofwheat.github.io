@@ -9,7 +9,7 @@
 }
 
 .button:hover {
-    color: #BD427A;
+    color: white;
     background-color: #42BD85;
     transition: all .2s ease-in;
 }

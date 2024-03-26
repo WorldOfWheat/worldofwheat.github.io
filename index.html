@@ -7,6 +7,7 @@
     <link href="css/index.css" rel="stylesheet"/>
     <link href="css/button.css" rel="stylesheet"/>
     <link href="css/tests.css" rel="stylesheet"/>
+    <link href="css/dropdown.css" rel="stylesheet"/>
   </head>
   <body id="body" style="display: none;">
     <!-- Banner -->
@@ -15,25 +16,11 @@
         <tr>
           <!-- Level 1 -->
           <td class="buttons_table">
-
+            <button class="button">一級簡碼</button>
+            <br>
             <div class="dropdown" style="z-index: 11;">
-              <button class="button">一級簡碼</button>
-              <div class="dropdown-list">
-                <div class="selection">
-                  <input type="checkbox">
-                  <label>A</label>
-                </div>
-                <div class="selection">
-                  <input type="checkbox">
-                  <label>A</label>
-                </div>
-                <div class="selection">
-                  <input type="checkbox">
-                  <label>A</label>
-                </div>
-              </div>
+              <div class="dropdown-content"></div>
             </div>
-
 <!--
             <button class="button typeSelectButton" id="level1" disabled 
                     onclick="typeSelect('level1')">
@@ -44,17 +31,20 @@
 
           <!-- Level 2 -->
           <td class="buttons_table">
-            <button class="button typeSelectButton" id="level2"
-                    onclick="typeSelect('level2')">
-              二級簡碼
-            </button>
+            <button class="button">二級簡碼</button>
+            <br>
+            <div class="dropdown" style="z-index: 11;">
+              <div class="dropdown-content"></div>
+            </div>
           </td>
+
           <!-- Special -->
           <td class="buttons_table">
-            <button class="button typeSelectButton" id="special"
-                    onclick="typeSelect('special')" >
-              特別碼
-            </button>
+            <button class="button">特別碼</button>
+            <br>
+            <div class="dropdown" style="z-index: 11;">
+              <div class="dropdown-content"></div>
+            </div>
           </td>
         </tr>
       </table>

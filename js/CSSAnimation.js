@@ -100,3 +100,70 @@ class CSSAnimation {
         this.inputField.focus();
     }
 }
+
+class SelectionProperty {
+    constructor(_labelText, elementClasses = null, _hiddenValue = null) {
+        this.labelText = _labelText;
+        this.class = elementClasses;
+        this.hiddenValue = _hiddenValue;
+    }
+}
+
+function getSelectionElement(property) {
+    // selection 
+    const selection = document.createElement('div');
+    if (property.class != null)
+        selection.classList.add(property.class);
+    selection.classList.add('selection');
+
+    // selection property
+    const checkbox = document.createElement('input');
+    checkbox.type = 'checkbox';
+    checkbox.value = property.hiddenValue;
+
+    const label = document.createElement('label');
+    label.textContent = property.labelText;
+
+    selection.appendChild(checkbox);
+    selection.appendChild(label);
+
+    return selection;
+}
+
+function init() {
+    const firstKeys = 'abcdefghijklmnopqrstuvwxyz;/.,';
+    const dropDownContents = document.getElementsByClassName('dropdown-content');
+
+    let dropDownContentsCounter = 0
+    Array.from(dropDownContents).forEach(dropDownContent => {
+        // select all selection
+        const selectAllProperty = new SelectionProperty('全選', 'select_all', _hiddenValue = dropDownContentsCounter++);
+        const selectAll = getSelectionElement(selectAllProperty);
+        dropDownContent.appendChild(selectAll);
+
+        let firstKeysCounter = 0;
+
+        // create selections div
+        const selectionsLeft = document.createElement('div');
+        const selectionsRight = document.createElement('div');
+        selectionsLeft.classList.add('selections_left');
+        selectionsRight.classList.add('selections_right');
+
+        Array.from(firstKeys).forEach(key => {
+            firstKeysCounter++;
+
+            // selection elements
+            const selection = getSelectionElement(new SelectionProperty(_labelText = key, _hiddenValue = (dropDownContentsCounter + '-' + key)));
+            
+            // deside the dropdown list left or right
+            if (firstKeysCounter <= firstKeys.length / 2)
+                selectionsLeft.appendChild(selection);
+            else
+                selectionsRight.appendChild(selection);
+        });
+        dropDownContent.appendChild(selectionsLeft);
+        dropDownContent.appendChild(selectionsRight);
+    });
+}
+
+init();
