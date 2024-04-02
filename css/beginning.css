@@ -1,0 +1,35 @@
+#beginning {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 85vh;
+    transition: width .5s ease-out;
+}
+
+#start_button {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    width: 30vh;
+    height: 25vh;
+    z-index: 2;
+    background-color: #42BD85;
+    color: #BD427A;
+    font-size: 3vw;
+    border: 2px solid;
+    border-radius: 10px;
+    transform: translate(-50%, -50%);
+    transition: all .1s ease-out;
+}
+
+#start_button:hover {
+    background-color: #B8BD42A0;
+    transition: all .1s ease-out;
+}
+
+#start_button:active, #start_button:disabled {
+    background-color: #B8BD42A0;
+    box-shadow: 0 0 10px 5px #00000050;
+    transition: box-shawdow .2s ease-out,
+                all .1s ease-out;
+}

@@ -100,38 +100,50 @@ class AnimationControl {
         this.inputField.value = '';
         this.inputField.focus();
     }
-    //
+    
     // 選單控制
+    #closeAllSelections() {
+        for (let i = 0; i < 3; i++) {
+            const selections = document.getElementById(i + '_selections');
+            selections.style.opacity = 0;
+            selections.style.zIndex = 0;
+        }    
+    }
     
     /**
      * @description 切換字母選單
      */
-    switchDropDown(element) {
-        const value = element.value
-        if (!this.dropDownID.includes(value)) {
-            console.error('Invalid dropdown value');
+    switchSelections(selectionsID) {
+        if (!(0 <= selectionsID && selectionsID <= 2)) {
+            console.error('Invalid selectionsID');
             return;
         }
-        
-        const dropdown = document.getElementById(value + '_dropdown');
-        dropdown.style.opacity = 100 - dropdown.style.opacity;
+
+        animation.setReadyLayer();
+
+        const selections = document.getElementById(selectionsID + '_selections');
+        if (selections.style.opacity == 0) {
+            this.#closeAllSelections();
+            document.getElementById("selection_panel").style.zIndex = 5;
+        }
+
+        selections.style.opacity = 100 - selections.style.opacity;
+        selections.style.zIndex = 1;
+
+        if (selections.style.opacity == 0) {
+            document.getElementById("selection_panel").style.zIndex = 3;
+        }
     }
     
     /**
-     * 全選
+     * 全選控制
      */
-    selectionControl(button) {
-        const value = button.value;
-        const dropdownID = value.split('-')[1];
-        const selections = document.getElementsByClassName('selection-' + dropdownID);
+    selectAll(selectionsID, check) {
+        console.warn(selectionsID, check)
+        const selections = document.getElementsByClassName('selection-' + selectionsID);
         
         Array.from(selections).forEach(selection => {
-            const clickEvent = new MouseEvent('click', {
-                bubbles: true,
-                cancelable: true,
-                view: window
-            });
-            selection.getElementsByTagName('input')[0].dispatchEvent(clickEvent);
+            selection.getElementsByTagName('input')[0].checked = check;
         });
     }
 }
@@ -147,7 +159,7 @@ class Selection {
         // selection 
         const selection = document.createElement('div');
         if (this.classes != null)
-            selection.classList.add(this.classes);
+            Array.from(this.classes.split(' ')).forEach(className => selection.classList.add(className));
         selection.classList.add('selection');
 
         // selection property
@@ -163,37 +175,28 @@ class Selection {
 
         return selection;
     }
-
 }
 
 const animation = new AnimationControl();
 
 function main() {
     const firstKeys = 'abcdefghijklmnopqrstuvwxyz;/.,';
-    const dropDownContents = document.getElementsByClassName('dropdown-content');
+    const selectionsObject = document.getElementsByClassName('selections');
 
-    let dropDownContentsCounter = 0
-    Array.from(dropDownContents).forEach(dropDownContent => {
+    let selectionsTypeCounter = 0
+    Array.from(selectionsObject).forEach(selections => {
         // create selections div
         const selectionsLeft = document.createElement('div');
         const selectionsRight = document.createElement('div');
-        selectionsLeft.classList.add('selections_left');
-        selectionsRight.classList.add('selections_right');
-
-        // select all button
-        const selectionControl = document.createElement('button');
-        selectionControl.textContent = '全選';
-        selectionControl.classList.add('button', 'selection_control_button');
-        selectionControl.value = 'selectionControl-' + dropDownContentsCounter;
-        selectionControl.onclick = function () { animation.selectionControl(this) };
-        selectionsLeft.appendChild(selectionControl);
+        selectionsLeft.classList.add('left');
+        selectionsRight.classList.add('right');
         
         let firstKeysCounter = 0;
         Array.from(firstKeys).forEach(key => {
             firstKeysCounter++;
 
             // selection elements
-            const selection = new Selection(key, 'selection-' + dropDownContentsCounter, dropDownContentsCounter + '-' + key).getSelectionElement();
+            const selection = new Selection(key, 'selection-' + selectionsTypeCounter, selectionsTypeCounter + '-' + key).getSelectionElement();
             
             // deside the dropdown list left or right
             if (firstKeysCounter <= firstKeys.length / 2)
@@ -202,11 +205,29 @@ function main() {
                 selectionsRight.appendChild(selection);
         });
 
-        // append to dropdown content
-        dropDownContent.appendChild(selectionsLeft);
-        dropDownContent.appendChild(selectionsRight);
+        // append to selections content
+        selections.appendChild(selectionsLeft);
+        selections.appendChild(selectionsRight);
 
-        dropDownContentsCounter++;
+        // to prevent selectionTypeCounter from changing
+        const _parameter = selectionsTypeCounter;
+        // select all button
+        const selectionButton = document.createElement('button');
+        selectionButton.textContent = '全選';
+        selectionButton.classList.add('button');
+        selectionButton.onclick = function () { animation.selectAll(_parameter, true) };
+        selectionButton.style.marginTop = '8px';
+        selectionsLeft.appendChild(selectionButton);
+
+        // unselect all button
+        const unselectionButton = document.createElement('button');
+        unselectionButton.textContent = '全不選';
+        unselectionButton.classList.add('button');
+        unselectionButton.onclick = function () { animation.selectAll(_parameter, false) };
+        unselectionButton.style.marginTop = '8px';
+        selectionsRight.appendChild(unselectionButton);
+
+        selectionsTypeCounter++;
     });
 }
 

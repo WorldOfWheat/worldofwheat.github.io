@@ -1,6 +1,12 @@
+#running {
+    position: relative;
+    width: 100%;
+    height: 85vh;
+}
+
 #code_type {
-    position: fixed;
-    top: 25%;
+    position: absolute;
+    top: 15%;
     transform: translate(-50%, 0);
     left: 50%;
     font-size: 5vh;
@@ -8,8 +14,8 @@
 }
 
 #tests {
-    position: fixed;
-    top: 50%;
+    position: absolute;
+    top: 45%;
     height: 25vh;
     width: 100%;
     transform: translate(0, -50%);
@@ -20,8 +26,9 @@
 }
 
 #target {
-    position: fixed;
-    transform: translate(-50%, 9%);
+    position: absolute;
+    transform: translate(-50%, 0%);
+    top: 7.5%;
     left: 50%;
     width: 20vh;
     height: 20vh;
@@ -42,12 +49,8 @@
     transition: transform 0.5s ease-out;
 }
 
-#input {
-    width: 100%;
-}
-
 #input_field {
-    position: fixed;
+    position: absolute;
     top: 65%;
     left: 50%;
     width: 20vw;

@@ -6,66 +6,73 @@
     <title>行列高手</title>
     <link href="css/index.css" rel="stylesheet"/>
     <link href="css/button.css" rel="stylesheet"/>
-    <link href="css/tests.css" rel="stylesheet"/>
-    <link href="css/dropdown.css" rel="stylesheet"/>
+    <link href="css/running.css" rel="stylesheet"/>
+    <link href="css/beginning.css" rel="stylesheet"/>
+    <link href="css/selection_panel.css" rel="stylesheet"/>
   </head>
   <body id="body" style="display: none;">
     <!-- Banner -->
-    <div id="banner">
+    <div id="banner" style="z-index: 2;">
       <table align="center" style="width: 100%; height: 100%;">
         <tr>
           <!-- Level 1 -->
           <td class="selection_table">
-            <button class="button" value="level1" onclick="cssAnimation.switchDropDown(this)">
+            <button class="button" onclick="cssAnimation.switchSelections(0)">
               一級簡碼
             </button>
-            <br>
-            <div id="level1_dropdown" class="dropdown" style="z-index: 11;">
-              <div class="dropdown-content"></div>
-            </div>
           </td>
 
           <!-- Level 2 -->
           <td class="selection_table">
-            <button class="button" value='level2' onclick="cssAnimation.switchDropDown(this)">
+            <button class="button" onclick="cssAnimation.switchSelections(1)">
               二級簡碼
             </button>
-            <br>
-            <div id="level2_dropdown" class="dropdown" style="z-index: 1;">
-              <div class="dropdown-content"></div>
-            </div>
           </td>
 
           <!-- Special -->
           <td class="selection_table">
-            <button class="button" value="special" onclick="cssAnimation.switchDropDown(this)">
+            <button class="button" onclick="cssAnimation.switchSelections(2)">
               特別碼
             </button>
-            <br>
-            <div id="special_dropdown" class="dropdown" style="z-index: 11;">
-              <div class="dropdown-content"></div>
-            </div>
           </td>
         </tr>
       </table>
     </div>
     
-    <!-- Content -->
-    <div id="context">
-      <!-- Ready -->
-      <!--
-      <div id="beginning" style="z-index: 4;">
-        <button class="button" id="start_button" onclick="startTest()">
-          開始
-        </button>
+    <!-- Context -->
+    <div id="context" style="z-index: 1;">
+      <!-- Selection Panel -->
+      <div id="selection_panel" style="z-index: 3;">
+        <!-- 一級簡碼 -->
+        <div class="selections" id="0_selections" onmouseleave="cssAnimation.switchSelections(0)">
+          <div class="title">
+            一級簡碼
+          </div>
+        </div>
+        <!-- 二級簡碼 -->
+        <div class="selections" id="1_selections" onmouseleave="cssAnimation.switchSelections(1)">
+          <div class="title">
+            二級簡碼
+          </div>
+        </div>
+        <!-- 特別碼 -->
+        <div class="selections" id="2_selections" onmouseleave="cssAnimation.switchSelections(2)">
+          <div class="title">
+            特別碼
+          </div>
+        </div>
       </div>
-      -->
-      
-      <!-- blur mask -->
-      <div id="blur_mask" style="z-index: 10;"></div>
+
+      <!-- Ready -->
+      <!-- TODO -->
+      <div id="beginning" style="display: block; z-index: 4;">
+        <button class="button" id="start_button" style="z-index: 11;" onclick="startTest()">開始</button>
+        <!-- blur mask -->
+        <div class="blur_mask"></div>
+      </div>
     
       <!-- Running -->
-      <div id="running">
+      <div id="running" style="z-index: 3;">
         <div id="code_type">
           一級簡碼
         </div>
@@ -81,7 +88,7 @@
     </div>
     
     <!-- Footer -->
-    <div id="foster" style="z-index: 1;">
+    <div id="foster">
       版本：v1.0
       <a style="float: right;" target="_blank" href="https://github.com/WorldOfWheat/fast-array.github.io">
         <img style="margin-top: 2px; margin-left: 5px;" src="https://cdn-icons-png.flaticon.com/512/25/25231.png" width="20vw">
