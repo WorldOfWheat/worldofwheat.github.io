@@ -16,7 +16,7 @@ class Tests {
                 }
                 const selectionKey = selectionKeyAndCharacter[j][1];
                 const answer = this.keys[i] + selectionKey; // first key + selection key
-                result.push({q: question, a: answer});
+                result.push([answer, question]);
             }
         };
         return result;
@@ -37,7 +37,7 @@ class Tests {
                     }
                     const selectionKey = selectionKeyAndCharacter[k][1]; // selection key
                     const answer = firstKey + selectionKey; // first key + selection key
-                    result.push({q: question, a: answer});
+                    result.push([answer, question]);
                 }
             }
         }
@@ -51,7 +51,7 @@ class Tests {
             const codeAndCharacter = data[i];
             const code = Object.keys(codeAndCharacter)[0];
             const character = codeAndCharacter[code];
-            result.push({q: character, a: code});
+            result.push([code, character]);
         }
         return result;
     }
@@ -68,76 +68,62 @@ class Tests {
         return array;
     }
     
-    #removeCodes(removedCode, codes) {
-        removedCode = removedCode.map((code) => code.q);
-        removedCode.sort();
-        
-        let result = [];
-        for (let i = 0; i < codes.length; i++) {
-            if (removedCode.includes(codes[i].q)) {
-                continue;
+    #getFirstTestPosition(firstKey, codes) {
+        let l = 0, r = codes.length;
+        while (l < r) {
+            let mid = Math.floor((l + r) / 2);
+            if (codes[mid][0][0] < firstKey) {
+                l = mid + 1;
+            } else {
+                r = mid;
             }
-            result.push(codes[i]);
         }
-        
-        codes = result;
+        return l;
     }
     
-    getRandomTest(type) {
-        switch (type) {
-            case 'level1': {
-                const rawCodes = codesInstance.getCodes(type);
-                const codes = this.#formatLevel1Code(rawCodes);
-                this.#shuffle(codes);
-                return codes;
+    getRandomTest(types) {
+        let codes = [];
+        // get all codes
+        const rawLevel1Codes = codesInstance.getCodes(0);
+        const rawLevel2Codes = codesInstance.getCodes(1);
+        const rawSpecialCodes = codesInstance.getCodes(2);
+        // format codes, and sort them for binary search
+        codes.push(this.#formatLevel1Code(rawLevel1Codes).sort());
+        codes.push(this.#formatLevel2Code(rawLevel2Codes).sort());
+        codes.push(this.#formatSpecialCode(rawSpecialCodes).sort());
+
+        let result = [];
+        // get all selected types
+        Array.from(types).forEach(type => {
+            const codeType = type.split('-')[0];
+            const firstKey = type.split('-')[1];
+            // get the first key position in the specify codes
+            const firstKeyPosition = this.#getFirstTestPosition(firstKey, codes[codeType]);
+            // get all codes with the same first key and put them into result
+            let testCounter = firstKeyPosition;
+            while (testCounter < codes[codeType].length && codes[codeType][testCounter][0][0] === firstKey) {
+                result.push([codes[codeType][testCounter], codeType]);
+                testCounter++;
             }
-            case 'level2': {
-                // read level 2 codes
-                const rawCodes = codesInstance.getCodes(type);
-                let codes = this.#formatLevel2Code(rawCodes);
+        });
 
-                // read level 1 codes
-                const rawlevel1Codes = codesInstance.getCodes('level1');
-                let level1Codes = this.#formatLevel1Code(rawlevel1Codes);
-                // remove level 1 codes
-                this.#removeCodes(level1Codes, codes);
+        this.#shuffle(result);
 
-                this.#shuffle(codes);
-
-                return codes;
-            }
-            case 'special': {
-                const rawCodes = codesInstance.getCodes(type);
-                let codes = this.#formatSpecialCode(rawCodes);
-                
-                // read level 1 codes
-                const rawlevel1Codes = codesInstance.getCodes('level1');
-                let level1Codes = this.#formatLevel1Code(rawlevel1Codes);
-
-                // remove level 1 codes
-                this.#removeCodes(level1Codes, codes);
-
-                this.#shuffle(codes);
-                
-                return codes;
-            }               
-            default:
-                console.error('Invalid type');
-                break;
-        }
+        return result;
     }
 }
 
 class Testing {
     constructor(tests) {
-        this.tests = tests;
+        this.tests = tests; 
         this.currentTestCounter = 0;
         this.nextTestCounter = 0;
+        console.warn(this.tests);
     }
     
     compareAnswer(answer) {
         answer = answer.trim();
-        if (answer === this.tests[this.currentTestCounter].a) {
+        if (answer === this.getAnswer()) {
             this.currentTestCounter++;
             return true;
         }
@@ -145,11 +131,26 @@ class Testing {
     }
     
     nextTest() {
-        return this.tests[this.nextTestCounter++];
+        return this.tests[this.nextTestCounter++][0][1];
     }
     
     getAnswer() {
-        return this.tests[this.currentTestCounter].a;
+        return this.tests[this.currentTestCounter][0][0];
+    }
+
+    getType() {
+        return this.tests[this.currentTestCounter][1];
+    }
+
+    ifInputCharacterAmountMatch(charactersAmount) {
+        switch (this.tests[this.currentTestCounter][1]) {
+            case '0':
+                return charactersAmount === 2;
+            case '1':
+                return charactersAmount === 3;
+            case '2':
+                return charactersAmount === 3;
+        }
     }
 }
 
@@ -157,16 +158,7 @@ let wrongCounter = 0;
 const inputField = document.getElementById('input_field');
 inputField.addEventListener('input', (event) => {
     const answer = inputField.value;
-    // 檢查是否為 level 1 且長度為 2
-    if (currentType === 'level1' && answer.length !== 2) {
-        return;
-    }
-    // 檢查是否為 level 2 且長度為 3
-    if (currentType === 'level2' && answer.length !== 3) {
-        return;
-    }
-    // 檢查是否為 special 且長度為 2
-    if (currentType === 'special' && answer.length !== 3) {
+    if (!testing.ifInputCharacterAmountMatch(answer.length)) {
         return;
     }
 
@@ -175,17 +167,18 @@ inputField.addEventListener('input', (event) => {
         if (testing.currentTestCounter >= 3) {
             cssAnimation.removeFrontTest();
         }
-        cssAnimation.addTest(testing.nextTest().q);
+        cssAnimation.addTest(testing.nextTest());
+        htmlControl.setTestType(testing.getType());
         wrongCounter = 0;
     }                                
     else {                        
         wrongCounter++;
         if (wrongCounter >= 2) {
             const answer = testing.getAnswer();
-            cssAnimation.showAnswer(answer);
+            htmlControl.showAnswer(answer);
             wrongCounter = 0;
             setTimeout(() => {
-                cssAnimation.hideAnswer();
+                htmlControl.hideAnswer();
             }, 1000);
             return;
         }

@@ -3,7 +3,6 @@ class AnimationControl {
         this.frontTestCounter = 0
         this.tray = document.getElementById('tests_tray');
         this.inputField = document.getElementById('input_field');
-        this.dropDownID = ['level1', 'level2', 'special']
     }
     
     #getSpanPosition(span) {
@@ -79,73 +78,6 @@ class AnimationControl {
         document.getElementById('start_button').style.transform = 'translate(-50%, -50%)';
     }
     
-    // 答案控制
-    
-    /**
-     * @description 顯示答案
-     */
-    showAnswer(answer) {
-        this.inputField.readOnly = true;
-        this.inputField.style.color = 'red';
-        this.inputField.value = answer;
-        this.inputField.focus();
-    }
-    
-    /**
-     * @description 隱藏答案
-     */
-    hideAnswer() {
-        this.inputField.readOnly = false;
-        this.inputField.style.color = 'black';
-        this.inputField.value = '';
-        this.inputField.focus();
-    }
-    
-    // 選單控制
-    #closeAllSelections() {
-        for (let i = 0; i < 3; i++) {
-            const selections = document.getElementById(i + '_selections');
-            selections.style.opacity = 0;
-            selections.style.zIndex = 0;
-        }    
-    }
-    
-    /**
-     * @description 切換字母選單
-     */
-    switchSelections(selectionsID) {
-        if (!(0 <= selectionsID && selectionsID <= 2)) {
-            console.error('Invalid selectionsID');
-            return;
-        }
-
-        animation.setReadyLayer();
-
-        const selections = document.getElementById(selectionsID + '_selections');
-        if (selections.style.opacity == 0) {
-            this.#closeAllSelections();
-            document.getElementById("selection_panel").style.zIndex = 5;
-        }
-
-        selections.style.opacity = 100 - selections.style.opacity;
-        selections.style.zIndex = 1;
-
-        if (selections.style.opacity == 0) {
-            document.getElementById("selection_panel").style.zIndex = 3;
-        }
-    }
-    
-    /**
-     * 全選控制
-     */
-    selectAll(selectionsID, check) {
-        console.warn(selectionsID, check)
-        const selections = document.getElementsByClassName('selection-' + selectionsID);
-        
-        Array.from(selections).forEach(selection => {
-            selection.getElementsByTagName('input')[0].checked = check;
-        });
-    }
 }
 
 class Selection {
@@ -176,8 +108,6 @@ class Selection {
         return selection;
     }
 }
-
-const animation = new AnimationControl();
 
 function main() {
     const firstKeys = 'abcdefghijklmnopqrstuvwxyz;/.,';
@@ -215,7 +145,7 @@ function main() {
         const selectionButton = document.createElement('button');
         selectionButton.textContent = '全選';
         selectionButton.classList.add('button');
-        selectionButton.onclick = function () { animation.selectAll(_parameter, true) };
+        selectionButton.onclick = function () { htmlControl.selectAll(_parameter, true) };
         selectionButton.style.marginTop = '8px';
         selectionsLeft.appendChild(selectionButton);
 
@@ -223,7 +153,7 @@ function main() {
         const unselectionButton = document.createElement('button');
         unselectionButton.textContent = '全不選';
         unselectionButton.classList.add('button');
-        unselectionButton.onclick = function () { animation.selectAll(_parameter, false) };
+        unselectionButton.onclick = function () { htmlControl.selectAll(_parameter, false) };
         unselectionButton.style.marginTop = '8px';
         selectionsRight.appendChild(unselectionButton);
 

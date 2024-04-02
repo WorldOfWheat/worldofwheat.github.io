@@ -17,21 +17,21 @@
         <tr>
           <!-- Level 1 -->
           <td class="selection_table">
-            <button class="button" onclick="cssAnimation.switchSelections(0)">
+            <button class="button" onclick="htmlControl.switchSelections(0)">
               一級簡碼
             </button>
           </td>
 
           <!-- Level 2 -->
           <td class="selection_table">
-            <button class="button" onclick="cssAnimation.switchSelections(1)">
+            <button class="button" onclick="htmlControl.switchSelections(1)">
               二級簡碼
             </button>
           </td>
 
           <!-- Special -->
           <td class="selection_table">
-            <button class="button" onclick="cssAnimation.switchSelections(2)">
+            <button class="button" onclick="htmlControl.switchSelections(2)">
               特別碼
             </button>
           </td>
@@ -44,19 +44,19 @@
       <!-- Selection Panel -->
       <div id="selection_panel" style="z-index: 3;">
         <!-- 一級簡碼 -->
-        <div class="selections" id="0_selections" onmouseleave="cssAnimation.switchSelections(0)">
+        <div class="selections" id="0_selections" onmouseleave="htmlControl.switchSelections(0)">
           <div class="title">
             一級簡碼
           </div>
         </div>
         <!-- 二級簡碼 -->
-        <div class="selections" id="1_selections" onmouseleave="cssAnimation.switchSelections(1)">
+        <div class="selections" id="1_selections" onmouseleave="htmlControl.switchSelections(1)">
           <div class="title">
             二級簡碼
           </div>
         </div>
         <!-- 特別碼 -->
-        <div class="selections" id="2_selections" onmouseleave="cssAnimation.switchSelections(2)">
+        <div class="selections" id="2_selections" onmouseleave="htmlControl.switchSelections(2)">
           <div class="title">
             特別碼
           </div>
@@ -64,7 +64,6 @@
       </div>
 
       <!-- Ready -->
-      <!-- TODO -->
       <div id="beginning" style="display: block; z-index: 4;">
         <button class="button" id="start_button" style="z-index: 11;" onclick="startTest()">開始</button>
         <!-- blur mask -->
@@ -96,8 +95,9 @@
       <span style="float: right;">作者：小麥</span>
     </div>
   </body>
+  <script src="js/HTMLControl.js"></script>
   <script src="js/CSSControl.js"></script>
-  <script src="js/CodesLoad.js"></script>
+  <script src="js/Codes.js"></script>
   <script src="js/TestContorl.js"></script>
   <script src="js/index.js"></script>
 </html>

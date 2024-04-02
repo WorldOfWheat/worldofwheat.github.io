@@ -1,47 +1,36 @@
 const codesInstance = new Codes();
 const cssAnimation = new AnimationControl();
+const htmlControl = new HTMLControl();
 const tests = new Tests();
 let testing;
 
-let currentType = 'level1';
-function typeSelect(buttonID) {
-    if (buttonID != 'level1' && buttonID != 'level2' && buttonID != 'special') {
-        console.error('Invalid button id');
+function startTest() {
+    const allSelected = htmlControl.getAllSelected().sort();
+    const testsData = tests.getRandomTest(allSelected);
+    if (testsData.length === 0) {
+        alert('請選擇要練習的簡碼類別');
         return;
     }
-
-    currentType = buttonID;
-    cssAnimation.clearTestsTray();
-    cssAnimation.setReadyLayer();
-    // get all selection buttons
-    const typeSelectButtons = document.getElementsByClassName('typeSelectButton');
-    Array.from(typeSelectButtons).forEach(button => {
-        if (button.id != buttonID) {
-            button.disabled = false;
-        }
-        else {
-            button.disabled = true;
-        }
-    });
-}
-
-function startTest() {
-    cssAnimation.removeReadyLayer();
-    const testsData = tests.getRandomTest(currentType);
     testing = new Testing(testsData);
 
+    cssAnimation.clearTestsTray();
+    cssAnimation.removeReadyLayer();
+
     for (let i = 0; i < 3; i++) {
-        cssAnimation.addTest(testing.nextTest().q);
+        const test = testing.nextTest();
+        cssAnimation.addTest(test);
     }
+    htmlControl.setTestType(testing.getType());
 }
 
 function main() {
     document.getElementById('body').style.display = 'block';
     // 等待簡碼表載入完成
-    // codesInstance.init().then(() => { 
-    //     console.log('Codes loaded');
-    //     document.getElementById('body').style.display = 'block';
-    // });
+    codesInstance.init().then(() => { 
+        console.log('Codes loaded');
+        document.getElementById('body').style.display = 'block';
+        tests.getRandomTest(0);
+    });
 }
 
 main();
