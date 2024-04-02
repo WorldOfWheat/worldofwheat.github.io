@@ -16,7 +16,9 @@
         <tr>
           <!-- Level 1 -->
           <td class="selection_table">
-            <button class="button" value="level1" onclick="cssAnimation.switchDropDown(this)">一級簡碼</button>
+            <button class="button" value="level1" onclick="cssAnimation.switchDropDown(this)">
+              一級簡碼
+            </button>
             <br>
             <div id="level1_dropdown" class="dropdown" style="z-index: 11;">
               <div class="dropdown-content"></div>
@@ -25,16 +27,20 @@
 
           <!-- Level 2 -->
           <td class="selection_table">
-            <button class="button" value='level2' onclick="cssAnimation.switchDropDown(this)">二級簡碼</button>
+            <button class="button" value='level2' onclick="cssAnimation.switchDropDown(this)">
+              二級簡碼
+            </button>
             <br>
-            <div id="level2_dropdown" class="dropdown" style="z-index: 11;">
+            <div id="level2_dropdown" class="dropdown" style="z-index: 1;">
               <div class="dropdown-content"></div>
             </div>
           </td>
 
           <!-- Special -->
           <td class="selection_table">
-            <button class="button" value="special" onclick=" cssAnimation.switchDropDown(this)">特別碼</button>
+            <button class="button" value="special" onclick="cssAnimation.switchDropDown(this)">
+              特別碼
+            </button>
             <br>
             <div id="special_dropdown" class="dropdown" style="z-index: 11;">
               <div class="dropdown-content"></div>
@@ -45,13 +51,7 @@
     </div>
     
     <!-- Content -->
-    <div id="context" style="z-index: 1;">
-
-      <!-- selection tables -->
-      <div>
-        
-      </div>
-
+    <div id="context">
       <!-- Ready -->
       <!--
       <div id="beginning" style="z-index: 4;">
@@ -62,25 +62,26 @@
       -->
       
       <!-- blur mask -->
-      <div id="blur_mask"></div>
+      <div id="blur_mask" style="z-index: 10;"></div>
     
       <!-- Running -->
       <div id="running">
+        <div id="code_type">
+          一級簡碼
+        </div>
         <div id="tests" >
           <!-- Target Aim -->
-          <div id="target" style="z-index: 3;"></div>
+          <div id="target" style="z-index: 2;"></div>
           <!-- Tests tray -->
-          <div id="tests_tray" style="z-index: 2;"></div>
+          <div id="tests_tray" style="z-index: 1;"></div>
         </div>
         <!-- Input -->
-        <div id="input">
-          <input id="input_field" type="text" placeholder="答案">
-        </div>
+        <input id="input_field" type="text" placeholder="答案">
       </div>
     </div>
     
     <!-- Footer -->
-    <div id="foster" style="z-index: 5;">
+    <div id="foster" style="z-index: 1;">
       版本：v1.0
       <a style="float: right;" target="_blank" href="https://github.com/WorldOfWheat/fast-array.github.io">
         <img style="margin-top: 2px; margin-left: 5px;" src="https://cdn-icons-png.flaticon.com/512/25/25231.png" width="20vw">

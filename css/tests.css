@@ -1,3 +1,12 @@
+#code_type {
+    position: fixed;
+    top: 25%;
+    transform: translate(-50%, 0);
+    left: 50%;
+    font-size: 5vh;
+    border: solid 3px #42BD85;
+}
+
 #tests {
     position: fixed;
     top: 50%;
@@ -34,20 +43,19 @@
 }
 
 #input {
-    position: absolute;
-    top: 72%;
     width: 100%;
-    text-align: center;
-    transform: translate(0, -50%);
 }
 
 #input_field {
+    position: fixed;
+    top: 65%;
+    left: 50%;
     width: 20vw;
     height: 12vh;
-    font-size: 1.2vh;
     text-align: center;
     vertical-align: middle;
     border: solid 1px #42BD85;
     border-radius: 5px;
     font-size: 5vw;
+    transform: translate(-50%, 0);
 }

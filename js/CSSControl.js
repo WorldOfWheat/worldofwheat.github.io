@@ -117,8 +117,22 @@ class AnimationControl {
         dropdown.style.opacity = 100 - dropdown.style.opacity;
     }
     
-    selectiAll() {
-
+    /**
+     * 全選
+     */
+    selectionControl(button) {
+        const value = button.value;
+        const dropdownID = value.split('-')[1];
+        const selections = document.getElementsByClassName('selection-' + dropdownID);
+        
+        Array.from(selections).forEach(selection => {
+            const clickEvent = new MouseEvent('click', {
+                bubbles: true,
+                cancelable: true,
+                view: window
+            });
+            selection.getElementsByTagName('input')[0].dispatchEvent(clickEvent);
+        });
     }
 }
 
@@ -152,7 +166,9 @@ class Selection {
 
 }
 
-function init() {
+const animation = new AnimationControl();
+
+function main() {
     const firstKeys = 'abcdefghijklmnopqrstuvwxyz;/.,';
     const dropDownContents = document.getElementsByClassName('dropdown-content');
 
@@ -165,25 +181,19 @@ function init() {
         selectionsRight.classList.add('selections_right');
 
         // select all button
-        const selectAll = document.createElement('button');
-        selectAll.textContent = '全選';
-        selectAll.classList.add('button');
-        selectAll.classList.add('selection_control_button');
-        selectionsLeft.appendChild(selectAll);
+        const selectionControl = document.createElement('button');
+        selectionControl.textContent = '全選';
+        selectionControl.classList.add('button', 'selection_control_button');
+        selectionControl.value = 'selectionControl-' + dropDownContentsCounter;
+        selectionControl.onclick = function () { animation.selectionControl(this) };
+        selectionsLeft.appendChild(selectionControl);
         
-        // unselect all selection
-        const unselectAll = document.createElement('button');
-        unselectAll.textContent = '全不選';
-        unselectAll.classList.add('button');
-        unselectAll.classList.add('selection_control_button');
-        selectionsRight.appendChild(unselectAll);
-
         let firstKeysCounter = 0;
         Array.from(firstKeys).forEach(key => {
             firstKeysCounter++;
 
             // selection elements
-            const selection = new Selection(key, null, dropDownContentsCounter + '-' + key).getSelectionElement();
+            const selection = new Selection(key, 'selection-' + dropDownContentsCounter, dropDownContentsCounter + '-' + key).getSelectionElement();
             
             // deside the dropdown list left or right
             if (firstKeysCounter <= firstKeys.length / 2)
@@ -192,9 +202,12 @@ function init() {
                 selectionsRight.appendChild(selection);
         });
 
+        // append to dropdown content
         dropDownContent.appendChild(selectionsLeft);
         dropDownContent.appendChild(selectionsRight);
+
+        dropDownContentsCounter++;
     });
 }
 
-init();
+main();

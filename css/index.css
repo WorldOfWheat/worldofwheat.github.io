@@ -34,14 +34,14 @@ body {
     width: 100%;
 }
 
-#context #blur_mask {
+#blur_mask {
     position: relative;
-    height: 100%;
-    width: 100%;
+    /* TODO */
+    height: 0%;
+    width: 0%;
     background-color: #f2f2f250;
     backdrop-filter: blur(10px);
     transition: width .5s ease-out;
-    
 }
 
 #beginning {
@@ -52,7 +52,7 @@ body {
 }
 
 #running {
-    position: fixed;
+    position: relative;
     width: 100%;
     height: 85vh;
 }

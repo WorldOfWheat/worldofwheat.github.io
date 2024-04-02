@@ -63,6 +63,6 @@
 .selection_control_button {
     background-color: var(--light-black);
     border-radius: 0px;
-    width: 100%;
+    width: 200%;
     border: 1px solid white;
 }

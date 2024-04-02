@@ -16,6 +16,7 @@
 .dropdown-content {
     text-align: left;
     vertical-align: middle;
+    position: relative;
 }
 
 /* selection */
