@@ -1,3 +1,7 @@
+:root {
+    --light-black: rgb(50,50,50);
+}
+
 .button {
     font-size: large;
     border: solid 1px #42BD85;
@@ -15,12 +19,12 @@
 }
 
 .button:active, .button:disabled {
-    color: #BD427A;
+    color: var(--light-black);
     background-color: #42BD85;
     transition: all .2s ease-in;
 }
 
-.buttons_table {
+.selection_table {
     text-align: center;
     vertical-align: middle;
 }
@@ -52,4 +56,13 @@
     box-shadow: 0 0 10px 5px #00000050;
     transition: box-shawdow .2s ease-out,
                 all .1s ease-out;
+}
+
+/* selection control button */
+
+.selection_control_button {
+    background-color: var(--light-black);
+    border-radius: 0px;
+    width: 100%;
+    border: 1px solid white;
 }

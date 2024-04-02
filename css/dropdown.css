@@ -2,17 +2,23 @@
     --light-black: rgb(50,50,50);
 }
 
+/* dropdown */
+
 .dropdown {
     margin-top: 5px;
     position: fixed;
     display: inline-block;
     transform: translate(-50%, 0);
+    opacity: 0;
+    transition: opacity .1s ease-out;
 }
 
 .dropdown-content {
     text-align: left;
     vertical-align: middle;
 }
+
+/* selection */
 
 .selection {
     background-color: var(--light-black);
@@ -26,22 +32,16 @@
     color: white;
 }
 
-.select_all {
-    right: 50%;
-    position: relative;
-    min-width: 200%;
+.all_selections_control {
     background-color: #42BD85;
 }
 
 .selections_left {
-    border-top: solid 1px white;
     position: relative;
     left: -50%;
 }
 
 .selections_right {
-    border-top: solid 1px white;
-    border-left: solid 1px white;
     position: relative;
     left: 50%;
     transform: translate(0, -100%);

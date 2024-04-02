@@ -1,8 +1,9 @@
-class CSSAnimation {
+class AnimationControl {
     constructor() {
         this.frontTestCounter = 0
         this.tray = document.getElementById('tests_tray');
         this.inputField = document.getElementById('input_field');
+        this.dropDownID = ['level1', 'level2', 'special']
     }
     
     #getSpanPosition(span) {
@@ -99,35 +100,56 @@ class CSSAnimation {
         this.inputField.value = '';
         this.inputField.focus();
     }
-}
+    //
+    // 選單控制
+    
+    /**
+     * @description 切換字母選單
+     */
+    switchDropDown(element) {
+        const value = element.value
+        if (!this.dropDownID.includes(value)) {
+            console.error('Invalid dropdown value');
+            return;
+        }
+        
+        const dropdown = document.getElementById(value + '_dropdown');
+        dropdown.style.opacity = 100 - dropdown.style.opacity;
+    }
+    
+    selectiAll() {
 
-class SelectionProperty {
-    constructor(_labelText, elementClasses = null, _hiddenValue = null) {
-        this.labelText = _labelText;
-        this.class = elementClasses;
-        this.hiddenValue = _hiddenValue;
     }
 }
 
-function getSelectionElement(property) {
-    // selection 
-    const selection = document.createElement('div');
-    if (property.class != null)
-        selection.classList.add(property.class);
-    selection.classList.add('selection');
+class Selection {
+    constructor(labelText, selectionClasses = null, checkboxValue = null) {
+        this.text = labelText;
+        this.classes = selectionClasses;
+        this.value = checkboxValue;
+    }
 
-    // selection property
-    const checkbox = document.createElement('input');
-    checkbox.type = 'checkbox';
-    checkbox.value = property.hiddenValue;
+    getSelectionElement() {
+        // selection 
+        const selection = document.createElement('div');
+        if (this.classes != null)
+            selection.classList.add(this.classes);
+        selection.classList.add('selection');
 
-    const label = document.createElement('label');
-    label.textContent = property.labelText;
+        // selection property
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.value = this.value;
 
-    selection.appendChild(checkbox);
-    selection.appendChild(label);
+        const label = document.createElement('label');
+        label.textContent = this.text;
 
-    return selection;
+        selection.appendChild(checkbox);
+        selection.appendChild(label);
+
+        return selection;
+    }
+
 }
 
 function init() {
@@ -136,24 +158,32 @@ function init() {
 
     let dropDownContentsCounter = 0
     Array.from(dropDownContents).forEach(dropDownContent => {
-        // select all selection
-        const selectAllProperty = new SelectionProperty('全選', 'select_all', _hiddenValue = dropDownContentsCounter++);
-        const selectAll = getSelectionElement(selectAllProperty);
-        dropDownContent.appendChild(selectAll);
-
-        let firstKeysCounter = 0;
-
         // create selections div
         const selectionsLeft = document.createElement('div');
         const selectionsRight = document.createElement('div');
         selectionsLeft.classList.add('selections_left');
         selectionsRight.classList.add('selections_right');
 
+        // select all button
+        const selectAll = document.createElement('button');
+        selectAll.textContent = '全選';
+        selectAll.classList.add('button');
+        selectAll.classList.add('selection_control_button');
+        selectionsLeft.appendChild(selectAll);
+        
+        // unselect all selection
+        const unselectAll = document.createElement('button');
+        unselectAll.textContent = '全不選';
+        unselectAll.classList.add('button');
+        unselectAll.classList.add('selection_control_button');
+        selectionsRight.appendChild(unselectAll);
+
+        let firstKeysCounter = 0;
         Array.from(firstKeys).forEach(key => {
             firstKeysCounter++;
 
             // selection elements
-            const selection = getSelectionElement(new SelectionProperty(_labelText = key, _hiddenValue = (dropDownContentsCounter + '-' + key)));
+            const selection = new Selection(key, null, dropDownContentsCounter + '-' + key).getSelectionElement();
             
             // deside the dropdown list left or right
             if (firstKeysCounter <= firstKeys.length / 2)
@@ -161,6 +191,7 @@ function init() {
             else
                 selectionsRight.appendChild(selection);
         });
+
         dropDownContent.appendChild(selectionsLeft);
         dropDownContent.appendChild(selectionsRight);
     });
