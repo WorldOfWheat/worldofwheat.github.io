@@ -1,6 +1,7 @@
 class HTMLControl {
     constructor() {
         this.inputField = document.getElementById('input_field');
+        this.codeType = document.getElementById('code_type');
     }
 
     // 答案控制
@@ -85,16 +86,18 @@ class HTMLControl {
      * @description 設定目前題目的分類
      */
     setTestType(testType) {
-        console.log(testType);
         switch (testType) {
             case '0':
-                document.getElementById('code_type').innerText = '一級簡碼';
+                this.codeType.innerText = '一級簡碼';               
+                this.codeType.style.backgroundColor = '#47B84F';
                 break;
             case '1':
-                document.getElementById('code_type').innerText = '二級簡碼';
+                this.codeType.innerText = '二級簡碼';               
+                this.codeType.style.backgroundColor = '#4F47B8';
                 break;
             case '2':
-                document.getElementById('code_type').innerText = '特別碼';
+                this.codeType.innerText = '特別碼';               
+                this.codeType.style.backgroundColor = '#B84F47';
                 break;
             default: 
                 console.error('Invalid testType');

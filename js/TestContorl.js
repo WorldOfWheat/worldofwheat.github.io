@@ -130,7 +130,6 @@ class Testing {
     }
     
     nextTest() {
-        console.warn(this.currentTestCounter, this.tests.nextTestCounter);
         if (this.nextTestCounter >= this.tests.length) {
             return ' ';
         }

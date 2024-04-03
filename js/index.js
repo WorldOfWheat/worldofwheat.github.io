@@ -19,6 +19,7 @@ inputField.addEventListener('input', (event) => {
             // if all tests are done
             cssAnimation.setReadyLayer();
             htmlControl.focusStartButton();
+            inputField.value = '';
             return;
         }
         // move the test tray
@@ -82,7 +83,6 @@ function startTest() {
 function main() {
     // 等待簡碼表載入完成
     codesInstance.init().then(() => { 
-        console.log('Codes loaded');
         document.getElementById('body').style.display = 'block';
         tests.getRandomTest(0);
     });

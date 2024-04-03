@@ -1,3 +1,8 @@
+:root {
+    --black: rgb(50,50,50);
+    --white: #f2f2f2;
+}
+
 #running {
     position: relative;
     width: 100%;
@@ -10,7 +15,8 @@
     transform: translate(-50%, 0);
     left: 50%;
     font-size: 5vh;
-    border: solid 3px #42BD85;
+    color: var(--white);
+    background-color: #47B84F;
 }
 
 #tests {
