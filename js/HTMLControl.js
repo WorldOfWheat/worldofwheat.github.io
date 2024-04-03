@@ -12,7 +12,6 @@ class HTMLControl {
         this.inputField.readOnly = true;
         this.inputField.style.color = 'red';
         this.inputField.value = answer;
-        this.inputField.focus();
     }
     
     /**
@@ -22,7 +21,6 @@ class HTMLControl {
         this.inputField.readOnly = false;
         this.inputField.style.color = 'black';
         this.inputField.value = '';
-        this.inputField.focus();
     }
     
     /**
@@ -102,5 +100,21 @@ class HTMLControl {
                 console.error('Invalid testType');
                 break;
         } 
+    }
+
+    clearInputField() {
+        this.inputField.value = '';
+    }
+
+    focusInputField() {
+        this.inputField.focus();
+    }
+
+    blurInputField() {
+        this.inputField.blur();
+    }
+
+    focusStartButton() {
+        document.getElementById('start_button').focus();
     }
 }

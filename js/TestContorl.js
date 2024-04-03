@@ -118,7 +118,6 @@ class Testing {
         this.tests = tests; 
         this.currentTestCounter = 0;
         this.nextTestCounter = 0;
-        console.warn(this.tests);
     }
     
     compareAnswer(answer) {
@@ -131,6 +130,10 @@ class Testing {
     }
     
     nextTest() {
+        console.warn(this.currentTestCounter, this.tests.nextTestCounter);
+        if (this.nextTestCounter >= this.tests.length) {
+            return ' ';
+        }
         return this.tests[this.nextTestCounter++][0][1];
     }
     
@@ -140,6 +143,10 @@ class Testing {
 
     getType() {
         return this.tests[this.currentTestCounter][1];
+    }
+
+    ifEnd() {
+        return this.currentTestCounter >= this.tests.length;
     }
 
     ifInputCharacterAmountMatch(charactersAmount) {
@@ -153,35 +160,3 @@ class Testing {
         }
     }
 }
-
-let wrongCounter = 0;
-const inputField = document.getElementById('input_field');
-inputField.addEventListener('input', (event) => {
-    const answer = inputField.value;
-    if (!testing.ifInputCharacterAmountMatch(answer.length)) {
-        return;
-    }
-
-    if (testing.compareAnswer(answer)) {
-        cssAnimation.moveTestsTray(cssAnimation.calculateSpanTargetDifference());
-        if (testing.currentTestCounter >= 3) {
-            cssAnimation.removeFrontTest();
-        }
-        cssAnimation.addTest(testing.nextTest());
-        htmlControl.setTestType(testing.getType());
-        wrongCounter = 0;
-    }                                
-    else {                        
-        wrongCounter++;
-        if (wrongCounter >= 2) {
-            const answer = testing.getAnswer();
-            htmlControl.showAnswer(answer);
-            wrongCounter = 0;
-            setTimeout(() => {
-                htmlControl.hideAnswer();
-            }, 1000);
-            return;
-        }
-    }
-    inputField.value = '';
-});

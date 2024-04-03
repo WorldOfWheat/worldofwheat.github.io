@@ -10,12 +10,24 @@ class AnimationControl {
     }
 
     // tray 控制區
+
+    /**
+     * @description 計算下一個 span 與 target 的差距（vw）
+     */
+    #calculateSpanTargetDifference() {
+        const lastSpanPosition = this.#getSpanPosition(this.tray.children[this.tray.childElementCount - 2]);
+        const targetPosition = document.getElementById('target').getBoundingClientRect().right; 
+        const difference = lastSpanPosition - targetPosition + 8;
+        const differenceInVw = difference / window.innerWidth * 100;
+        return differenceInVw;
+    }
     
     /**
      * @param {number} offset
      * @description 移動 tests_tray
      */
-    moveTestsTray(offset) {
+    moveTestsTray() {
+        const offset = this.#calculateSpanTargetDifference();
         const currentTransform = getComputedStyle(this.tray).transform;
         const matrix = new WebKitCSSMatrix(currentTransform);
         const currentVW = matrix.m41 / window.innerWidth * 100
@@ -39,17 +51,6 @@ class AnimationControl {
         const newSpan = document.createElement('span');
         newSpan.textContent = test;
         this.tray.appendChild(newSpan);
-    }
-    
-    /**
-     * @description 計算下一個 span 與 target 的差距（vw）
-     */
-    calculateSpanTargetDifference() {
-        const lastSpanPosition = this.#getSpanPosition(this.tray.children[this.tray.childElementCount - 2]);
-        const targetPosition = document.getElementById('target').getBoundingClientRect().right; 
-        const difference = lastSpanPosition - targetPosition + 8;
-        const differenceInVw = difference / window.innerWidth * 100;
-        return differenceInVw;
     }
     
     /**
@@ -77,7 +78,6 @@ class AnimationControl {
         document.getElementById('beginning').style.width = '100%';
         document.getElementById('start_button').style.transform = 'translate(-50%, -50%)';
     }
-    
 }
 
 class Selection {
