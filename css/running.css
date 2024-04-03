@@ -11,12 +11,15 @@
 
 #code_type {
     position: absolute;
+    width: 11vw;
     top: 15%;
-    transform: translate(-50%, 0);
     left: 50%;
     font-size: 5vh;
+    text-align: center;
     color: var(--white);
+    box-shadow: 0px 0px 5px 0px var(--black);
     background-color: #47B84F;
+    transform: translate(-50%, 0);
 }
 
 #tests {
