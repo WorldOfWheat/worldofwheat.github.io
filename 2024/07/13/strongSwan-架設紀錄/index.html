@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"blog.worldofwheat.us.to","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="我的 Zenfone 8 不知道在哪一次的更新之後，VPN 就只剩下 IKEv2&#x2F;IPsec 這種方式，又不知道在哪天我就開始想要自己架一個 VPN 伺服器。 2024 年的寒假因為不知道要做什麼，所以我就開始研究怎麼樣用 VPN 連線回家。 因為系統是 Linux，第一個在網路上找到的就是 strongSwan 這套軟體，然後又找了一下教學，就找到了這篇，但我照著教學不知道為什麼就是連不上，憑證">
+<meta property="og:type" content="article">
+<meta property="og:title" content="strongSwan-架設紀錄">
+<meta property="og:url" content="https://blog.worldofwheat.us.to/2024/07/13/strongSwan-%E6%9E%B6%E8%A8%AD%E7%B4%80%E9%8C%84/index.html">
+<meta property="og:site_name" content="小麥的異想世界">
+<meta property="og:description" content="我的 Zenfone 8 不知道在哪一次的更新之後，VPN 就只剩下 IKEv2&#x2F;IPsec 這種方式，又不知道在哪天我就開始想要自己架一個 VPN 伺服器。 2024 年的寒假因為不知道要做什麼，所以我就開始研究怎麼樣用 VPN 連線回家。 因為系統是 Linux，第一個在網路上找到的就是 strongSwan 這套軟體，然後又找了一下教學，就找到了這篇，但我照著教學不知道為什麼就是連不上，憑證">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-07-12T17:44:03.000Z">
+<meta property="article:modified_time" content="2024-07-26T09:08:16.646Z">
+<meta property="article:author" content="小麥">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://blog.worldofwheat.us.to/2024/07/13/strongSwan-%E6%9E%B6%E8%A8%AD%E7%B4%80%E9%8C%84/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://blog.worldofwheat.us.to/2024/07/13/strongSwan-%E6%9E%B6%E8%A8%AD%E7%B4%80%E9%8C%84/","path":"2024/07/13/strongSwan-架設紀錄/","title":"strongSwan-架設紀錄"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>strongSwan-架設紀錄 | 小麥的異想世界</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">小麥的異想世界</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">努力一定會有結果</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A6%82%E8%A6%81"><span class="nav-number">1.</span> <span class="nav-text">概要</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%A3%E6%8E%A5%E6%8F%A1%E6%89%8B"><span class="nav-number">2.</span> <span class="nav-text">連接握手</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9E%B6%E8%A8%AD"><span class="nav-number">3.</span> <span class="nav-text">架設</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%86%91%E8%AD%89"><span class="nav-number">4.</span> <span class="nav-text">憑證</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A8%AD%E5%AE%9A%E6%AA%94"><span class="nav-number">5.</span> <span class="nav-text">設定檔</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E4%BD%95-Debug"><span class="nav-number">6.</span> <span class="nav-text">如何 Debug</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">小麥</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">2</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+  </nav>
+</div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.worldofwheat.us.to/2024/07/13/strongSwan-%E6%9E%B6%E8%A8%AD%E7%B4%80%E9%8C%84/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="小麥">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小麥的異想世界">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="strongSwan-架設紀錄 | 小麥的異想世界">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          strongSwan-架設紀錄
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2024-07-13 01:44:03" itemprop="dateCreated datePublished" datetime="2024-07-13T01:44:03+08:00">2024-07-13</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2024-07-26 17:08:16" itemprop="dateModified" datetime="2024-07-26T17:08:16+08:00">2024-07-26</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%B4%80%E9%8C%84/" itemprop="url" rel="index"><span itemprop="name">紀錄</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>我的 Zenfone 8 不知道在哪一次的更新之後，VPN 就只剩下 IKEv2/IPsec 這種方式，又不知道在哪天我就開始想要自己架一個 VPN 伺服器。 2024 年的寒假因為不知道要做什麼，所以我就開始研究怎麼樣用 VPN 連線回家。</p>
+<p>因為系統是 Linux，第一個在網路上找到的就是 strongSwan 這套軟體，然後又找了一下教學，就找到了<a target="_blank" rel="noopener" href="https://www.digitalocean.com/community/tutorials/how-to-set-up-an-ikev2-vpn-server-with-strongswan-on-ubuntu-20-04">這篇</a>，但我照著教學不知道為什麼就是連不上，憑證也簽了無數張就放棄了。 後來我直接去看官方文件，官方的文件都是用 swanctl 設定檔的格式寫的，我本來還堅持用 strongSwan 的預設格式，也就是上敘教學提到的設定檔格式，但試用之後才發現 swanctl 的設定檔更加的人性化，比原本的格式不知道好了多少。strongSwan 官方給出了大部分設定的<a target="_blank" rel="noopener" href="https://docs.strongswan.org/docs/5.9/index.html">範例</a>，應該百分之九十的情況都可以處理。</p>
+<p>這篇算是做個紀錄，給未來想要架設的人有個方向。</p>
+<span id="more"></span>
+<h2 id="概要">概要</h2>
+<p>以下是我自己整理的重點：</p>
+<ul>
+<li>IPsec 用於保護兩個節點之間的資料傳輸，使用 UDP 協議傳輸</li>
+<li>IPsec 在開始傳輸之前需要先進行金錀協商和身份驗證，而實作方法常見的有 L2TP 或 IKEv2，因此常常可以在手機看到 L2TP/IPsec 或 IKEv2/IPsec，而 strongSwan 提供的是 IKEv2/IPsec</li>
+<li>IKEv2 分為兩步
+<ul>
+<li>第一步兩個節點會協商出保護第二步的密鑰和後續必要的資訊</li>
+<li>第二步會進行身份驗證及協商出 IPsec 的密鑰，此時的封包受到第一步協商出的密鑰加密</li>
+</ul>
+</li>
+<li>理論上不存在伺服端跟客戶端，但實際上還是會有一端當成伺服器</li>
+<li>伺服端跟客戶端都需要設定驗證方式，只有在兩邊都驗證通過才能連線</li>
+<li>驗證方式有憑證、EAP、PSK 三種，EAP 在易用性跟安全性上取得了平衡
+<ul>
+<li>EAP 如果想要也可以用第三方伺服器驗證（RADIUS）</li>
+</ul>
+</li>
+<li>伺服器一般來說都會用憑證做為自身的憑證方式，手機版 strongSwan 客戶端也只能連線使用憑證驗證的伺服器</li>
+</ul>
+<h2 id="連接握手">連接握手</h2>
+<p>下方使用設定如下：</p>
+<ul>
+<li>伺服器為憑證驗證</li>
+<li>客戶端為 EAP 驗證</li>
+</ul>
+<p>IKEv2 握手有四步：</p>
+<ol>
+<li>客戶端對伺服器握手</li>
+<li>伺服器返回握手，如果有開啟憑證請求會在這一步傳送</li>
+<li>客戶端返回對應的驗證方式，這裡是 EAP。若有開啟憑證請求也會一同傳送</li>
+<li>伺服器返回憑證</li>
+</ol>
+<ul>
+<li>在握手的前兩步雙方會協商出密鑰保護第三步和第四步</li>
+<li>憑證請求的目地在於雙方皆可以設定不主動傳送憑證，若不主動傳送則需要憑證請求才能得到憑證
+<ul>
+<li>例如 Windows 或 strongSwan-network-manager 皆不會主動傳送憑證</li>
+<li>憑證請求較消耗流量，可以自行決定是否開啟</li>
+</ul>
+</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/efzju/p/5041797.html">參考資料</a></p>
+<h2 id="架設">架設</h2>
+<p>以下是我自己整理的重點：</p>
+<ul>
+<li>如果使用 Docker 要開始 privileged 才能使用</li>
+<li>strongswan 需要在 ipsec 這個套件上面運作，在安裝 strongswan 的時候會自動連同 ipsec 一起安裝</li>
+<li>新版的 strongswan 使用 swanctl 來管理各種設定，網路上有些教學使用僅 strongSwan 的設定檔，兩者功能相同</li>
+<li>Linux 架設需要安裝套件，下方列出的套件皆可使用 apt 安裝
+<ul>
+<li><code>iptables</code> 流量轉發用，不裝僅能連線但沒有網路</li>
+<li><code>strongswan</code> 核心</li>
+<li><code>strongswan-swanctl</code> 管理 strongswan 的設定檔等，強烈推薦使用</li>
+<li><code>strongswan-pki</code> 可由 OpenSSL 替代</li>
+<li><code>libstrongswan-extra-plugins</code> 加解密等等的算法套件</li>
+</ul>
+</li>
+<li>需要準備伺服器用的憑證</li>
+<li>伺服器的封包轉發和 iptables 流量轉發要設定才能連到外網</li>
+</ul>
+<h2 id="憑證">憑證</h2>
+<p>以下是我自己整理的重點：</p>
+<ul>
+<li>一定要先懂基本的 PKI，可以參考<a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=vVbLSba6vOI">這部影片</a></li>
+<li>能不自簽就不自簽，因為細節非常多，一個不小心就不能連線
+<ul>
+<li>我自己測試了網路上申請的憑證 Buypass、Let’s Encrypt 皆沒有問題</li>
+<li>從網路上申請的憑證一定需要域名，換句話說不想自簽就一定需要有域名</li>
+</ul>
+</li>
+<li>如果客戶端要使用憑證做為驗證，除非客戶端有辦法從網路上申請到憑證，否則一定需要自簽</li>
+</ul>
+<p>申請憑證重點如下：</p>
+<ul>
+<li>一定需要域名，沒有域名無法申請</li>
+<li>推薦 Let’s Encrypt 的憑證，註冊方法可以參考官方文件
+<ul>
+<li>自動化申請可以使用 Certbot，使用方法可以參考<a target="_blank" rel="noopener" href="https://certbot.eff.org/">官方文件</a>，這個是最簡單的方法</li>
+</ul>
+</li>
+</ul>
+<p>自簽憑證重點：</p>
+<ul>
+<li>如果沒有域名，則自簽憑證內容的所有域名都以 IP 代替</li>
+<li>手機版 strongSwan 跟 Windows 當客戶端連線對憑證各自不同的要求，自簽一定需要注意</li>
+<li>需要準備根憑證，只有被根憑證簽屬的憑證才可以被信任，因此根憑證的私鑰強烈建議要加密
+<ul>
+<li>假設客戶端使用自簽憑證做為驗證手段，則伺服端一定要有根憑證才可以驗證，反之亦然</li>
+</ul>
+</li>
+<li>所有憑證需要是 X509v3 的版本才能使用，因為需要有一些額外的資訊用於驗證</li>
+<li>過程中所有的金鑰生成請使用 RSA 或 ECDSA，因為本人在測試時發現會發生錯誤
+<ul>
+<li>我僅在 Zenfone 8 和 Windows 10 上進行測試，其它系統因為我也沒有，所以無法測試</li>
+</ul>
+</li>
+<li>Android 和 Windows 憑證安裝使用 PKCS#12 格式</li>
+<li>CN 和 SAN 一定要設定成域名，缺一不可</li>
+<li>Extended Key Usage 需要有 TLS Web Server Authentication</li>
+<li>伺服器憑證我推薦使用 OpenSSL 簽發，因為需要比較多細項，建議使用設定檔或 pki 生成  <details>
+  <summary>伺服器憑證設定檔範例</summary>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">[ req ]</span><br><span class="line">prompt                 = no</span><br><span class="line"># 天數</span><br><span class="line">days                   = 30</span><br><span class="line">distinguished_name     = req_distinguished_name</span><br><span class="line">req_extensions         = v3_req</span><br><span class="line"></span><br><span class="line">[ req_distinguished_name ]</span><br><span class="line"># 根域名</span><br><span class="line">commonName             = worldofwheat.us.to</span><br><span class="line"></span><br><span class="line">[ v3_req ]</span><br><span class="line">basicConstraints       = critical, CA:FALSE</span><br><span class="line">extendedKeyUsage       = serverAuth</span><br><span class="line">subjectAltName         = @sans</span><br><span class="line"></span><br><span class="line">[ sans ]</span><br><span class="line"># IKEv2 主要驗的就是下面的值，可以新增多筆紀錄</span><br><span class="line">DNS.0 = vpn.worldofwheat.us.to</span><br><span class="line"># DNS.1 = test.worldofwheat.us.to</span><br></pre></td></tr></table></figure>
+  </details>
+</li>
+</ul>
+<p>常用指令如下，OpenSSL 和 pki 指令功能相同：</p>
+<ul>
+<li>過程中需要動用到很多指令的操作。strongSwan 官方有給出 pki 這套工具，也可以使用 OpenSSL 代替</li>
+<li>生成私鑰
+<ul>
+<li><code>openssl genpkey -outform pem -algorithm rsa -pkeyopt rsa_keygen_bits:4096 -quiet -out &lt;私鑰路徑&gt;</code></li>
+<li><code>pki --gen --type rsa --size 4096 --outform pem &gt; &lt;私鑰路徑&gt;</code></li>
+<li>如果私鑰需要加密，則可以在 OpenSSL 的指令內加上 <code>-aes256</code> 來啟用</li>
+</ul>
+</li>
+<li>識別名稱只需要填寫 CN 就足夠了，如果有其它欄位需求在按照相同的格式填入</li>
+<li>根憑自簽指令如下：
+<ul>
+<li>根憑證一般有效時間都會比較長，下方範例為 3650 天  <details>
+  <summary>OpenSSL</summary>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">openssl req -key &lt;根憑證私鑰路徑&gt; -out &lt;憑證路徑&gt; \</span><br><span class="line">-x509 -days 3650 -subj /C=NO/</span><br></pre></td></tr></table></figure>
+  </details>
+  <details>
+  <summary>pki</summary>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pki --self --<span class="keyword">in</span> &lt;根憑證私鑰路徑&gt; \</span><br><span class="line">--<span class="built_in">type</span> priv --outform pem --lifetime 3650  \</span><br><span class="line">--dn <span class="string">"CN=域名"</span> &gt; &lt;憑證路徑&gt;</span><br></pre></td></tr></table></figure>
+  </details>
+</li>
+</ul>
+</li>
+<li>簽發憑證指令如下：  <details>
+  <summary>OpenSSL</summary>
+  OpenSSL 需要先有 CSR 才能簽憑證，因此分為兩步
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">openssl req -new -key &lt;私鑰路徑&gt; -out &lt;CSR 路徑&gt; -config &lt;設定檔路徑&gt; </span><br><span class="line">openssl req -x509 -<span class="keyword">in</span> &lt;CSR 路徑&gt; -out &lt;憑證路徑&gt; -CA &lt;根憑證路徑&gt; -CAkey &lt;根憑證私鑰路徑&gt;</span><br></pre></td></tr></table></figure>
+  </details>
+  <details>
+  <summary>pki</summary>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">pki --pub --<span class="keyword">in</span> &lt;私鑰路徑&gt; | \</span><br><span class="line">pki --issue --cakey &lt;根憑證私鑰路徑&gt; --cacert &lt;根憑證路徑&gt; \</span><br><span class="line">--dn <span class="string">"CN=域名"</span> --lifetime &lt;有效天數&gt; \</span><br><span class="line">--flag serverAuth --outform pem &gt; &lt;憑證路徑&gt;.pem</span><br></pre></td></tr></table></figure>
+  </details>
+</li>
+<li>查看憑證資訊
+<ul>
+<li><code>openssl x509 -in &lt;憑證路徑&gt; -text -noout</code></li>
+<li><code>pki --print --in &lt;憑證路徑&gt;</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="設定檔">設定檔</h2>
+<ul>
+<li>
+<p>下方僅給出本人使用過的範例，更多範例可以參考(官方文件)[<a target="_blank" rel="noopener" href="https://docs.strongswan.org/docs/5.9/config/IKEv2.html">https://docs.strongswan.org/docs/5.9/config/IKEv2.html</a>]</p>
+</li>
+<li>
+<p>Windows 對於 IKEv2 握手算法有限制，可以參考下方的列表</p>
+  <summary>可用選項</summary>
+  <details>
+  3DES 系列
+  `3des-sha1-prfsha1-modp1024`
+  `3des-sha256-prfsha256-modp1024`
+  `3des-sha384-prfsha384-modp1024`
+<p>AES CBC 系列<br>
+<code>aes128-sha1-prfsha1-modp1024</code><br>
+<code>aes128-sha256-prfsha256-modp1024</code><br>
+<code>aes128-sha384-prfsha384-modp1024</code><br>
+<code>aes192-sha1-prfsha1-modp1024</code><br>
+<code>aes192-sha256-prfsha256-modp1024</code><br>
+<code>aes192-sha384-prfsha384-modp1024</code><br>
+<code>aes256-sha1-prfsha1-modp1024</code><br>
+<code>aes256-sha256-prfsha256-modp1024</code><br>
+<code>aes256-sha384-prfsha384-modp1024</code></p>
+<p>AES GCM 系列<br>
+<code>aes128gcm128-prfsha1-modp1024</code><br>
+<code>aes128gcm128-prfsha256-modp1024</code><br>
+<code>aes128gcm128-prfsha384-modp1024</code><br>
+<code>aes256gcm128-prfsha1-modp1024</code><br>
+<code>aes256gcm128-prfsha256-modp1024</code><br>
+<code>aes256gcm128-prfsha384-modp1024</code></p>
+  </details>
+</li>
+</ul>
+<details>
+<ul>
+<li>下方會給出最基本的設定檔範例，可以按照範例修改</li>
+</ul>
+<summary>範例 A</summary>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line">connections {</span><br><span class="line">    rw-eap-mschapv2 {</span><br><span class="line">        version = 2</span><br><span class="line"></span><br><span class="line">        # 是否傳送憑證給終端，一定要開啟，因為這裡使用 PKI 進行身份驗證</span><br><span class="line">        # 可選 never、ifasked、always</span><br><span class="line">		# never：不傳送</span><br><span class="line">		# ifasked：收到憑證請求才傳送</span><br><span class="line">		# always：主動傳送</span><br><span class="line">        # 預設為 ifasked</span><br><span class="line">        send_cert = always</span><br><span class="line"></span><br><span class="line">		# 是否傳送憑證請求</span><br><span class="line">		# 預設為 yes</span><br><span class="line">        send_certreq = no</span><br><span class="line"></span><br><span class="line">        # 如果資料比較大，是否要進行分割</span><br><span class="line">        # 可選 yes、accept、force、no</span><br><span class="line">        # yes：只要對方同意則資料進行分割</span><br><span class="line">        # accept：本身的資料不分割，但通知對方可以接收資料分割</span><br><span class="line">        # force：所有資料皆分割</span><br><span class="line">        # no：自已不分割，並且告知對方不可分割</span><br><span class="line">        # 預設為 yes</span><br><span class="line">        fragmentation = yes</span><br><span class="line"></span><br><span class="line">		# 指定 DHCP 池</span><br><span class="line">        pools = rw_pool</span><br><span class="line"></span><br><span class="line">		# IKEv2 加密算法</span><br><span class="line">		# 可以選擇多個加密算法，使用逗號分開</span><br><span class="line">		# 需要注意 Windows 和 strongSwan-network-manager</span><br><span class="line">        proposals = chacha20poly1305-prfsha512-modp4096,aes256gcm128-prfsha256-modp1024,aes256-sha1-prfsha1-modp4096</span><br><span class="line">			  </span><br><span class="line">		# 是否允許多個客戶端</span><br><span class="line">		# 預設為 yes</span><br><span class="line">        mobike = yes</span><br><span class="line"></span><br><span class="line">		# 伺服器驗證</span><br><span class="line">        local {</span><br><span class="line">            auth = pubkey</span><br><span class="line">            certs = test-server.crt</span><br><span class="line">			# 填入連接時的域名或者 IP</span><br><span class="line">            id = vpn.worldofwheat.cloudns.ch</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">		# 客戶端驗證</span><br><span class="line">        remote {</span><br><span class="line">			# 客戶端驗證方式，可以參考官方文件</span><br><span class="line">            auth = eap-mschapv2</span><br><span class="line">            id = %any</span><br><span class="line">        }</span><br><span class="line">			  </span><br><span class="line">		# IPsec 選項</span><br><span class="line">        children {</span><br><span class="line">            rw-eap-mschapv2 {</span><br><span class="line">                local_ts = 0.0.0.0/0</span><br><span class="line">                esp_proposals = chacha20poly1305,aes256-sha1,aes256gcm128</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">pools {</span><br><span class="line">    rw_pool {</span><br><span class="line">        addrs = 192.168.10.0/24</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">secrets {</span><br><span class="line">    eap-Alice {</span><br><span class="line">        id = Alice</span><br><span class="line">        secret = XXXXX</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</details>
+<h2 id="如何-Debug">如何 Debug</h2>
+<p>第一件事是先學會 IKEv2/IPsec 連線時候的握手協議，我推薦<a target="_blank" rel="noopener" href="https://www.cnblogs.com/efzju/p/5041797.html">這篇</a>，只有學會了握手協議下面提到的工具才有用。</p>
+<p>debug 一定要會的方法：</p>
+<ul>
+<li>swanctl --log
+<ul>
+<li>swanctl 提供的指令，可以讓連線過程中的所有封包都紀錄下來</li>
+</ul>
+</li>
+<li>手機版 strongSwan
+<ul>
+<li>原生的 UI 沒有辦法提供 log，基本上完全沒辦法 debug</li>
+</ul>
+</li>
+<li>Windows 事件檢視器
+<ul>
+<li>Windows 問題很多而且 debug 相對困難，連線出現問題的時候只會給出沒有任何幫助的訊息。事件檢視器可以給出錯誤碼，可以到網路上查找對應的問題。</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>Post author:  </strong>小麥
+  </li>
+  <li class="post-copyright-link">
+      <strong>Post link: </strong>
+      <a href="https://blog.worldofwheat.us.to/2024/07/13/strongSwan-%E6%9E%B6%E8%A8%AD%E7%B4%80%E9%8C%84/" title="strongSwan-架設紀錄">https://blog.worldofwheat.us.to/2024/07/13/strongSwan-架設紀錄/</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
+  </li>
+</ul>
+</div>
+
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2024/07/13/%E6%BC%94%E7%AE%97%E6%B3%95%E7%B7%B4%E7%BF%92%E9%A1%8C%E5%87%BA%E9%A1%8C%E5%BF%85%E7%9F%A5/" rel="prev" title="演算法練習題出題必知">
+                  <i class="fa fa-angle-left"></i> 演算法練習題出題必知
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">小麥</span>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
