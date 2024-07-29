@@ -20,15 +20,15 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"blog.worldofwheat.us.to","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="我的 Zenfone 8 不知道在哪一次的更新之後，VPN 就只剩下 IKEv2&#x2F;IPsec 這種方式，又不知道在哪天我就開始想要自己架一個 VPN 伺服器。 2024 年的寒假因為不知道要做什麼，所以我就開始研究怎麼樣用 VPN 連線回家。 因為系統是 Linux，第一個在網路上找到的就是 strongSwan 這套軟體，然後又找了一下教學，就找到了這篇，但我照著教學不知道為什麼就是連不上，憑證">
+    <meta name="description" content="我的手機不知道在哪一年的更新之後，內建的 VPN 就只剩下 IKEv2&#x2F;IPsec 這種方式了，又不知道在哪天我就開始想要自己架一個 VPN 伺服器，2024 年的寒假我就開始研究怎麼樣用 VPN 連線回家。 因為系統是 Linux，第一個在網路上找到的就是 strongSwan 這套軟體，然後又找了一下網路上的教學，但我照著教學不知道為什麼就是連線不了，憑證也是簽了又刪無數次。但我沒有因此放棄，">
 <meta property="og:type" content="article">
 <meta property="og:title" content="strongSwan-架設紀錄">
 <meta property="og:url" content="https://blog.worldofwheat.us.to/2024/07/13/strongSwan-%E6%9E%B6%E8%A8%AD%E7%B4%80%E9%8C%84/index.html">
 <meta property="og:site_name" content="小麥的異想世界">
-<meta property="og:description" content="我的 Zenfone 8 不知道在哪一次的更新之後，VPN 就只剩下 IKEv2&#x2F;IPsec 這種方式，又不知道在哪天我就開始想要自己架一個 VPN 伺服器。 2024 年的寒假因為不知道要做什麼，所以我就開始研究怎麼樣用 VPN 連線回家。 因為系統是 Linux，第一個在網路上找到的就是 strongSwan 這套軟體，然後又找了一下教學，就找到了這篇，但我照著教學不知道為什麼就是連不上，憑證">
+<meta property="og:description" content="我的手機不知道在哪一年的更新之後，內建的 VPN 就只剩下 IKEv2&#x2F;IPsec 這種方式了，又不知道在哪天我就開始想要自己架一個 VPN 伺服器，2024 年的寒假我就開始研究怎麼樣用 VPN 連線回家。 因為系統是 Linux，第一個在網路上找到的就是 strongSwan 這套軟體，然後又找了一下網路上的教學，但我照著教學不知道為什麼就是連線不了，憑證也是簽了又刪無數次。但我沒有因此放棄，">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2024-07-12T17:44:03.000Z">
-<meta property="article:modified_time" content="2024-07-26T09:08:16.646Z">
+<meta property="article:modified_time" content="2024-07-26T10:42:43.701Z">
 <meta property="article:author" content="小麥">
 <meta name="twitter:card" content="summary">
 
@@ -218,12 +218,14 @@ mjx-container[display="true"] + br {
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A6%82%E8%A6%81"><span class="nav-number">1.</span> <span class="nav-text">概要</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%A3%E6%8E%A5%E6%8F%A1%E6%89%8B"><span class="nav-number">2.</span> <span class="nav-text">連接握手</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9E%B6%E8%A8%AD"><span class="nav-number">3.</span> <span class="nav-text">架設</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%86%91%E8%AD%89"><span class="nav-number">4.</span> <span class="nav-text">憑證</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A8%AD%E5%AE%9A%E6%AA%94"><span class="nav-number">5.</span> <span class="nav-text">設定檔</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E4%BD%95-Debug"><span class="nav-number">6.</span> <span class="nav-text">如何 Debug</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A6%82%E8%A6%81"><span class="nav-number">1.</span> <span class="nav-text">概要</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%A3%E6%8E%A5%E6%8F%A1%E6%89%8B"><span class="nav-number">2.</span> <span class="nav-text">連接握手</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9E%B6%E8%A8%AD"><span class="nav-number">3.</span> <span class="nav-text">架設</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%86%91%E8%AD%89"><span class="nav-number">4.</span> <span class="nav-text">憑證</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A8%AD%E5%AE%9A%E6%AA%94"><span class="nav-number">5.</span> <span class="nav-text">設定檔</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8C%87%E4%BB%A4%E6%93%8D%E4%BD%9C"><span class="nav-number">6.</span> <span class="nav-text">指令操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E4%BD%95-Debug"><span class="nav-number">7.</span> <span class="nav-text">如何 Debug</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
         <div class="site-overview-wrap sidebar-panel">
           <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="小麥"
+      src="https://telegraph-image-eqg.pages.dev/file/a250b44b733b93b08da9e.png">
   <p class="site-author-name" itemprop="name">小麥</p>
   <div class="site-description" itemprop="description"></div>
 </div>
@@ -241,12 +243,21 @@ mjx-container[display="true"] + br {
       </div>
   </nav>
 </div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/worldofwheat" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;worldofwheat" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
   <div class="cc-license animated" itemprop="license">
     <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
   </div>
 
         </div>
       </div>
+        <div class="back-to-top animated" role="button" aria-label="Back to top">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
     </div>
 
     
@@ -269,7 +280,7 @@ mjx-container[display="true"] + br {
     <link itemprop="mainEntityOfPage" href="https://blog.worldofwheat.us.to/2024/07/13/strongSwan-%E6%9E%B6%E8%A8%AD%E7%B4%80%E9%8C%84/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="https://telegraph-image-eqg.pages.dev/file/a250b44b733b93b08da9e.png">
       <meta itemprop="name" content="小麥">
     </span>
 
@@ -302,7 +313,7 @@ mjx-container[display="true"] + br {
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2024-07-26 17:08:16" itemprop="dateModified" datetime="2024-07-26T17:08:16+08:00">2024-07-26</time>
+      <time title="Modified: 2024-07-26 18:42:43" itemprop="dateModified" datetime="2024-07-26T18:42:43+08:00">2024-07-26</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -323,9 +334,9 @@ mjx-container[display="true"] + br {
     
     
     
-    <div class="post-body" itemprop="articleBody"><p>我的 Zenfone 8 不知道在哪一次的更新之後，VPN 就只剩下 IKEv2/IPsec 這種方式，又不知道在哪天我就開始想要自己架一個 VPN 伺服器。 2024 年的寒假因為不知道要做什麼，所以我就開始研究怎麼樣用 VPN 連線回家。</p>
-<p>因為系統是 Linux，第一個在網路上找到的就是 strongSwan 這套軟體，然後又找了一下教學，就找到了<a target="_blank" rel="noopener" href="https://www.digitalocean.com/community/tutorials/how-to-set-up-an-ikev2-vpn-server-with-strongswan-on-ubuntu-20-04">這篇</a>，但我照著教學不知道為什麼就是連不上，憑證也簽了無數張就放棄了。 後來我直接去看官方文件，官方的文件都是用 swanctl 設定檔的格式寫的，我本來還堅持用 strongSwan 的預設格式，也就是上敘教學提到的設定檔格式，但試用之後才發現 swanctl 的設定檔更加的人性化，比原本的格式不知道好了多少。strongSwan 官方給出了大部分設定的<a target="_blank" rel="noopener" href="https://docs.strongswan.org/docs/5.9/index.html">範例</a>，應該百分之九十的情況都可以處理。</p>
-<p>這篇算是做個紀錄，給未來想要架設的人有個方向。</p>
+    <div class="post-body" itemprop="articleBody"><p>我的手機不知道在哪一年的更新之後，內建的 VPN 就只剩下 IKEv2/IPsec 這種方式了，又不知道在哪天我就開始想要自己架一個 VPN 伺服器，2024 年的寒假我就開始研究怎麼樣用 VPN 連線回家。</p>
+<p>因為系統是 Linux，第一個在網路上找到的就是 strongSwan 這套軟體，然後又找了一下網路上的教學，但我照著教學不知道為什麼就是連線不了，憑證也是簽了又刪無數次。但我沒有因此放棄，我直接去看官方文件，官方的文件都是用 swanctl 設定檔的格式寫的，我本來還堅持用 strongSwan 的預設格式，因為網路上的教學撰寫的時間久遠，我最一開始接觸到的就是如此，但在試用之後才發現 swanctl 的設定檔更加的人性化，比原本的格式不知道好了多少。strongSwan 官方還給出了大部分設定的<a target="_blank" rel="noopener" href="https://docs.strongswan.org/docs/5.9/index.html">範例</a>，應該百分之九十的情況都可以處理。</p>
+<p>因此我決定寫一篇相對比較新的教學，也算是做個紀錄，給未來想要架設的人有個方向。</p>
 <span id="more"></span>
 <h2 id="概要">概要</h2>
 <p>以下是我自己整理的重點：</p>
@@ -376,7 +387,7 @@ mjx-container[display="true"] + br {
 <li>如果使用 Docker 要開始 privileged 才能使用</li>
 <li>strongswan 需要在 ipsec 這個套件上面運作，在安裝 strongswan 的時候會自動連同 ipsec 一起安裝</li>
 <li>新版的 strongswan 使用 swanctl 來管理各種設定，網路上有些教學使用僅 strongSwan 的設定檔，兩者功能相同</li>
-<li>Linux 架設需要安裝套件，下方列出的套件皆可使用 apt 安裝
+<li>架設需要安裝套件，下方列出的套件皆可使用 apt 安裝
 <ul>
 <li><code>iptables</code> 流量轉發用，不裝僅能連線但沒有網路</li>
 <li><code>strongswan</code> 核心</li>
@@ -385,6 +396,7 @@ mjx-container[display="true"] + br {
 <li><code>libstrongswan-extra-plugins</code> 加解密等等的算法套件</li>
 </ul>
 </li>
+<li>若直接安裝套件有些功能無法使用，例如 TPM 等等，因此特殊功能需要自行編譯</li>
 <li>需要準備伺服器用的憑證</li>
 <li>伺服器的封包轉發和 iptables 流量轉發要設定才能連到外網</li>
 </ul>
@@ -429,7 +441,7 @@ mjx-container[display="true"] + br {
 <li>Extended Key Usage 需要有 TLS Web Server Authentication</li>
 <li>伺服器憑證我推薦使用 OpenSSL 簽發，因為需要比較多細項，建議使用設定檔或 pki 生成  <details>
   <summary>伺服器憑證設定檔範例</summary>
-  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">[ req ]</span><br><span class="line">prompt                 = no</span><br><span class="line"># 天數</span><br><span class="line">days                   = 30</span><br><span class="line">distinguished_name     = req_distinguished_name</span><br><span class="line">req_extensions         = v3_req</span><br><span class="line"></span><br><span class="line">[ req_distinguished_name ]</span><br><span class="line"># 根域名</span><br><span class="line">commonName             = worldofwheat.us.to</span><br><span class="line"></span><br><span class="line">[ v3_req ]</span><br><span class="line">basicConstraints       = critical, CA:FALSE</span><br><span class="line">extendedKeyUsage       = serverAuth</span><br><span class="line">subjectAltName         = @sans</span><br><span class="line"></span><br><span class="line">[ sans ]</span><br><span class="line"># IKEv2 主要驗的就是下面的值，可以新增多筆紀錄</span><br><span class="line">DNS.0 = vpn.worldofwheat.us.to</span><br><span class="line"># DNS.1 = test.worldofwheat.us.to</span><br></pre></td></tr></table></figure>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">[ req ]</span><br><span class="line">prompt                 = no</span><br><span class="line"># 天數</span><br><span class="line">days                   = 30</span><br><span class="line">distinguished_name     = req_distinguished_name</span><br><span class="line">req_extensions         = v3_req</span><br><span class="line"></span><br><span class="line">[ req_distinguished_name ]</span><br><span class="line"># 根域名</span><br><span class="line">commonName             = worldofwheat.us.to</span><br><span class="line"></span><br><span class="line">[ v3_req ]</span><br><span class="line">basicConstraints       = critical, CA:FALSE</span><br><span class="line">extendedKeyUsage       = serverAuth</span><br><span class="line">subjectAltName         = @sans</span><br><span class="line"></span><br><span class="line">[ sans ]</span><br><span class="line"># IKEv2 主要驗的就是下面的值，可以新增多筆紀錄</span><br><span class="line">DNS.0 = worldofwheat.us.to</span><br><span class="line">DNS.1 = vpn.worldofwheat.us.to</span><br><span class="line"># DNS.1 = test.worldofwheat.us.to</span><br></pre></td></tr></table></figure>
   </details>
 </li>
 </ul>
@@ -480,13 +492,35 @@ mjx-container[display="true"] + br {
 <p>下方僅給出本人使用過的範例，更多範例可以參考(官方文件)[<a target="_blank" rel="noopener" href="https://docs.strongswan.org/docs/5.9/config/IKEv2.html">https://docs.strongswan.org/docs/5.9/config/IKEv2.html</a>]</p>
 </li>
 <li>
+<p>配置資料夾預設位於 <code>/etc/swanctl/</code> 底下</p>
+<ul>
+<li>設定檔放在 <code>conf.d/</code> 底下，需要自行創建檔案
+<ul>
+<li>設定檔副檔名為 <code>.conf</code></li>
+<li>可以有多組設定檔，並且所有設定檔都會在開啟時讀取</li>
+</ul>
+</li>
+<li>憑證放在 <code>x509/</code> 底下</li>
+<li>私鑰放在 <code>private/</code> 底下
+<ul>
+<li>憑證和私鑰需要對應才能使用，缺一不可</li>
+</ul>
+</li>
+<li>根憑證放在 <code>x509ca</code> 底下
+<ul>
+<li>憑證鏈可以包成一個檔案放入</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
 <p>Windows 對於 IKEv2 握手算法有限制，可以參考下方的列表</p>
-  <summary>可用選項</summary>
   <details>
-  3DES 系列
-  `3des-sha1-prfsha1-modp1024`
-  `3des-sha256-prfsha256-modp1024`
-  `3des-sha384-prfsha384-modp1024`
+  <summary>可用選項</summary>
+<p>3DES 系列<br>
+<code>3des-sha1-prfsha1-modp1024</code><br>
+<code>3des-sha256-prfsha256-modp1024</code><br>
+<code>3des-sha384-prfsha384-modp1024</code></p>
 <p>AES CBC 系列<br>
 <code>aes128-sha1-prfsha1-modp1024</code><br>
 <code>aes128-sha256-prfsha256-modp1024</code><br>
@@ -512,8 +546,9 @@ mjx-container[display="true"] + br {
 <li>下方會給出最基本的設定檔範例，可以按照範例修改</li>
 </ul>
 <summary>範例 A</summary>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line">connections {</span><br><span class="line">    rw-eap-mschapv2 {</span><br><span class="line">        version = 2</span><br><span class="line"></span><br><span class="line">        # 是否傳送憑證給終端，一定要開啟，因為這裡使用 PKI 進行身份驗證</span><br><span class="line">        # 可選 never、ifasked、always</span><br><span class="line">		# never：不傳送</span><br><span class="line">		# ifasked：收到憑證請求才傳送</span><br><span class="line">		# always：主動傳送</span><br><span class="line">        # 預設為 ifasked</span><br><span class="line">        send_cert = always</span><br><span class="line"></span><br><span class="line">		# 是否傳送憑證請求</span><br><span class="line">		# 預設為 yes</span><br><span class="line">        send_certreq = no</span><br><span class="line"></span><br><span class="line">        # 如果資料比較大，是否要進行分割</span><br><span class="line">        # 可選 yes、accept、force、no</span><br><span class="line">        # yes：只要對方同意則資料進行分割</span><br><span class="line">        # accept：本身的資料不分割，但通知對方可以接收資料分割</span><br><span class="line">        # force：所有資料皆分割</span><br><span class="line">        # no：自已不分割，並且告知對方不可分割</span><br><span class="line">        # 預設為 yes</span><br><span class="line">        fragmentation = yes</span><br><span class="line"></span><br><span class="line">		# 指定 DHCP 池</span><br><span class="line">        pools = rw_pool</span><br><span class="line"></span><br><span class="line">		# IKEv2 加密算法</span><br><span class="line">		# 可以選擇多個加密算法，使用逗號分開</span><br><span class="line">		# 需要注意 Windows 和 strongSwan-network-manager</span><br><span class="line">        proposals = chacha20poly1305-prfsha512-modp4096,aes256gcm128-prfsha256-modp1024,aes256-sha1-prfsha1-modp4096</span><br><span class="line">			  </span><br><span class="line">		# 是否允許多個客戶端</span><br><span class="line">		# 預設為 yes</span><br><span class="line">        mobike = yes</span><br><span class="line"></span><br><span class="line">		# 伺服器驗證</span><br><span class="line">        local {</span><br><span class="line">            auth = pubkey</span><br><span class="line">            certs = test-server.crt</span><br><span class="line">			# 填入連接時的域名或者 IP</span><br><span class="line">            id = vpn.worldofwheat.cloudns.ch</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">		# 客戶端驗證</span><br><span class="line">        remote {</span><br><span class="line">			# 客戶端驗證方式，可以參考官方文件</span><br><span class="line">            auth = eap-mschapv2</span><br><span class="line">            id = %any</span><br><span class="line">        }</span><br><span class="line">			  </span><br><span class="line">		# IPsec 選項</span><br><span class="line">        children {</span><br><span class="line">            rw-eap-mschapv2 {</span><br><span class="line">                local_ts = 0.0.0.0/0</span><br><span class="line">                esp_proposals = chacha20poly1305,aes256-sha1,aes256gcm128</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">pools {</span><br><span class="line">    rw_pool {</span><br><span class="line">        addrs = 192.168.10.0/24</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">secrets {</span><br><span class="line">    eap-Alice {</span><br><span class="line">        id = Alice</span><br><span class="line">        secret = XXXXX</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br></pre></td><td class="code"><pre><span class="line">connections {</span><br><span class="line">    rw-eap-mschapv2 {</span><br><span class="line">        version = 2</span><br><span class="line"></span><br><span class="line">        # 是否傳送憑證給終端，一定要開啟，因為這裡使用 PKI 進行身份驗證</span><br><span class="line">        # 可選 never、ifasked、always</span><br><span class="line">		# never：不傳送</span><br><span class="line">		# ifasked：收到憑證請求才傳送</span><br><span class="line">		# always：主動傳送</span><br><span class="line">        # 預設為 ifasked</span><br><span class="line">        send_cert = always</span><br><span class="line"></span><br><span class="line">		# 是否傳送憑證請求</span><br><span class="line">		# 預設為 yes</span><br><span class="line">        send_certreq = no</span><br><span class="line"></span><br><span class="line">        # 如果資料比較大，是否要進行分割</span><br><span class="line">        # 可選 yes、accept、force、no</span><br><span class="line">        # yes：只要對方同意則資料進行分割</span><br><span class="line">        # accept：本身的資料不分割，但通知對方可以接收資料分割</span><br><span class="line">        # force：所有資料皆分割</span><br><span class="line">        # no：自已不分割，並且告知對方不可分割</span><br><span class="line">        # 預設為 yes</span><br><span class="line">        fragmentation = yes</span><br><span class="line"></span><br><span class="line">		# 指定 DHCP 池</span><br><span class="line">        pools = rw_pool</span><br><span class="line"></span><br><span class="line">		# IKEv2 加密算法</span><br><span class="line">		# 可以選擇多個加密算法，使用逗號分開</span><br><span class="line">		# 需要注意 Windows 和 strongSwan-network-manager</span><br><span class="line">        proposals = chacha20poly1305-prfsha512-modp4096,aes256gcm128-prfsha256-modp1024,aes256-sha1-prfsha1-modp4096</span><br><span class="line">			  </span><br><span class="line">		# 是否允許多個客戶端</span><br><span class="line">		# 預設為 yes</span><br><span class="line">        mobike = yes</span><br><span class="line"></span><br><span class="line">		# 伺服器驗證</span><br><span class="line">        local {</span><br><span class="line">            auth = pubkey</span><br><span class="line">			# 憑證名稱</span><br><span class="line">            certs = test-server.crt</span><br><span class="line">			# 填入連接時的域名或者 IP</span><br><span class="line">            id = vpn.worldofwheat.cloudns.ch</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">		# 客戶端驗證</span><br><span class="line">        remote {</span><br><span class="line">			# 客戶端驗證方式，可以參考官方文件</span><br><span class="line">            auth = eap-mschapv2</span><br><span class="line">            id = %any</span><br><span class="line">        }</span><br><span class="line">			  </span><br><span class="line">		# IPsec 選項</span><br><span class="line">        children {</span><br><span class="line">            rw-eap-mschapv2 {</span><br><span class="line">                local_ts = 0.0.0.0/0</span><br><span class="line">				# 加密算法</span><br><span class="line">                esp_proposals = chacha20poly1305,aes256-sha1,aes256gcm128</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"># DHCP 池</span><br><span class="line">pools {</span><br><span class="line">    rw_pool {</span><br><span class="line">        addrs = 192.168.10.0/24</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"># 機密資訊</span><br><span class="line">secrets {</span><br><span class="line">	# 處理加密過的私鑰</span><br><span class="line">	private-server {</span><br><span class="line">		file = "private.key"</span><br><span class="line">		secret = XXXXXX</span><br><span class="line">	}</span><br><span class="line">	# 設定一個 EAP 帳號</span><br><span class="line">    eap-Alice {</span><br><span class="line">        id = Alice</span><br><span class="line">        secret = XXXXX</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
 </details>
+<h2 id="指令操作">指令操作</h2>
 <h2 id="如何-Debug">如何 Debug</h2>
 <p>第一件事是先學會 IKEv2/IPsec 連線時候的握手協議，我推薦<a target="_blank" rel="noopener" href="https://www.cnblogs.com/efzju/p/5041797.html">這篇</a>，只有學會了握手協議下面提到的工具才有用。</p>
 <p>debug 一定要會的方法：</p>
@@ -586,14 +621,6 @@ mjx-container[display="true"] + br {
   <footer class="footer">
     <div class="footer-inner">
 
-  <div class="copyright">
-    &copy; 
-    <span itemprop="copyrightYear">2024</span>
-    <span class="with-love">
-      <i class="fa fa-heart"></i>
-    </span>
-    <span class="author" itemprop="copyrightHolder">小麥</span>
-  </div>
 
     </div>
   </footer>
@@ -605,10 +632,6 @@ mjx-container[display="true"] + br {
     <span class="toggle-line"></span>
   </div>
   <div class="sidebar-dimmer"></div>
-  <div class="back-to-top" role="button" aria-label="Back to top">
-    <i class="fa fa-arrow-up fa-lg"></i>
-    <span>0%</span>
-  </div>
 
 <noscript>
   <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
@@ -621,6 +644,8 @@ mjx-container[display="true"] + br {
 
   
 
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.9.0/mermaid.min.js","integrity":"sha256-stuqcu2FrjYCXDOytWFA5SoUE/r3nkp6gTglzNSlavU="}}</script>
+  <script src="/js/third-party/tags/mermaid.js"></script>
 
 
 

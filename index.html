@@ -219,6 +219,8 @@ mjx-container[display="true"] + br {
 
         <div class="site-overview-wrap sidebar-panel">
           <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="小麥"
+      src="https://telegraph-image-eqg.pages.dev/file/a250b44b733b93b08da9e.png">
   <p class="site-author-name" itemprop="name">小麥</p>
   <div class="site-description" itemprop="description"></div>
 </div>
@@ -236,12 +238,21 @@ mjx-container[display="true"] + br {
       </div>
   </nav>
 </div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/worldofwheat" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;worldofwheat" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
   <div class="cc-license animated" itemprop="license">
     <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
   </div>
 
         </div>
       </div>
+        <div class="back-to-top animated" role="button" aria-label="Back to top">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
     </div>
 
     
@@ -263,7 +274,7 @@ mjx-container[display="true"] + br {
     <link itemprop="mainEntityOfPage" href="https://blog.worldofwheat.us.to/2024/07/13/strongSwan-%E6%9E%B6%E8%A8%AD%E7%B4%80%E9%8C%84/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="https://telegraph-image-eqg.pages.dev/file/a250b44b733b93b08da9e.png">
       <meta itemprop="name" content="小麥">
     </span>
 
@@ -296,7 +307,7 @@ mjx-container[display="true"] + br {
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2024-07-26 17:08:16" itemprop="dateModified" datetime="2024-07-26T17:08:16+08:00">2024-07-26</time>
+      <time title="Modified: 2024-07-26 18:42:43" itemprop="dateModified" datetime="2024-07-26T18:42:43+08:00">2024-07-26</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -318,9 +329,9 @@ mjx-container[display="true"] + br {
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>我的 Zenfone 8 不知道在哪一次的更新之後，VPN 就只剩下 IKEv2/IPsec 這種方式，又不知道在哪天我就開始想要自己架一個 VPN 伺服器。 2024 年的寒假因為不知道要做什麼，所以我就開始研究怎麼樣用 VPN 連線回家。</p>
-<p>因為系統是 Linux，第一個在網路上找到的就是 strongSwan 這套軟體，然後又找了一下教學，就找到了<a target="_blank" rel="noopener" href="https://www.digitalocean.com/community/tutorials/how-to-set-up-an-ikev2-vpn-server-with-strongswan-on-ubuntu-20-04">這篇</a>，但我照著教學不知道為什麼就是連不上，憑證也簽了無數張就放棄了。 後來我直接去看官方文件，官方的文件都是用 swanctl 設定檔的格式寫的，我本來還堅持用 strongSwan 的預設格式，也就是上敘教學提到的設定檔格式，但試用之後才發現 swanctl 的設定檔更加的人性化，比原本的格式不知道好了多少。strongSwan 官方給出了大部分設定的<a target="_blank" rel="noopener" href="https://docs.strongswan.org/docs/5.9/index.html">範例</a>，應該百分之九十的情況都可以處理。</p>
-<p>這篇算是做個紀錄，給未來想要架設的人有個方向。</p>
+          <p>我的手機不知道在哪一年的更新之後，內建的 VPN 就只剩下 IKEv2/IPsec 這種方式了，又不知道在哪天我就開始想要自己架一個 VPN 伺服器，2024 年的寒假我就開始研究怎麼樣用 VPN 連線回家。</p>
+<p>因為系統是 Linux，第一個在網路上找到的就是 strongSwan 這套軟體，然後又找了一下網路上的教學，但我照著教學不知道為什麼就是連線不了，憑證也是簽了又刪無數次。但我沒有因此放棄，我直接去看官方文件，官方的文件都是用 swanctl 設定檔的格式寫的，我本來還堅持用 strongSwan 的預設格式，因為網路上的教學撰寫的時間久遠，我最一開始接觸到的就是如此，但在試用之後才發現 swanctl 的設定檔更加的人性化，比原本的格式不知道好了多少。strongSwan 官方還給出了大部分設定的<a target="_blank" rel="noopener" href="https://docs.strongswan.org/docs/5.9/index.html">範例</a>，應該百分之九十的情況都可以處理。</p>
+<p>因此我決定寫一篇相對比較新的教學，也算是做個紀錄，給未來想要架設的人有個方向。</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2024/07/13/strongSwan-%E6%9E%B6%E8%A8%AD%E7%B4%80%E9%8C%84/#more" rel="contents">
@@ -357,7 +368,7 @@ mjx-container[display="true"] + br {
     <link itemprop="mainEntityOfPage" href="https://blog.worldofwheat.us.to/2024/07/13/%E6%BC%94%E7%AE%97%E6%B3%95%E7%B7%B4%E7%BF%92%E9%A1%8C%E5%87%BA%E9%A1%8C%E5%BF%85%E7%9F%A5/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="https://telegraph-image-eqg.pages.dev/file/a250b44b733b93b08da9e.png">
       <meta itemprop="name" content="小麥">
     </span>
 
@@ -446,14 +457,6 @@ mjx-container[display="true"] + br {
   <footer class="footer">
     <div class="footer-inner">
 
-  <div class="copyright">
-    &copy; 
-    <span itemprop="copyrightYear">2024</span>
-    <span class="with-love">
-      <i class="fa fa-heart"></i>
-    </span>
-    <span class="author" itemprop="copyrightHolder">小麥</span>
-  </div>
 
     </div>
   </footer>
@@ -465,10 +468,6 @@ mjx-container[display="true"] + br {
     <span class="toggle-line"></span>
   </div>
   <div class="sidebar-dimmer"></div>
-  <div class="back-to-top" role="button" aria-label="Back to top">
-    <i class="fa fa-arrow-up fa-lg"></i>
-    <span>0%</span>
-  </div>
 
 <noscript>
   <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
@@ -481,6 +480,8 @@ mjx-container[display="true"] + br {
 
   
 
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.9.0/mermaid.min.js","integrity":"sha256-stuqcu2FrjYCXDOytWFA5SoUE/r3nkp6gTglzNSlavU="}}</script>
+  <script src="/js/third-party/tags/mermaid.js"></script>
 
 
 
