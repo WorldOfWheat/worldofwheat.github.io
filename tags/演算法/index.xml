@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>演算法 on 小麥的異想世界</title><link>https://worldofwheat.github.io/tags/%E6%BC%94%E7%AE%97%E6%B3%95/</link><description>Recent content in 演算法 on 小麥的異想世界</description><generator>Hugo -- gohugo.io</generator><language>zh-tw</language><lastBuildDate>Sat, 13 Jul 2024 00:00:00 +0800</lastBuildDate><atom:link href="https://worldofwheat.github.io/tags/%E6%BC%94%E7%AE%97%E6%B3%95/index.xml" rel="self" type="application/rss+xml"/><item><title>演算法出題指南</title><link>https://worldofwheat.github.io/p/%E6%BC%94%E7%AE%97%E6%B3%95%E5%87%BA%E9%A1%8C%E6%8C%87%E5%8D%97/</link><pubDate>Sat, 13 Jul 2024 00:00:00 +0800</pubDate><guid>https://worldofwheat.github.io/p/%E6%BC%94%E7%AE%97%E6%B3%95%E5%87%BA%E9%A1%8C%E6%8C%87%E5%8D%97/</guid><description>&lt;p>不管在 Zerojudge、 Codeforces 等平台上有許多的練習題。這題題目都是由前人花很多時間準備出來的，但也因為出題成本的降低，因此常常出現題述未清楚標示或者測資有問題的題目。&lt;/p>
+&lt;p>下方是我在出了幾次題目，並且整合其它出題者的習慣整理而成的。下方會把一個題目的核心部分拆開，並且寫出每項應注意的事項，供您參考。&lt;/p>
+&lt;h1 id="題述">題述
+&lt;/h1>&lt;ul>
+&lt;li>中文排版請遵照&lt;a class="link" href="https://github.com/sparanoid/chinese-copywriting-guidelines" target="_blank" rel="noopener"
+>中文文案排版指北&lt;/a>&lt;/li>
+&lt;li>數學式請使用 Latex 語法，大部分的 OJ 都應該支援 Latex 語法
+&lt;ul>
+&lt;li>雖然常常出現只有一個英文代號的段落，但為了題述整齊請也使用 Latex 輸入
+&lt;ul>
+&lt;li>錯誤：第一行包含一個正整數 n。&lt;/li>
+&lt;li>正確：第一行包含一個正整數 $n$。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>乘法符號為 $\cdot$ 或者 $\times$，不是 $*$
+&lt;ul>
+&lt;li>錯誤：$5*3=15$&lt;/li>
+&lt;li>正確：$5 \times 3 = 15$&lt;/li>
+&lt;li>正確：$5 \cdot 3 = 15$&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>輸入格式應清楚標示
+&lt;ul>
+&lt;li>不應使用例如「數字」、「數值」等模凌兩可模的詞
+&lt;ul>
+&lt;li>整數範圍 $(-\infty,\infty)$&lt;/li>
+&lt;li>正整數範圍 $[0,\infty)$&lt;/li>
+&lt;li>負整數範圍 $(\infty,0]$&lt;/li>
+&lt;li>假設第一行會輸入一個 $n \in [1, 100]$
+&lt;ul>
+&lt;li>錯誤：第一行輸入一個數字&lt;/li>
+&lt;li>錯誤：第一行輸入一個數值&lt;/li>
+&lt;li>錯誤：第一行輸入一個變數&lt;/li>
+&lt;li>正確：第一行輸入一個正整數&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>每行有幾個輸入，輸入是什麼格式（正整數、負整數、整數、小數）&lt;/li>
+&lt;li>每一個輸入對應到題述的意義務必要清楚標示&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>測資範圍應清楚標示
+&lt;ul>
+&lt;li>假設輸入一個 $n \in [1, 2 \times 10^5]$
+&lt;ul>
+&lt;li>錯誤：$n$ 很大&lt;/li>
+&lt;li>錯誤：$n$ 為 int 裝的下的範圍&lt;/li>
+&lt;li>錯誤：$n \leq 2 \times 10^5$&lt;/li>
+&lt;li>正確：$1 \leq n \leq 2 \times 10^5$&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>使用到特定字串輸入，應寫明會有哪些字串。
+&lt;ul>
+&lt;li>假設輸入包含一個字串 $s$，代表 &amp;ldquo;add&amp;rdquo;, &amp;ldquo;query&amp;rdquo; 這兩個操作
+&lt;ul>
+&lt;li>正確：$s \in {\text{&amp;ldquo;add&amp;rdquo;}, \text{&amp;ldquo;query&amp;rdquo;}}$&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>若題目為多筆測資一定要標示
+&lt;ul>
+&lt;li>例如 &lt;strong>本題為多筆測資&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>若題目要使用特定的輸入做為結尾，請一定要標示
+&lt;ul>
+&lt;li>例如 &lt;strong>輸入 $0$ 代表輸入結束&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>分段給分規則應清楚標示
+&lt;ul>
+&lt;li>若某一段測資有附加條件（例如需要通過範例測資），則應在配分欄標示
+&lt;ul>
+&lt;li>例如 &lt;strong>附加條件：通過範測&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>每一段測資範圍應在配分欄標示
+&lt;ul>
+&lt;li>例如
+&lt;ol>
+&lt;li>&lt;strong>測資範圍：$1 \leq n \leq 2 \times 10^5$&lt;/strong>&lt;/li>
+&lt;li>&lt;strong>測資範圍：題目範圍&lt;/strong>&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h2 id="測資">測資
+&lt;/h2>&lt;ul>
+&lt;li>需滿足題述的限制
+&lt;ul>
+&lt;li>例如 $n \leq 500$，那就不能出現 $n=501$ 的狀況，就算解答程式可以給出相對應的輸出也不行&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>一定要將題目給定的限制出滿
+&lt;ul>
+&lt;li>例如 $0 \leq n \leq 500$ 就至少要各有有一筆測資為 $n = 0$ 和 $n=500$。&lt;/li>
+&lt;li>假設有兩個主要變數 $n,m$ 則這兩個變數都應該要有最大和最小的組合
+&lt;ul>
+&lt;li>主要變數指的是會去變動到時間複雜度的參數&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>除非是特殊題目，否則測資數量不能太少。如果測資數量不夠很容易被特判
+&lt;ul>
+&lt;li>個人建議至少 $20$ 筆以上&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>如果需要分段給分，請確保每一個分段都有對應的測資&lt;/li>
+&lt;li>注意 IO 速度問題，太慢會 TLE
+&lt;ul>
+&lt;li>IO 優化沒辦法保證所有寫題目的人都知道，如果題目需要 IO 優化才能過，則請自行斟酌&lt;/li>
+&lt;li>因為題目可能會有各種程式語言，IO 優化技巧請自行上網查詢&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h2 id="解答程式">解答程式
+&lt;/h2>&lt;ul>
+&lt;li>至少需要有兩份完全獨立的解答程式可以得到相同的結果
+&lt;ul>
+&lt;li>最好是找到其它人幫忙驗題，如果沒有可以自行寫兩份解答驗證&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>如果有使用分段給分，至少每一種分段都寫一份程式碼，確定只能拿到對應的分數&lt;/li>
+&lt;li>在確定解答正確之後，可以試著修改程式，確定測資可以找出有錯誤的程式&lt;/li>
+&lt;/ul>
+&lt;h2 id="小技巧">小技巧
+&lt;/h2>&lt;p>若一個題目為分段給分，則可以寫一份滿分的解答程式，再寫一份僅部份分的程式，則只需要比對部份分兩份解答是否一樣，大該就能確定解答的正確性。&lt;/p></description></item></channel></rss>

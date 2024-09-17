@@ -1,0 +1,470 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Ikev on 小麥的異想世界</title><link>https://worldofwheat.github.io/tags/ikev/</link><description>Recent content in Ikev on 小麥的異想世界</description><generator>Hugo -- gohugo.io</generator><language>zh-tw</language><lastBuildDate>Fri, 12 Jul 2024 21:00:00 +0800</lastBuildDate><atom:link href="https://worldofwheat.github.io/tags/ikev/index.xml" rel="self" type="application/rss+xml"/><item><title>StrongSwan 實驗</title><link>https://worldofwheat.github.io/p/strongswan-%E5%AF%A6%E9%A9%97/</link><pubDate>Fri, 12 Jul 2024 21:00:00 +0800</pubDate><guid>https://worldofwheat.github.io/p/strongswan-%E5%AF%A6%E9%A9%97/</guid><description>&lt;p>我的手機不知道在哪一年的更新之後，內建的 VPN 就只剩下 IKEv2/IPsec 這種方式了，又不知道在哪天我就開始想要自己架一個 VPN 伺服器，2024 年的寒假我就開始研究怎麼樣用 VPN 連線回家。&lt;/p>
+&lt;p>因為系統是 Linux，第一個在網路上找到的就是 strongSwan 這套軟體，然後又找了一下網路上的教學，但我照著教學不知道為什麼就是連線不了，憑證也是簽了又刪無數次。但我沒有因此放棄，我直接去看官方文件，官方的文件都是用 swanctl 設定檔的格式寫的，我本來還堅持用 strongSwan 的預設格式，因為網路上的教學撰寫的時間久遠，我最一開始接觸到的就是如此，但在試用之後才發現 swanctl 的設定檔更加的人性化，比原本的格式不知道好了多少。strongSwan 官方還給出了大部分設定的&lt;a class="link" href="https://docs.strongswan.org/docs/5.9/index.html" target="_blank" rel="noopener"
+>範例&lt;/a>，應該百分之九十的情況都可以處理。&lt;/p>
+&lt;p>因此我決定寫一篇相對比較新的教學，也算是做個紀錄，給未來想要架設的人有個方向。&lt;/p>
+&lt;h1 id="概要">概要
+&lt;/h1>&lt;p>以下是我自己整理的重點：&lt;/p>
+&lt;ul>
+&lt;li>IPsec 用於保護兩個節點之間的資料傳輸，使用 UDP 協議傳輸&lt;/li>
+&lt;li>IPsec 在開始傳輸之前需要先進行金錀協商和身份驗證，而實作方法常見的有 L2TP 或 IKEv2，因此常常可以在手機看到 L2TP/IPsec 或 IKEv2/IPsec，而 strongSwan 提供的是 IKEv2/IPsec&lt;/li>
+&lt;li>IKEv2 分為兩步
+&lt;ul>
+&lt;li>第一步兩個節點會協商出保護第二步的密鑰和後續必要的資訊&lt;/li>
+&lt;li>第二步會進行身份驗證及協商出 IPsec 的密鑰，此時的封包受到第一步協商出的密鑰加密&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>理論上不存在伺服端跟客戶端，但實際上還是會有一端當成伺服器&lt;/li>
+&lt;li>伺服端跟客戶端都需要設定驗證方式，只有在兩邊都驗證通過才能連線&lt;/li>
+&lt;li>驗證方式有憑證、EAP、PSK 三種，EAP 在易用性跟安全性上取得了平衡
+&lt;ul>
+&lt;li>EAP 如果想要也可以用第三方伺服器驗證（RADIUS）&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>伺服器一般來說都會用憑證做為自身的憑證方式，手機版 strongSwan 客戶端也只能連線使用憑證驗證的伺服器&lt;/li>
+&lt;/ul>
+&lt;h1 id="連接握手">連接握手
+&lt;/h1>&lt;p>下方使用設定如下：&lt;/p>
+&lt;ul>
+&lt;li>伺服器為憑證驗證&lt;/li>
+&lt;li>客戶端為 EAP 驗證&lt;/li>
+&lt;/ul>
+&lt;p>IKEv2 握手有四步：&lt;/p>
+&lt;ol>
+&lt;li>客戶端對伺服器握手&lt;/li>
+&lt;li>伺服器返回握手，如果有開啟憑證請求會在這一步傳送&lt;/li>
+&lt;li>客戶端返回對應的驗證方式，這裡是 EAP。若有開啟憑證請求也會一同傳送&lt;/li>
+&lt;li>伺服器返回憑證&lt;/li>
+&lt;/ol>
+&lt;ul>
+&lt;li>在握手的前兩步雙方會協商出密鑰保護第三步和第四步&lt;/li>
+&lt;li>憑證請求的目地在於雙方皆可以設定不主動傳送憑證，若不主動傳送則需要憑證請求才能得到憑證
+&lt;ul>
+&lt;li>例如 Windows 或 strongSwan-network-manager 皆不會主動傳送憑證&lt;/li>
+&lt;li>憑證請求較消耗流量，可以自行決定是否開啟&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>&lt;a class="link" href="https://www.cnblogs.com/efzju/p/5041797.html" target="_blank" rel="noopener"
+>參考資料&lt;/a>&lt;/p>
+&lt;h1 id="架設">架設
+&lt;/h1>&lt;p>以下是我自己整理的重點：&lt;/p>
+&lt;ul>
+&lt;li>如果使用 Docker 要開始 privileged 才能使用&lt;/li>
+&lt;li>strongswan 需要在 ipsec 這個套件上面運作，在安裝 strongswan 的時候會自動連同 ipsec 一起安裝&lt;/li>
+&lt;li>新版的 strongswan 使用 swanctl 來管理各種設定，網路上有些教學使用僅 strongSwan 的設定檔，兩者功能相同&lt;/li>
+&lt;li>架設需要安裝套件，下方列出的套件皆可使用 apt 安裝
+&lt;ul>
+&lt;li>&lt;code>iptables&lt;/code> 流量轉發用，不裝僅能連線但沒有網路&lt;/li>
+&lt;li>&lt;code>strongswan&lt;/code> 核心&lt;/li>
+&lt;li>&lt;code>strongswan-swanctl&lt;/code> 管理 strongswan 的設定檔等，強烈推薦使用&lt;/li>
+&lt;li>&lt;code>strongswan-pki&lt;/code> 可由 OpenSSL 替代&lt;/li>
+&lt;li>&lt;code>libstrongswan-extra-plugins&lt;/code> 加解密等等的算法套件&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>若直接安裝套件有些功能無法使用，例如 TPM 等等，因此特殊功能需要自行編譯&lt;/li>
+&lt;li>需要準備伺服器用的憑證&lt;/li>
+&lt;li>伺服器的封包轉發和 iptables 流量轉發要設定才能連到外網&lt;/li>
+&lt;/ul>
+&lt;h1 id="憑證">憑證
+&lt;/h1>&lt;p>以下是我自己整理的重點：&lt;/p>
+&lt;ul>
+&lt;li>一定要先懂基本的 PKI，可以參考&lt;a class="link" href="https://www.youtube.com/watch?v=vVbLSba6vOI" target="_blank" rel="noopener"
+>這部影片&lt;/a>&lt;/li>
+&lt;li>能不自簽就不自簽，因為細節非常多，一個不小心就不能連線
+&lt;ul>
+&lt;li>我自己測試了網路上申請的憑證 Buypass、Let&amp;rsquo;s Encrypt 皆沒有問題&lt;/li>
+&lt;li>從網路上申請的憑證一定需要域名，換句話說不想自簽就一定需要有域名&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>如果客戶端要使用憑證做為驗證，除非客戶端有辦法從網路上申請到憑證，否則一定需要自簽&lt;/li>
+&lt;/ul>
+&lt;p>申請憑證重點如下：&lt;/p>
+&lt;ul>
+&lt;li>一定需要域名，沒有域名無法申請&lt;/li>
+&lt;li>推薦 Let&amp;rsquo;s Encrypt 的憑證，註冊方法可以參考官方文件
+&lt;ul>
+&lt;li>自動化申請可以使用 Certbot，使用方法可以參考&lt;a class="link" href="https://certbot.eff.org/" target="_blank" rel="noopener"
+>官方文件&lt;/a>，這個是最簡單的方法&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>自簽憑證重點：&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>如果沒有域名，則自簽憑證內容的所有域名都以 IP 代替&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>手機版 strongSwan 跟 Windows 當客戶端連線對憑證各自不同的要求，自簽一定需要注意&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>需要準備根憑證，只有被根憑證簽屬的憑證才可以被信任，因此根憑證的私鑰強烈建議要加密&lt;/p>
+&lt;ul>
+&lt;li>假設客戶端使用自簽憑證做為驗證手段，則伺服端一定要有根憑證才可以驗證，反之亦然&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>所有憑證需要是 X509v3 的版本才能使用，因為需要有一些額外的資訊用於驗證&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>過程中所有的金鑰生成請使用 RSA 或 ECDSA，因為本人在測試時發現會發生錯誤&lt;/p>
+&lt;ul>
+&lt;li>我僅在 Zenfone 8 和 Windows 10 上進行測試，其它系統因為我也沒有，所以無法測試&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>Android 和 Windows 憑證安裝使用 PKCS#12 格式&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>CN 和 SAN 一定要設定成域名，缺一不可&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Extended Key Usage 需要有 TLS Web Server Authentication&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>伺服器憑證我推薦使用 OpenSSL 簽發，因為需要比較多細項，建議使用設定檔或 pki 生成&lt;/p>
+&lt;details>
+&lt;summary>伺服器憑證設定檔範例&lt;/summary>
+```plaintext
+[ req ]
+prompt = no
+# 天數
+days = 30
+distinguished_name = req_distinguished_name
+req_extensions = v3_req
+&lt;p>[ req_distinguished_name ]&lt;/p>
+&lt;h1 id="根域名">根域名
+&lt;/h1>&lt;p>commonName = worldofwheat.us.to&lt;/p>
+&lt;p>[ v3_req ]
+basicConstraints = critical, CA:FALSE
+extendedKeyUsage = serverAuth
+subjectAltName = @sans&lt;/p>
+&lt;p>[ sans ]&lt;/p>
+&lt;h1 id="ikev2-主要驗的就是下面的值可以新增多筆紀錄">IKEv2 主要驗的就是下面的值，可以新增多筆紀錄
+&lt;/h1>&lt;p>DNS.0 = worldofwheat.us.to
+DNS.1 = vpn.worldofwheat.us.to&lt;/p>
+&lt;h1 id="dns1--testworldofwheatusto">DNS.1 = test.worldofwheat.us.to
+&lt;/h1>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">&amp;lt;/details&amp;gt;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;/li>
+&lt;/ul>
+&lt;p>常用指令如下，OpenSSL 和 pki 指令功能相同：&lt;/p>
+&lt;ul>
+&lt;li>過程中需要動用到很多指令的操作。strongSwan 官方有給出 pki 這套工具，也可以使用 OpenSSL 代替&lt;/li>
+&lt;li>生成私鑰
+&lt;ul>
+&lt;li>&lt;code>openssl genpkey -outform pem -algorithm rsa -pkeyopt rsa_keygen_bits:4096 -quiet -out &amp;lt;私鑰路徑&amp;gt;&lt;/code>&lt;/li>
+&lt;li>&lt;code>pki --gen --type rsa --size 4096 --outform pem &amp;gt; &amp;lt;私鑰路徑&amp;gt;&lt;/code>&lt;/li>
+&lt;li>如果私鑰需要加密，則可以在 OpenSSL 的指令內加上 &lt;code>-aes256&lt;/code> 來啟用&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>識別名稱只需要填寫 CN 就足夠了，如果有其它欄位需求在按照相同的格式填入&lt;/li>
+&lt;li>根憑自簽指令如下：
+&lt;ul>
+&lt;li>根憑證一般有效時間都會比較長，下方範例為 3650 天
+&lt;details>
+&lt;summary>OpenSSL&lt;/summary>
+```bash
+openssl req -key &lt;根憑證私鑰路徑> -out &lt;憑證路徑> \
+-x509 -days 3650 -subj /C=NO/
+```
+&lt;/details>
+&lt;details>
+&lt;summary>pki&lt;/summary>
+```bash
+pki --self --in &lt;根憑證私鑰路徑> \
+--type priv --outform pem --lifetime 3650 \
+--dn "CN=域名" > &lt;憑證路徑>
+```
+&lt;/details>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>簽發憑證指令如下：
+&lt;details>
+&lt;summary>OpenSSL&lt;/summary>
+OpenSSL 需要先有 CSR 才能簽憑證，因此分為兩步
+```bash
+openssl req -new -key &lt;私鑰路徑> -out &lt;CSR 路徑> -config &lt;設定檔路徑>
+openssl req -x509 -in &lt;CSR 路徑> -out &lt;憑證路徑> -CA &lt;根憑證路徑> -CAkey &lt;根憑證私鑰路徑>
+```
+&lt;/details>
+&lt;details>
+&lt;summary>pki&lt;/summary>
+```bash
+pki --pub --in &lt;私鑰路徑> | \
+pki --issue --cakey &lt;根憑證私鑰路徑> --cacert &lt;根憑證路徑> \
+--dn "CN=域名" --lifetime &lt;有效天數> \
+--flag serverAuth --outform pem > &lt;憑證路徑>.pem
+```
+&lt;/details>
+&lt;/li>
+&lt;li>查看憑證資訊
+&lt;ul>
+&lt;li>&lt;code>openssl x509 -in &amp;lt;憑證路徑&amp;gt; -text -noout&lt;/code>&lt;/li>
+&lt;li>&lt;code>pki --print --in &amp;lt;憑證路徑&amp;gt;&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h1 id="設定檔">設定檔
+&lt;/h1>&lt;ul>
+&lt;li>
+&lt;p>下方僅給出本人使用過的範例，更多範例可以參考(官方文件)[https://docs.strongswan.org/docs/5.9/config/IKEv2.html]&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>配置資料夾預設位於 &lt;code>/etc/swanctl/&lt;/code> 底下&lt;/p>
+&lt;ul>
+&lt;li>設定檔放在 &lt;code>conf.d/&lt;/code> 底下，需要自行創建檔案
+&lt;ul>
+&lt;li>設定檔副檔名為 &lt;code>.conf&lt;/code>&lt;/li>
+&lt;li>可以有多組設定檔，並且所有設定檔都會在開啟時讀取&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>憑證放在 &lt;code>x509/&lt;/code> 底下&lt;/li>
+&lt;li>私鑰放在 &lt;code>private/&lt;/code> 底下
+&lt;ul>
+&lt;li>憑證和私鑰需要對應才能使用，缺一不可&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>根憑證放在 &lt;code>x509ca&lt;/code> 底下
+&lt;ul>
+&lt;li>憑證鏈可以包成一個檔案放入&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>Windows 對於 IKEv2 握手算法有限制，可以參考下方的列表&lt;/p>
+&lt;details>
+&lt;summary>可用選項&lt;/summary>
+&lt;p>3DES 系列
+&lt;code>3des-sha1-prfsha1-modp1024&lt;/code>
+&lt;code>3des-sha256-prfsha256-modp1024&lt;/code>
+&lt;code>3des-sha384-prfsha384-modp1024&lt;/code>&lt;/p>
+&lt;p>AES CBC 系列
+&lt;code>aes128-sha1-prfsha1-modp1024&lt;/code>
+&lt;code>aes128-sha256-prfsha256-modp1024&lt;/code>
+&lt;code>aes128-sha384-prfsha384-modp1024&lt;/code>
+&lt;code>aes192-sha1-prfsha1-modp1024&lt;/code>
+&lt;code>aes192-sha256-prfsha256-modp1024&lt;/code>
+&lt;code>aes192-sha384-prfsha384-modp1024&lt;/code>
+&lt;code>aes256-sha1-prfsha1-modp1024&lt;/code>
+&lt;code>aes256-sha256-prfsha256-modp1024&lt;/code>
+&lt;code>aes256-sha384-prfsha384-modp1024&lt;/code>&lt;/p>
+&lt;p>AES GCM 系列
+&lt;code>aes128gcm128-prfsha1-modp1024&lt;/code>
+&lt;code>aes128gcm128-prfsha256-modp1024&lt;/code>
+&lt;code>aes128gcm128-prfsha384-modp1024&lt;/code>
+&lt;code>aes256gcm128-prfsha1-modp1024&lt;/code>
+&lt;code>aes256gcm128-prfsha256-modp1024&lt;/code>
+&lt;code>aes256gcm128-prfsha384-modp1024&lt;/code>&lt;/p>
+&lt;/details>
+&lt;/li>
+&lt;/ul>
+&lt;details>
+&lt;summary>範例&lt;/summary>
+&lt;ul>
+&lt;li>下方會給出最基本的設定檔範例，可以按照範例修改&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;span class="lnt">30
+&lt;/span>&lt;span class="lnt">31
+&lt;/span>&lt;span class="lnt">32
+&lt;/span>&lt;span class="lnt">33
+&lt;/span>&lt;span class="lnt">34
+&lt;/span>&lt;span class="lnt">35
+&lt;/span>&lt;span class="lnt">36
+&lt;/span>&lt;span class="lnt">37
+&lt;/span>&lt;span class="lnt">38
+&lt;/span>&lt;span class="lnt">39
+&lt;/span>&lt;span class="lnt">40
+&lt;/span>&lt;span class="lnt">41
+&lt;/span>&lt;span class="lnt">42
+&lt;/span>&lt;span class="lnt">43
+&lt;/span>&lt;span class="lnt">44
+&lt;/span>&lt;span class="lnt">45
+&lt;/span>&lt;span class="lnt">46
+&lt;/span>&lt;span class="lnt">47
+&lt;/span>&lt;span class="lnt">48
+&lt;/span>&lt;span class="lnt">49
+&lt;/span>&lt;span class="lnt">50
+&lt;/span>&lt;span class="lnt">51
+&lt;/span>&lt;span class="lnt">52
+&lt;/span>&lt;span class="lnt">53
+&lt;/span>&lt;span class="lnt">54
+&lt;/span>&lt;span class="lnt">55
+&lt;/span>&lt;span class="lnt">56
+&lt;/span>&lt;span class="lnt">57
+&lt;/span>&lt;span class="lnt">58
+&lt;/span>&lt;span class="lnt">59
+&lt;/span>&lt;span class="lnt">60
+&lt;/span>&lt;span class="lnt">61
+&lt;/span>&lt;span class="lnt">62
+&lt;/span>&lt;span class="lnt">63
+&lt;/span>&lt;span class="lnt">64
+&lt;/span>&lt;span class="lnt">65
+&lt;/span>&lt;span class="lnt">66
+&lt;/span>&lt;span class="lnt">67
+&lt;/span>&lt;span class="lnt">68
+&lt;/span>&lt;span class="lnt">69
+&lt;/span>&lt;span class="lnt">70
+&lt;/span>&lt;span class="lnt">71
+&lt;/span>&lt;span class="lnt">72
+&lt;/span>&lt;span class="lnt">73
+&lt;/span>&lt;span class="lnt">74
+&lt;/span>&lt;span class="lnt">75
+&lt;/span>&lt;span class="lnt">76
+&lt;/span>&lt;span class="lnt">77
+&lt;/span>&lt;span class="lnt">78
+&lt;/span>&lt;span class="lnt">79
+&lt;/span>&lt;span class="lnt">80
+&lt;/span>&lt;span class="lnt">81
+&lt;/span>&lt;span class="lnt">82
+&lt;/span>&lt;span class="lnt">83
+&lt;/span>&lt;span class="lnt">84
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">connections {
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> rw-eap-mschapv2 {
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> version = 2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> # 是否傳送憑證給終端，一定要開啟，因為這裡使用 PKI 進行身份驗證
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> # 可選 never、ifasked、always
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> # never：不傳送
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> # ifasked：收到憑證請求才傳送
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> # always：主動傳送
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> # 預設為 ifasked
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> send_cert = always
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> # 是否傳送憑證請求
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> # 預設為 yes
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> send_certreq = no
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> # 如果資料比較大，是否要進行分割
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> # 可選 yes、accept、force、no
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> # yes：只要對方同意則資料進行分割
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> # accept：本身的資料不分割，但通知對方可以接收資料分割
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> # force：所有資料皆分割
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> # no：自已不分割，並且告知對方不可分割
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> # 預設為 yes
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> fragmentation = yes
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> # 指定 DHCP 池
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> pools = rw_pool
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> # IKEv2 加密算法
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> # 可以選擇多個加密算法，使用逗號分開
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> # 需要注意 Windows 和 strongSwan-network-manager
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> proposals = chacha20poly1305-prfsha512-modp4096,aes256gcm128-prfsha256-modp1024,aes256-sha1-prfsha1-modp4096
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> # 是否允許多個客戶端
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> # 預設為 yes
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> mobike = yes
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> # 伺服器驗證
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> local {
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> auth = pubkey
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> # 憑證名稱
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> certs = test-server.crt
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> # 填入連接時的域名或者 IP
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> id = vpn.worldofwheat.cloudns.ch
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> }
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> # 客戶端驗證
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> remote {
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> # 客戶端驗證方式，可以參考官方文件
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> auth = eap-mschapv2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> id = %any
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> }
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> # IPsec 選項
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> children {
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> rw-eap-mschapv2 {
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> local_ts = 0.0.0.0/0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> # 加密算法
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> esp_proposals = chacha20poly1305,aes256-sha1,aes256gcm128
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> }
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> }
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> }
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">}
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># DHCP 池
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">pools {
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> rw_pool {
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> addrs = 192.168.10.0/24
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> }
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">}
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 機密資訊
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">secrets {
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> # 處理加密過的私鑰
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> private-server {
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> file = &amp;#34;private.key&amp;#34;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> secret = XXXXXX
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> }
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> # 設定一個 EAP 帳號
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> eap-Alice {
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> id = Alice
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> secret = XXXXX
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> }
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;/details>
+&lt;h1 id="指令操作">指令操作
+&lt;/h1>&lt;h1 id="如何-debug">如何 Debug
+&lt;/h1>&lt;p>第一件事是先學會 IKEv2/IPsec 連線時候的握手協議，我推薦&lt;a class="link" href="https://www.cnblogs.com/efzju/p/5041797.html" target="_blank" rel="noopener"
+>這篇&lt;/a>，只有學會了握手協議下面提到的工具才有用。&lt;/p>
+&lt;p>debug 一定要會的方法：&lt;/p>
+&lt;ul>
+&lt;li>swanctl &amp;ndash;log
+&lt;ul>
+&lt;li>swanctl 提供的指令，可以讓連線過程中的所有封包都紀錄下來&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>手機版 strongSwan
+&lt;ul>
+&lt;li>原生的 UI 沒有辦法提供 log，基本上完全沒辦法 debug&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>Windows 事件檢視器
+&lt;ul>
+&lt;li>Windows 問題很多而且 debug 相對困難，連線出現問題的時候只會給出沒有任何幫助的訊息。事件檢視器可以給出錯誤碼，可以到網路上查找對應的問題。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul></description></item></channel></rss>

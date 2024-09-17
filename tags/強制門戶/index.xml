@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>強制門戶 on 小麥的異想世界</title><link>https://worldofwheat.github.io/tags/%E5%BC%B7%E5%88%B6%E9%96%80%E6%88%B6/</link><description>Recent content in 強制門戶 on 小麥的異想世界</description><generator>Hugo -- gohugo.io</generator><language>zh-tw</language><lastBuildDate>Sat, 14 Sep 2024 21:00:00 +0800</lastBuildDate><atom:link href="https://worldofwheat.github.io/tags/%E5%BC%B7%E5%88%B6%E9%96%80%E6%88%B6/index.xml" rel="self" type="application/rss+xml"/><item><title>Captive Portal 實驗</title><link>https://worldofwheat.github.io/p/captive-portal-%E5%AF%A6%E9%A9%97/</link><pubDate>Sat, 14 Sep 2024 21:00:00 +0800</pubDate><guid>https://worldofwheat.github.io/p/captive-portal-%E5%AF%A6%E9%A9%97/</guid><description>&lt;p>相信大家在去如火車站之類的地方都會發現到很多免費的網路，這個時候心動的點下去之後卻跳出了一個登入畫面，一般來說需要輸入身份證之類的資料才能使用。&lt;/p>
+&lt;p>上面提到的就是所謂的強制門戶（Captive Portal），這個功能是讓使用者驗證的階段改用網頁來進行，因為透過網頁就可以做到同一組帳號密碼在任何地方都能登入的功能，這跟大家在家裡使用的密碼登入的原理不同，前者是先讓使用者連接再驗證而後者是先驗證密碼再讓人連接。&lt;/p>
+&lt;h1 id="事先聲明">事先聲明
+&lt;/h1>&lt;ul>
+&lt;li>本篇教學提到的任何漏洞僅用於教學，不得用於非法用途&lt;/li>
+&lt;li>所有的測試不保證在所有的環境皆可使用，僅在我本人的電腦上測試成功&lt;/li>
+&lt;/ul>
+&lt;h1 id="在實驗前我需要準備什麼">在實驗前我需要準備什麼？
+&lt;/h1>&lt;p>軟體跟硬體在這次的實驗都有需要準備的東西，而且我建議你需要有一定的基礎網路知識再開始學習，因為我不對再對一些基本的知識做解釋。&lt;/p>
+&lt;h3 id="硬體">硬體
+&lt;/h3>&lt;ul>
+&lt;li>一台主機
+&lt;ul>
+&lt;li>可以是電腦、樹苺派等，但是我推薦使用 Linux 作業系統，Windows 理論上也做到的但我沒有實驗過&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>一台可以連接 Wi-Fi 的設備
+&lt;ul>
+&lt;li>用於測試，我推薦使用 Android、Windows、iOS 方便測試&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>一台 AP
+&lt;ul>
+&lt;li>可以不用是無線路由器，也可以是無線網卡，但是需要注意在生產環境上我不推薦使用無線網卡&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h3 id="軟體">軟體
+&lt;/h3>&lt;p>因為我本人僅在 kali Linux 上實驗，因此我不提供其它作業系統的軟體，如果有需要請自行到網路上尋找&lt;/p>
+&lt;ul>
+&lt;li>iptables
+&lt;ul>
+&lt;li>核心部份，用於做 NAT&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>Dnsmasq
+&lt;ul>
+&lt;li>因為要觸發 Captive Portal 需要有 DNS 的協助，可以使用其它 DNS 伺服器軟體&lt;/li>
+&lt;li>本次實驗因為使用了無線網卡，因此在 Linux 需要手動做 DHCP，而 Dnsmasq 剛好有 DHCP 的功能&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>web server
+&lt;ul>
+&lt;li>需要準備一個用於驗證使用者的網頁，本次實驗使用 flask&lt;/li>
+&lt;li>這部分也是最核心的部分，驗證和一般的網頁服務沒有差別&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>hostapd
+&lt;ul>
+&lt;li>這次的實驗我使用了 &lt;a class="link" href="https://www.tp-link.com/tw/home-networking/adapter/tl-wn722n/" target="_blank" rel="noopener"
+>TL-WN722N&lt;/a> 這款無線網卡做為熱點，你可以選擇任何可以做到熱點功能的網卡，在生產環境中我不推薦使用無線網卡，應該使用無路路由器&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h1 id="強制門戶是怎麼做到的">強制門戶是怎麼做到的？
+&lt;/h1>&lt;p>當一台手機連接到帶有 Captive Portal 的 AP 時，手機會先發起一條 DNS 請求，這條 DNS 請求一般來說會解析到一個事先約定好的網站，而當 AP 需要驗證或者不可用的時候則會返回其它的結果，手機也是靠這點做到判斷一個熱點有沒有網路及需不需要驗證。當 DNS 請求被解析後如果網站並非手機預其的網站則會將使用者跳轉到 Captive Portal，此時只需要驗證成功就可以連上網路。&lt;/p>
+&lt;p>需要注意到提供驗證的網頁不可為 HTTPS，因為手機預期的域名和登入畫面上的憑證不同，因此會出現網站不安全的狀況。&lt;/p>
+&lt;h3 id="技術細節">技術細節
+&lt;/h3>&lt;p>上敘提到的 DNS 請求在不同的裝置上也有所不同，下方是常見的 DNS 請求列表：&lt;/p>
+&lt;ul>
+&lt;li>clients3.google.com&lt;/li>
+&lt;li>connectivitycheck.gstatic.com&lt;/li>
+&lt;li>connectivitycheck.android.com&lt;/li>
+&lt;li>detectportal.firefox.com&lt;/li>
+&lt;li>&lt;a class="link" href="https://www.msftncsi.com" target="_blank" rel="noopener"
+>www.msftncsi.com&lt;/a>&lt;/li>
+&lt;li>captive.apple.com&lt;/li>
+&lt;/ul>
+&lt;p>上面那些域名就是每個不同的系統用來判斷是否可以連線及是否有 Captive Portal 的基準，因此想要觸發強制門戶的方法就是透過 iptables 的 NAT 表中的 PREROUTING 鏈做到的，因為 DNS 是明文請求，因此只需要目標為 53 號端口的連結指向到 DNS 伺服器就可以做到重定向，而這裡的 DNS 伺服器需要自行架設，這次的實驗使用 Dnsmasq。&lt;/p>
+&lt;h1 id="開始實驗吧">開始實驗吧
+&lt;/h1>&lt;p>我假設大家都已經準備好了軟硬體，因此這邊我就直接跳過安裝階段&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>將要用來處理驗證的介面卡準備好，可以是無線網卡或者路由器，接著將介面卡指定一個 IP，需要注意這裡的子網域應該要是 /24 才能分配給其它連入的裝置 IP&lt;/p>
+&lt;ul>
+&lt;li>這次實驗我使用的是無線網卡，&lt;a class="link" href="https://gist.github.com/WorldOfWheat/d3fad3f823be85be22f995e88b3691b3" target="_blank" rel="noopener"
+>hostapd 範例&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>先準備好 iptables，下方我提供一個我寫的範例，&lt;strong>我強烈建議將註解讀一篇&lt;/strong>，在理解了之後才能在自己的主機上也做出一樣的效果&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;span class="lnt">30
+&lt;/span>&lt;span class="lnt">31
+&lt;/span>&lt;span class="lnt">32
+&lt;/span>&lt;span class="lnt">33
+&lt;/span>&lt;span class="lnt">34
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="line">&lt;span class="cl">&lt;span class="cp">#!bin/sh
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp">&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 下面兩個是最主要的變數&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># INTERFACE 代表的是 AP 的介面，不論這邊使用的是無線網卡還是路由器都是一樣的&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># WEBSERVER 代表的是提供驗證的網頁伺服器，要確定是可以連接到的&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nv">INTERFACE&lt;/span>&lt;span class="o">=&lt;/span>wlan0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nv">WEBSERVER&lt;/span>&lt;span class="o">=&lt;/span>192.168.0.68
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 下面四條會把 filter 和 nat 表完全清空，實驗為了方便才會清空，執行前請特別注意&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">iptables -t filter -F
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">iptables -t nat -F
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">iptables -t filter -X
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">iptables -t nat -X
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># FORWARD 鏈預設設為 DROP&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 這步非常的重要，否則就會發生未經驗證，但是卻可以透過 IP 直接對外連接的狀況。實際上的表現為有些時候可以連接有些時候不行&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">iptables -P FORWARD DROP
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># AUTHORIZED 這條鏈用於新增已經驗證的使用者&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">iptables -N AUTHORIZED
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 當使用者發送封包的時候先到 AUTHORIZED 檢查，如果未經驗證的話則會往下一條&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">iptables -A FORWARD -i &lt;span class="nv">$INTERFACE&lt;/span> -j AUTHORIZED
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 放行所有由介面卡流出的封包，因為在輸入已經做到管制，因此輸出一般來說不就做管制&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">iptables -A FORWARD -o &lt;span class="nv">$INTERFACE&lt;/span> -j ACCEPT
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># AUTHORIZED 這條鏈用於新增已經驗證的使用者&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 需要注意 filter 和 nat 的鏈不共用&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">iptables -t nat -N AUTHORIZED
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 將已經驗證的使用者跳過 DNS 重定向&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">iptables -t nat -A PREROUTING -i &lt;span class="nv">$INTERFACE&lt;/span> -j AUTHORIZED
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 如果前一翛規則還沒驗證通過則進行 DNS 自定向&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">iptables -t nat -A PREROUTING -i &lt;span class="nv">$INTERFACE&lt;/span> -p udp --dport &lt;span class="m">53&lt;/span> -j DNAT --to-destination &lt;span class="nv">$WEBSERVER&lt;/span>:53
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 因為實驗中的主要透過 eth0 來連入外網，因此需要做 SNAT 才能連上外網&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ol start="2">
+&lt;li>準備好 Dnsmasq，下面我一樣寫了一個範例，如果你使用自己的 DNS 軟體再自行研究&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"># 指定介面卡，這裡的介面卡和第一步的介面卡相同
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface=wlan0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 要監聽哪個 IP，和第一步的指配給介面卡的 IP 相同
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">listen-address=10.1.0.1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 設定分配的連入裝置的 IP 子網域
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">dhcp-range=10.1.0.2,10.1.0.254,1h
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 設定分配的連入裝置的 IP 子網域遮罩
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">dhcp-option=1,255.255.255.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 設定分配的連入裝置的預設 DNS 伺服器，需要注意這裡的 DNS 不可以是用於重定向的伺服器，否則會造成設備強制門戶偵測錯誤
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">dhcp-option=6,1.1.1.1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># DNS 監聽埠號
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">port=53
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 下面代表將 Captive Portal 偵測用的域名重定向到自己的 DNS 伺服器
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 下面三個是 Android 的偵測域名，別的廠排可能會有別的域名，這點再自行測試
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">address=/clients3.google.com/10.1.0.1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">address=/connectivitycheck.gstatic.com/10.1.0.1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">address=/connectivitycheck.android.com/10.1.0.1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 下面為 Firefox 瀏覽器的偵測域名
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">address=/detectportal.firefox.com/10.1.0.1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 下面為 Windows 的偵測域名
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">address=/www.msftncsi.com/10.1.0.1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 下面為 Apple 產品的偵測域名
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">address=/captive.apple.com/10.1.0.1
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ol start="3">
+&lt;li>準備用於驗證的網頁伺服器，因為伺服器會有各種需求，以下為簡易的範例，實際上的驗證伺服器並不會這麼簡單
+&lt;ul>
+&lt;li>本次實驗使用的網頁後端為 Python 的 Flask，其它框架理論上也可以做到相同的事&lt;/li>
+&lt;li>驗證伺服器和普通的網頁服務一樣，所有該注意的漏洞一樣也需要注意，而且因為其特殊性更需要注意，下方這個案例就說明了不正確的設定會造成什麼樣的狀況
+&lt;ul>
+&lt;li>&lt;a class="link" href="https://blog.duckll.tw/post/howihackitaiwan/" target="_blank" rel="noopener"
+>漏洞案例&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ol>
+&lt;script src="https://gist.github.com/WorldOfWheat/0ace701b01f286ccd546c2103cd2adc0.js">&lt;/script>
+&lt;ol start="4">
+&lt;li>確定 Dnsmasq、iptables、熱點、驗證伺服器都已經啟動，此時連線後應該會自動跳轉到驗證伺服器，再輸入帳號密碼後則會連線成功&lt;/li>
+&lt;/ol>
+&lt;h1 id="結論">結論
+&lt;/h1>&lt;p>強制門戶可以在 2024 年已經不在那麼的常見，大部分的學校都已經改為 WAP2-Enterprise 這種驗證方式，雖然這樣的驗證方式在錯誤的配置方式仍然充滿了漏洞，但這還是比強制門戶好了很多，因為強制門戶相對有比較多的漏洞可以繞過驗證。&lt;/p>
+&lt;p>這次的實驗我花了很多時間在除錯上，也是第一次知道強制門戶是怎麼樣做到在連入的時候跳出登入畫面的，算是解答了我多年前的疑惑。&lt;/p></description></item></channel></rss>
