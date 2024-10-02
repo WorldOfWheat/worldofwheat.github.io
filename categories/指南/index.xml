@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>指南 on 小麥的異想世界</title><link>https://worldofwheat.github.io/categories/%E6%8C%87%E5%8D%97/</link><description>Recent content in 指南 on 小麥的異想世界</description><generator>Hugo -- gohugo.io</generator><language>zh-tw</language><lastBuildDate>Wed, 18 Sep 2024 00:00:00 +0800</lastBuildDate><atom:link href="https://worldofwheat.github.io/categories/%E6%8C%87%E5%8D%97/index.xml" rel="self" type="application/rss+xml"/><item><title>什麼是接地？</title><link>https://worldofwheat.github.io/p/%E4%BB%80%E9%BA%BC%E6%98%AF%E6%8E%A5%E5%9C%B0/</link><pubDate>Wed, 18 Sep 2024 00:00:00 +0800</pubDate><guid>https://worldofwheat.github.io/p/%E4%BB%80%E9%BA%BC%E6%98%AF%E6%8E%A5%E5%9C%B0/</guid><description>&lt;p>前幾天有人問了我一個問題，為什麼電路需要接到 GND？這個問題聽起來好像很簡單，但在場的另一個人也說的不清不楚，什麼接到地板、什麼電流流出去等等，因此我打算就我先前學習與實作的經驗來好好的討論這個問題。&lt;/p>
+&lt;h2 id="老掉牙的範例">老掉牙的範例
+&lt;/h2>&lt;p>相信大家如果有學過一點點的電學就會知道一個解釋電壓的例子，假設現在有一隻鳥站在一條 3000V 的電線上（假設沒有絕綠保護），那麼請問這支鳥會不會被電死？不管是你從生活中還是在課本上看到的答案都是「否」，但如果再細想一下就會發現這件事好像怪怪的，為什麼 3000V 的電壓在鳥的身上卻什麼事都沒有發現？&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/aTTLpBn.png"
+loading="lazy"
+>&lt;/p>
+&lt;p>答案就出在電壓是一個相當的概念，我們上面講到 3000V，那是我們實際上去量測得到的電壓，這個電壓是相對於大地的電壓，而實際上如果那隻鳥拿著電錶去量測自己的話牠會量到自己是 0V，因為牠並沒有任何的參考點，唯一的參考點就是那根電線。&lt;/p>
+&lt;p>要了解接地之前要先知道我們常說的電壓在說的其實是「電位差」，要有電位差才有電流。&lt;/p>
+&lt;h2 id="在直流的情況下">在直流的情況下
+&lt;/h2>&lt;p>一般來說在直流電路中接地通常指的就是負極，因為負極一般來說提供的就是一個參考點，但需要注意負極不一定是 0V 喔！例如有一個電路是正極是 0V 但負極卻是可怕的 -400V，這個時候你去摸的話一樣是會觸電的，因為這跟正極是 400V 負極 0V 是完全相同的概念，這種狀況一般會出現在整流電路詳細可以看看&lt;a class="link" href="./#%e9%80%b2%e9%9a%8e%e8%ad%b0%e9%a1%8c%e5%9c%a8%e7%9b%b4%e6%b5%81%e8%b7%9f%e4%ba%a4%e6%b5%81%e6%b7%b7%e5%90%88%e7%9a%84%e6%83%85%e6%b3%81%e4%b8%8b" >test&lt;/a>。&lt;/p>
+&lt;h2 id="在交流的情況下">在交流的情況下
+&lt;/h2>&lt;p>交流的情況相比直流就複雜很多，因為交流是不分正負的。相信大家應該或多或少都有聽過中性線，而這個中性線其實就是參考點，也就是說交流的電壓差是建立在一根 0V 的線上面的，但這根線是接地嗎？&lt;/p>
+&lt;p>要了解這個問題要先知道交流電是怎麼來的，不管是用什麼樣的方式產生了熱能最後都會到一個叫推動渦輪機的步驟，其實就是一個馬達但是反過來變成我們去轉動它，而這個時候馬達的線圈就會產生出電力。上述的提到的知識其實有非常多的細節，但因為過於複雜因此這邊就不再闡述，這裡你完全可以假設產生出來的電力會由三條電線輸出，但這三條線實際上都是帶電的，一般都是給工廠等需要大量用電的用戶使用。&lt;/p>
+&lt;p>上面提到的三條線如果我們把其中一條給拉出來，那麼我們可以使用嗎？可以，而這根線就是所謂的「火線」，但是我們首先會面臨到一個問題，那就是只有一根線的話，那我要拿誰能參考呢？就跟最一開始的那個範例一樣，只有一根線沒有任何參考點是沒有辦法產生電壓差的，為了解決這個問題在發電廠（實際上可能變電所之類的）那邊會想辦生出一根相對於火線為 0V 的線當做參考點，而這根線就是所謂的「中性線」。&lt;/p>
+&lt;p>有了先備知識之後就可以進入接地的部分了，剛剛我有講到中性線，那這個時候應該大家就會想到中性線應該就是接地線吧？如果你說的只是要有一個參考點，那這根中性線確實是接地線沒錯，但如果你有看過一些課本之類的應該就會發現好像不是這樣，一般還會有另外一條接地線，那這條又是什麼？實際上中性線跟接地線是連在一起的，但因為一般的電器在設計的時候為了安全才會有這種設計。&lt;/p>
+&lt;p>以烤麵包機為例我們假設外殼是金屬製的，那如果今天火線因為人為或者意外不小心的去接觸到外殼，那麼這根 110V 的火線就直接接到了麵包機上面，這個時候只要我們不小心去摸到的話就會有觸電的感覺，那為了避免這種狀況接地線通常會接到金屬外殼上，這個時候如果火線去碰到外殼的話其實就相當於短路，這個時候配電箱裡面的斷路器就會直接跳脫。&lt;/p>
+&lt;p>&lt;img src="https://upload.wikimedia.org/wikipedia/commons/f/fd/Jtecul.jpg"
+loading="lazy"
+alt="斷路器實拍"
+>&lt;/p>
+&lt;p>接著再講一個狀況，如果大家有看過&lt;a class="link" href="https://www.youtube.com/watch?v=6K0guFvBKkA" target="_blank" rel="noopener"
+>這部影片&lt;/a>的話應該會有一個問題，如果上面講到的中性線跟接地線其實是連在一起的，那為什麼還要特別去做接地銅棒這種東西？這其實是因為把中性線跟接地線連接在一起是比較簡便的做法，如果需要更高要求的建築就會做到影片那種接地，以銅棒插入到大地來跟變電所的銅棒透過大地連接，如果火線去碰觸到電器的金屬外殼的話電流就會直接從大地流出去，但這代表銅棒跟大地連接的電阻也不能太大，這也是為什麼影片中要去量測地電阻的原因。&lt;/p>
+&lt;h3 id="漏電斷路器">漏電斷路器
+&lt;/h3>&lt;p>想像一下火線因為破損導致接觸到金屬的水管，這個時候裡面的水也會代有電壓，但因為水管並沒有跟中性線連接，因此沒辦法像火線去接觸到接地線一樣讓斷路器跳脫，那如果人去摸到的話可是會觸電的喔！為了解決這個問題因此才有了漏電斷路器這個產品，它會去偵測流出的電流跟流入的電流有沒有相同，如果不相同的話則會直接跳脫，但因為相比起一般的斷路器帶有漏電保護功能的價格較高，因此通常只會出現在浴室或者飲水機這種跟水有關的地方。&lt;/p>
+&lt;img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Residual_current_device_2pole.jpg/800px-Residual_current_device_2pole.jpg" width="200px"/>
+&lt;h3 id="中性線怎麼變出來的">中性線怎麼變出來的
+&lt;/h3>&lt;p>一般來說由發電廠發出來的電是不會直接供應給用戶做使用的，一定會經過變電所升壓或者降壓之後才會輸出給用戶使用，而中性線就是由變電所中的變壓器接出來的，三相電在變壓器中有兩種繞法分別為 Delta 和 Y 型繞法，兩者都有辦法抽頭出中性線，下面左圖為 Y 型接法抽頭、右圖為 Delta 型接法抽頭。&lt;/p>
+&lt;div>
+&lt;img src="https://i.imgur.com/WAKLpnr.png" width="200px"/>
+&lt;img src="https://i.imgur.com/1jG4N4y.png" width="200px"/>
+&lt;/div>
+&lt;h2 id="進階議題在直流跟交流混合的情況下">進階議題：在直流跟交流混合的情況下
+&lt;/h2>&lt;p>&lt;img src="https://i.imgur.com/rYL4Bai.png"
+loading="lazy"
+>&lt;/p>
+&lt;p>這個狀況是一般人應該比較不會遇到，但在電子實驗中可是非常常出現的喔！在電子電路中有一個常見的開發板叫 Arduino，現在假設有兩塊 Arduino 插在同一台電腦上，那麼請問上面的 GND 是共地的嗎？正確答案是「是」，實際上連 Arduino 的 GND 跟隨便一個 USB 接口也都是共地的，因為像開發板的金屬部分一般來說都會跟 USB 的金屬殼連接，那這個金屬殼又連到哪裡呢？實際上最後都是接到電源供應器的接地，這裡一個有趣的地方是電源供應器同時有交流跟直流，那要怎麼樣區分哪邊才是正確的參考點？&lt;/p>
+&lt;p>這部分會牽扯到比較多的電路知識，我推薦&lt;a class="link" href="https://www.youtube.com/watch?v=MdPMeQ6h_Y4" target="_blank" rel="noopener"
+>這部影片&lt;/a>。簡單來說因為一些電路上面原因，因此你在混合電路的情況下你所以為的 GND 並不一定是 0V，但是那不用過於擔心這件事，因為一般來說市售的產品都已經做好了處理，所以你不會拿到一個負極是 110V 的電器。&lt;/p>
+&lt;p>在設計整流電路的時候要特別去注意這個問題，因為一不小心就會忘記負極其實在整流過後並不是 0V，但也會因為不同的電路設計而有不同的結果，這部分再自行研究。&lt;/p>
+&lt;h2 id="結論">結論
+&lt;/h2>&lt;p>接地是一個非常重要的知識，還記得以前在考證照的時候如果做完沒有接地的話是直接 0 分計算，但這個知識卻不太好理解的，這篇我以最直白的方式講述了接地的原理以及在直流跟交流的情況下分別代表的意義。&lt;/p></description></item><item><title>演算法出題指南</title><link>https://worldofwheat.github.io/p/%E6%BC%94%E7%AE%97%E6%B3%95%E5%87%BA%E9%A1%8C%E6%8C%87%E5%8D%97/</link><pubDate>Sat, 13 Jul 2024 00:00:00 +0800</pubDate><guid>https://worldofwheat.github.io/p/%E6%BC%94%E7%AE%97%E6%B3%95%E5%87%BA%E9%A1%8C%E6%8C%87%E5%8D%97/</guid><description>&lt;p>不管在 Zerojudge、 Codeforces 等平台上有許多的練習題。這題題目都是由前人花很多時間準備出來的，但也因為出題成本的降低，因此常常出現題述未清楚標示或者測資有問題的題目。&lt;/p>
+&lt;p>下方是我在出了幾次題目，並且整合其它出題者的習慣整理而成的。下方會把一個題目的核心部分拆開，並且寫出每項應注意的事項，供您參考。&lt;/p>
+&lt;h2 id="題述">題述
+&lt;/h2>&lt;ul>
+&lt;li>中文排版請遵照&lt;a class="link" href="https://github.com/sparanoid/chinese-copywriting-guidelines" target="_blank" rel="noopener"
+>中文文案排版指北&lt;/a>&lt;/li>
+&lt;li>數學式請使用 Latex 語法，大部分的 OJ 都應該支援 Latex 語法
+&lt;ul>
+&lt;li>雖然常常出現只有一個英文代號的段落，但為了題述整齊請也使用 Latex 輸入
+&lt;ul>
+&lt;li>錯誤：第一行包含一個正整數 n。&lt;/li>
+&lt;li>正確：第一行包含一個正整數 $n$。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>乘法符號為 $\cdot$ 或者 $\times$，不是 $*$
+&lt;ul>
+&lt;li>錯誤：$5*3=15$&lt;/li>
+&lt;li>正確：$5 \times 3 = 15$&lt;/li>
+&lt;li>正確：$5 \cdot 3 = 15$&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>輸入格式應清楚標示
+&lt;ul>
+&lt;li>不應使用例如「數字」、「數值」等模凌兩可模的詞
+&lt;ul>
+&lt;li>整數範圍 $(-\infty,\infty)$&lt;/li>
+&lt;li>正整數範圍 $[0,\infty)$&lt;/li>
+&lt;li>負整數範圍 $(\infty,0]$&lt;/li>
+&lt;li>假設第一行會輸入一個 $n \in [1, 100]$
+&lt;ul>
+&lt;li>錯誤：第一行輸入一個數字&lt;/li>
+&lt;li>錯誤：第一行輸入一個數值&lt;/li>
+&lt;li>錯誤：第一行輸入一個變數&lt;/li>
+&lt;li>正確：第一行輸入一個正整數&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>每行有幾個輸入，輸入是什麼格式（正整數、負整數、整數、小數）&lt;/li>
+&lt;li>每一個輸入對應到題述的意義務必要清楚標示&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>測資範圍應清楚標示
+&lt;ul>
+&lt;li>假設輸入一個 $n \in [1, 2 \times 10^5]$
+&lt;ul>
+&lt;li>錯誤：$n$ 很大&lt;/li>
+&lt;li>錯誤：$n$ 為 int 裝的下的範圍&lt;/li>
+&lt;li>錯誤：$n \leq 2 \times 10^5$&lt;/li>
+&lt;li>正確：$1 \leq n \leq 2 \times 10^5$&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>使用到特定字串輸入，應寫明會有哪些字串。
+&lt;ul>
+&lt;li>假設輸入包含一個字串 $s$，代表 &amp;ldquo;add&amp;rdquo;, &amp;ldquo;query&amp;rdquo; 這兩個操作
+&lt;ul>
+&lt;li>正確：$s \in {\text{&amp;ldquo;add&amp;rdquo;}, \text{&amp;ldquo;query&amp;rdquo;}}$&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>若題目為多筆測資一定要標示
+&lt;ul>
+&lt;li>例如 &lt;strong>本題為多筆測資&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>若題目要使用特定的輸入做為結尾，請一定要標示
+&lt;ul>
+&lt;li>例如 &lt;strong>輸入 $0$ 代表輸入結束&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>分段給分規則應清楚標示
+&lt;ul>
+&lt;li>若某一段測資有附加條件（例如需要通過範例測資），則應在配分欄標示
+&lt;ul>
+&lt;li>例如 &lt;strong>附加條件：通過範測&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>每一段測資範圍應在配分欄標示
+&lt;ul>
+&lt;li>例如
+&lt;ol>
+&lt;li>&lt;strong>測資範圍：$1 \leq n \leq 2 \times 10^5$&lt;/strong>&lt;/li>
+&lt;li>&lt;strong>測資範圍：題目範圍&lt;/strong>&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h2 id="測資">測資
+&lt;/h2>&lt;ul>
+&lt;li>需滿足題述的限制
+&lt;ul>
+&lt;li>例如 $n \leq 500$，那就不能出現 $n=501$ 的狀況，就算解答程式可以給出相對應的輸出也不行&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>一定要將題目給定的限制出滿
+&lt;ul>
+&lt;li>例如 $0 \leq n \leq 500$ 就至少要各有有一筆測資為 $n = 0$ 和 $n=500$。&lt;/li>
+&lt;li>假設有兩個主要變數 $n,m$ 則這兩個變數都應該要有最大和最小的組合
+&lt;ul>
+&lt;li>主要變數指的是會去變動到時間複雜度的參數&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>除非是特殊題目，否則測資數量不能太少。如果測資數量不夠很容易被特判
+&lt;ul>
+&lt;li>個人建議至少 $20$ 筆以上&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>如果需要分段給分，請確保每一個分段都有對應的測資&lt;/li>
+&lt;li>注意 IO 速度問題，太慢會 TLE
+&lt;ul>
+&lt;li>IO 優化沒辦法保證所有寫題目的人都知道，如果題目需要 IO 優化才能過，則請自行斟酌&lt;/li>
+&lt;li>因為題目可能會有各種程式語言，IO 優化技巧請自行上網查詢&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h2 id="解答程式">解答程式
+&lt;/h2>&lt;ul>
+&lt;li>至少需要有兩份完全獨立的解答程式可以得到相同的結果
+&lt;ul>
+&lt;li>最好是找到其它人幫忙驗題，如果沒有可以自行寫兩份解答驗證&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>如果有使用分段給分，至少每一種分段都寫一份程式碼，確定只能拿到對應的分數&lt;/li>
+&lt;li>在確定解答正確之後，可以試著修改程式，確定測資可以找出有錯誤的程式&lt;/li>
+&lt;/ul>
+&lt;h2 id="小技巧">小技巧
+&lt;/h2>&lt;p>若一個題目為分段給分，則可以寫一份滿分的解答程式，再寫一份僅部份分的程式，則只需要比對部份分兩份解答是否一樣，大該就能確定解答的正確性。&lt;/p></description></item></channel></rss>
