@@ -1,0 +1,1004 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>小麥的異想世界</title><link>https://worldofwheat.github.io/</link><description>Recent content on 小麥的異想世界</description><generator>Hugo -- gohugo.io</generator><language>zh-tw</language><lastBuildDate>Fri, 18 Oct 2024 00:00:00 +0800</lastBuildDate><atom:link href="https://worldofwheat.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>很高興你來到這個網站</title><link>https://worldofwheat.github.io/p/introduce/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://worldofwheat.github.io/p/introduce/</guid><description>&lt;p>這裡有紀錄著各種我想說的東西，有些東西比較正式而且些東西比較廢，但這些都是我想要在生活中紀錄下來的，歡迎你到處逛逛。&lt;/p>
+&lt;h2 id="我感興趣的領域">我感興趣的領域
+&lt;/h2>&lt;ul>
+&lt;li>演算法&lt;/li>
+&lt;li>資安&lt;/li>
+&lt;li>電子電路&lt;/li>
+&lt;/ul>
+&lt;h2 id="來找我聊個天吧">來找我聊個天吧
+&lt;/h2>&lt;p>我最常使用的通訊軟體就是 DC，你可以在 &lt;a class="link" href="https://discord.gg/ZmHht6Knkv" target="_blank" rel="noopener"
+>SCINT | 北臺灣學生資訊社群&lt;/a>或者&lt;a class="link" href="https://discord.gg/cisc" target="_blank" rel="noopener"
+>中學資訊討論群 CISC&lt;/a> 找到我！&lt;/p></description></item><item><title>關於檢查悖論</title><link>https://worldofwheat.github.io/p/inspection-paradox/</link><pubDate>Fri, 18 Oct 2024 00:00:00 +0800</pubDate><guid>https://worldofwheat.github.io/p/inspection-paradox/</guid><description>&lt;div class="video-wrapper">
+&lt;iframe loading="lazy"
+src="https://www.youtube.com/embed/wS54Gsq_4sE"
+allowfullscreen
+title="YouTube Video"
+>
+&lt;/iframe>
+&lt;/div>
+&lt;p>自從看完上面那部影片之後，我就開始觀察我生活中的大小事，不管是以前的經歷或者跟朋友聊天的時候總是有意無意的會去想到影片的內容，&lt;/p>
+&lt;p>因為這樣讓我發現到我對於之前的世界的認知其實是有偏差的。 我經常去研究各種有趣的科學知識，但這個是我這麼多年來覺得最重要的一個理論，其實之後我就多少有點這種感覺，但總是無法確定是不是我自己的體感，在看影片影片之後我就確定了我之前的感覺是正確的。&lt;/p>
+&lt;h2 id="朋友">朋友
+&lt;/h2>&lt;p>這個悖論最有名的例子就是影片當中的朋友問題，總結成一句話就是「如果某個人越會交朋友，那麼他就越有可能認識你」，而且因為會來認識的你的人都是很會交朋友的，因為他的朋友數自然就會比你多。小時候我確實是有這種感覺，但我上了高中之後就開始比較會去找人社交，這種感覺才慢慢消失。我以前一直以為是因為我長大了所以這種感覺也就消失了，然而我理解了檢查悖論之後才理解到原來這種感覺只是轉交給了別人而以。&lt;/p>
+&lt;h2 id="交友圈">交友圈
+&lt;/h2>&lt;p>這也是另一個我觀察到一個非常有趣的點，例如如果你發現到你的交友圈出現了很喜歡喝酒的人，那麼你可能會發現到其實他們可能都會有某些相關聯的特點，例如都喜歡去 KTV 唱歌之類的（這裡只是假設），因此但如果在你不知道他們喜歡唱歌之前一定會想說到底為什麼我的朋友圈就是有些人特別喜歡喝酒。當然這裡並沒有如同前面的有實際上的統計數據，只是在我個人的觀察我發現到似乎有這種現象，但這裡就會聯想到如果會跟這些人認識，那麼通常自己本身也是因為有共同的點才會認識的。再次強調只是個人的經驗，沒有實驗根據。&lt;/p>
+&lt;h2 id="等一件慢的事">等一件慢的事
+&lt;/h2>&lt;p>這是個有點抽象的概念，我自己的解讀假設某個人已經過完了他的一生，之後我們把他所有重要的事件像時間軸拉開來看，就會發現到其實一件發生的慢的事會讓這個人花費更多的時間去等待，例如要遇到正確的人可能要花費 10 年的時間，但在那個人的視角來看的話只會覺得自己的運氣很差，但實際上因為一件慢的事本來就會發去更多時間，理解這點之後我遇到大小事就常常想到下次發生不知道又要幾年後了，因為我們不是上帝沒辦法預先知道我們的人生，因此只能把握住每一次的機會。&lt;/p>
+&lt;h2 id="異想天開">異想天開
+&lt;/h2>&lt;p>上面的東西經常讓我想到世界會不會其實真的是虛擬的，從&lt;strong>朋友&lt;/strong>和&lt;strong>交友圈&lt;/strong>那邊讓我發現跟最近在學的&lt;a class="link" href="https://zh.wikipedia.org/zh-tw/%E5%9B%BE%E8%AE%BA" target="_blank" rel="noopener"
+>圖論&lt;/a>十分的相似，再到最後一點看起來就像是有人事先安排好了各種事件，而我們是裡面的 NPC 等待著我們去觸發而以。&lt;/p>
+&lt;p>檢查悖論一定可以算上 2024 年我最大的收獲之一，而且常常可以發現很多不知道這個理論的人掉到某種誤區裡面，上面的朋友就是最好的例子，我跟許多人講過這個悖論，常常能讓他們感到十分的驚訝。&lt;/p></description></item><item><title>那些年我玩過的遊戲</title><link>https://worldofwheat.github.io/p/game-play-history/</link><pubDate>Wed, 02 Oct 2024 21:00:00 +0800</pubDate><guid>https://worldofwheat.github.io/p/game-play-history/</guid><description>&lt;p>最近被 Youtube 推到了一部&lt;a class="link" href="https://youtu.be/tMsiPWkClnU" target="_blank" rel="noopener"
+>影片&lt;/a>，整部影片因為開頭的那句話我陷入了回憶的旋渦裡，想了很多從小時候到現今玩過的種種遊戲，有的遊戲早就已不存在世上，有的人早就有了各自的發展，就在我還記得時候寫下來吧。&lt;/p>
+&lt;p>「十年的時間很短，短到無法乘載歲月。十年的光陰很長，長到可以是一個人的童年」 - D0G_EXE&lt;/p>
+&lt;h2 id="啟點">啟點
+&lt;/h2>&lt;p>我最一次接觸電腦有點忘了是國小一年級還是二年級的時候，那個時候我看我爸在玩一款槍戰遊戲，對於那個年紀我的來說超級有吸引力的，後來我爸就讓我玩了一下，我還記得是在一個網頁上打開的遊戲，但叫什麼名子我早就忘了，玩了一段時間之後我爸就又去找到了另一個遊戲「A.V.A 戰地之王」那個時候還是戰谷代理的，我記的最清楚的是裡面的「死亡之谷」，這是一個很難的副本尤其是到最後面的 Boss。&lt;/p>
+&lt;div class="video-wrapper">
+&lt;iframe loading="lazy"
+src="https://www.youtube.com/embed/DQilyCPSiQM"
+allowfullscreen
+title="YouTube Video"
+>
+&lt;/iframe>
+&lt;/div>
+&lt;p>AVA 再我開始玩好像幾個月之後就換成 Garena 代理了，那個時候舊的帳號還因為沒有轉移成功難過了一陣子，新的帳號我又接續玩了好像一年還兩年吧其實也有點忘了，我記得最清楚的是我以前很喜歡打副本，以前常常單刷一個叫「鋼鐵鍊獄」的副本。除了副本之後我常常去玩刀戰，那個時候真的玩到了巔峰，靠著 G 式戰斧打過一場又一場，打累了我就會去所謂的 BUG 場，就是故意去跳一些地圖設計上的 BUG，那個時候可以說 90% 的 BUG 我都知道怎麼跳，我還因為這樣被鎖過一隻帳號，但我沒有因為這樣而失去了熱情，到了後期我最常玩的就是 BUG 場，因為我的反應力實在是沒有那麼好，跟真人對戰常常被打爛。&lt;/p>
+&lt;h2 id="psp">PSP
+&lt;/h2>&lt;p>有一兩年的時候我都是在 PSP 這台掌機上面度過的，可能在 2010 年之後出生的小孩會很難想像一台掌機玩同一個遊戲是什麼感覺，那個時候我有 80% 的時間都在玩「GTA Vice City」，這個遊戲的地圖設計分為左島跟右島，但因為我其實滿不會玩遊戲的，所以我從來沒有用正常的手段去到右島過，我從一開始的在網路上找影片透過 BUG 讓自己跳到右島去，再到後來發現了這款遊戲其實是有密技的，&lt;a class="link" href="https://forum.gamer.com.tw/G2.php?bsn=4737&amp;amp;sn=1098" target="_blank" rel="noopener"
+>這篇&lt;/a>是我那個時候最常看的文，看到後面我連想都不用想我的手就自然的把密技給按出來了，但這樣玩其實也會玩膩，所以後來我開始玩修改器，修改器的安裝對那個時候的我來說可一點也不簡單，我花了很多時間才裝上去，裝上去之後我就發現到全部都是英文的，我也靠著硬記把對應的東西都記了起來，後來我還有找到修改器的擴充包，安裝上去之後基本上就只有想不到沒有我做不到的，我很多電腦的操作就是那種狀況練起來的，最後我為了方便我還有去找其它人玩完的存檔直接裝上去，就這樣玩了一兩年了。&lt;/p>
+&lt;p>上面的是在玩遊戲的時間，但我拿到 PSP 可不會因為這樣而滿足，當時的 PSP 其實是可以刷 ROM 的，我就參考著當時很知名的&lt;a class="link" href="https://psper.tw/" target="_blank" rel="noopener"
+>猴子來襲&lt;/a>的教學跟提供的檔案操作，當時我也不會怕刷到壞掉之類的，反正就東改西改基本上能動的東西我都動過了，我就這樣跟那台 PSP 共度了一段十分美好的時光。&lt;/p>
+&lt;h2 id="再回-ava">再回 AVA
+&lt;/h2>&lt;p>我四年級還五年級的時候我有回鍋一段時間 AVA，這段時間我有認識一個還不錯的網友，反正那個年紀就各種噴垃圾話然後一起打 AVA 這樣，這個時候有一個新出的模式叫「最後生存者模式」，其實就是現在很有名的 PUBG，沒想到在那個時候我就已經玩過了，當時會喜歡玩是因為我想到拿到專屬的近戰武器，就像我一開始提到的那樣我非常的喜歡玩刀戰，我記得我想要拿到的武器有三把，兩把是雙節棍一把是最後生存者電鋸，最後生存者電鋸我記得花了我超級多的時間才拿到的，我記得有很多的事要做，當中最難的一項是要生存到最後三名，我其實滿不會玩槍戰的，所以大部分都是靠躲才拿到的。那時的刀戰我記得還有禁止長刀，最有名的長刀是「武藏」，雖然說很多房都不能使用但是我還是滿想要一把的，但礙於取得的難度我那個時候是一直到最後快退遊的時候才拿到，另一把有名的長刀是一把紅色的電鋸，我其實曾經有過，就是在那隻被鎖的帳號裡，所以我才會那麼想要最後生存者電鋸。&lt;/p>
+&lt;p>副本在我回來之後也沒有少打，那個時候也有新推出的副本，而且副本還是會有機會抽到好東西因此打的超級兇，那個時候我最常打的就是「異城勝戰」跟「雪國列車」，基本上每天一放學寫完作業就開始打，假日也是一直在玩這些副本，雪國列車我其實想要拿的是一把跟最後生存者電鋸同款但是造型不同的電鋸，最後我其實也沒有拿到但是我拿到了更稀有的電鋸。還有一個副本叫「逃脫」，這個副本我記得我打了超級無敵多次才過那麼一次，當時有影片紀錄下來但是我找不到當初的影片了。&lt;/p>
+&lt;div class="video-wrapper">
+&lt;iframe loading="lazy"
+src="https://www.youtube.com/embed/2qru2ZF0ad0"
+allowfullscreen
+title="YouTube Video"
+>
+&lt;/iframe>
+&lt;/div>
+&lt;p>其實退了 AVA 之後我還有玩過一小段時間也是 Garena 做的手遊叫「雷霆突擊」，但手遊我還是沒那麼喜歡，可能也是因為接觸了電腦這麼多年突然要到手機上很難適應吧，這個遊戲我就沒有什麼記憶了。&lt;/p>
+&lt;p>AVA 後來因為 Garena 也不想再接手，所以就給了快樂玩代理，所有的裝備都被清掉了，下面是我在關服前留下的照片，看著照片時常想起當時的點點&amp;hellip;
+&lt;a class="link" href="https://forum.gamer.com.tw/C.php?bsn=16618&amp;amp;snA=96435" target="_blank" rel="noopener"
+>https://forum.gamer.com.tw/C.php?bsn=16618&amp;snA=96435&lt;/a>&lt;/p>
+&lt;h2 id="接觸到創世神">接觸到創世神
+&lt;/h2>&lt;ul>
+&lt;li>小時候很喜歡把 Minecraft 叫做創世神&lt;/li>
+&lt;/ul>
+&lt;p>麥塊我相信也是很多人小時候的回憶，最一開始是在我朋友的推薦下我才開始遊玩的，或許就跟很多玩的人第一次玩一樣，我去下載了台灣麥塊，然後就開始了我人生的第一次遊玩，我記得那個時候因為還不知道怎麼操作被卡在一個有水的洞裡面一直出不去，所以我就新開了一張地圖，這次我好像是開平地模式，我找到了一個村莊然後打算好好的研究一下，結果一下就晚上了，那個時候我被怪物嚇個半死，而且因為我不知道怎麼操作就一直死，第一天的體驗就這樣結束了。第二天因為我在網路上看到了創造模式，所以我就切到創造來玩，但因為在平地模我也不知道可以玩什麼，所以我就一直亂挖再發現了 TNT 之後就開始亂炸，直到後來我才知道可以蓋東西，那個時候我好像蓋了一間碁岩的屋子，其實是因為我太怕怪物了，我記得我還有控地洞到其它的房間，那張地圖我真的滿想要找回來的，而且因為我知道暗會生怪拓以我就到處都插滿了火把，玩著玩著我就慢慢發現到 Minecraft 跟 PSP 一樣是有指令這個東西的，但那個時候我還是只會做一些像簡單的切換天氣、時間之類的，我還有玩一點點的紅石，反正就是很簡單的東西，我有印象的地圖就那兩三張，大部分的指令紅石實驗都是在那兩三張地圖做的。&lt;/p>
+&lt;p>最後我選擇離開了台灣麥塊，而選擇一個當時很有名的蛋糕啟動器，我會換的原因也很簡單因為我想要裝模組，當時我花了很多時間才找到原因是台灣麥塊不能裝模組，因為不能裝模組我還有一段時間都玩指令方塊模組來代替，就是所謂的「一鍵模組」，我當時主要玩的是 1.6.4 這個版本，裝過的模組少說應該也有 100 個吧，當時很喜歡看怪物擂台然後再去裝一樣的模組來玩，還有另一個我也很喜歡的頻道是籽岷的模組介紹跟幸運方塊。&lt;/p>
+&lt;div class="video-wrapper">
+&lt;iframe loading="lazy"
+src="https://www.youtube.com/embed/1EBRKOZ4-qs"
+allowfullscreen
+title="YouTube Video"
+>
+&lt;/iframe>
+&lt;/div>
+&lt;p>在接觸了 Minecraft 我朋友就想要連線玩，但對於一個國小生來講這其實是幾乎做不到的事，當初開伺服器的責任其實是在我身上的，但我什麼都不會，我就在單人模式用麼區域網路共享，然後隔天再把本地 IP 給我朋友去連，想也知道這個是做不到的，之後我就休息了一段時間，休息的這段時間我去玩了一個伺服器叫 ZS 海中蝴蝶，現在在網路上還是可以找到一些資料，最接近我玩的時代的影片大該是下面這部。&lt;/p>
+&lt;div class="video-wrapper">
+&lt;iframe loading="lazy"
+src="https://www.youtube.com/embed/EBIL1k41y7A"
+allowfullscreen
+title="YouTube Video"
+>
+&lt;/iframe>
+&lt;/div>
+&lt;p>影片中的人很多都曾經聊過天，但最後有留下的到是一個人也沒有，但因為這個伺服器讓我有了一個想法，不如我自己也來開一個如何？也不知道為什麼那個時候居然想法就真的變成了現實，我開始去研究插件、網路等等的專業知識，最後我就開了一個有模有樣的伺服器，我選的主題其實是跟 ZS 一模一樣「槍戰」，雖然我不喜歡像 AVA 那種遊戲，但在麥塊裡面到是滿喜歡玩的。因為是第一次開伺服器，我不知道要蓋的東西有這麼多，而且槍戰伺服器的武器還要去想要怎麼設定，還有副本設計等等超級多東西，說來也好笑因為當時我完全不會蓋東西，所以我就是直接在伺服器裡面找玩家看要不要幫我，要的話我就直接指定為建築師，到是也蓋出了很多有意思的東西，我連重生點那個時候都是請人蓋的，我到現在都十分的感謝那些願意幫助我的人，那個時候我記得重生點換過幾次，當然也因為這種亂指定人來當管理員等等重要職位的事被鬧過，其實最後也是因為這才關服的，我記得曾經有二十幾個人同時在線遊戲，而且那個時候還有幾個真的跟我很要好的一起打過「殲滅攻城戰」，雖然最後有留下到今天的也沒半個，但還是有兩個有留下聯絡方式，有時候聊起來真的可以聊到三更半夜也聊不完。第一個伺服器也讓我知道了網路世界的黑暗，有一段時間我的伺服器的 DDOS 一整個星期，完全沒辦法玩只要一開就卡到爆，我有點忘了當時為什麼會被攻擊了。&lt;/p>
+&lt;p>第一個伺服器收掉之後我去玩了一段時間鬥陣特工，那個時候這個真的是超級有名的遊戲，跟我朋友打了一陣子，但因為我還是不太喜歡這種槍戰的遊戲所以後來就也沒玩了，沒玩之後我就又想要再回去研究伺服器，這次我想要玩一個跟之前的一樣的槍戰伺服器，因為有了第一次的經驗，所以其實沒遇到什麼伺服器的問題了，我做了超級多的東西而且那個時候還有有一個滿強的人在幫我，我只記得他的遊戲 ID 叫「link1」，我也是從那個時候開始接觸到 DC 的，因為本來在 RC 語言的人很多都移到了 DC，但那個伺服器後來也沒有開起來就是了，最後我也跟 link1 沒有再聯絡了。&lt;/p>
+&lt;p>接下來很長一段時間因為國中的課業其實滿重的，我有想要開 PVP 伺服器但是因為太累就沒有開起來了，其實我有想再開過很多次，但是因為每次都想到後面的維護就沒有開了，我有國中很長時間都在 PVP 上面度過，因為我很喜歡玩一個很有名的伺服器叫 Hypixel，裡面的 Bedwar 是我最喜歡的遊戲，到了國三的時候我就想要來寫插件，所以我就開始學程式。&lt;/p>
+&lt;p>從國三學了 C 之後，高一的時候我就開始接觸真實的插件開發，麥塊是一個用 Java 寫的遊戲所以插件當然也是 Java，當時也真的滿厲害的，因為我完全沒有接觸過物件導向，結果我還真的做出了幾個插件，當然這次我是沒有對外公開的，只是給我朋友玩玩這樣而以，不過 Minecraft 真的讓我學到了很多電腦相關的東西就是了。&lt;/p>
+&lt;h2 id="tf2-和-roblox">TF2 和 Roblox
+&lt;/h2>&lt;p>Team Fortress 2 是在我小五到國中這段時間如果我沒有在研究伺服器之類的我就會玩的遊戲，但其實我也沒有到很會玩就是了，主要是跟我朋友玩個開心的而以，還有在市場上交易東西這樣，但是跟朋友邊聊邊玩到半夜，其實就是我最深的回憶，雖然說沒有什麼記憶點但也是跟我朋友有了一段很開心的時光，那個時候我跟我朋友很喜歡看的頻道是&lt;a class="link" href="https://www.youtube.com/@%E5%B0%8F%E5%88%80%E9%81%8A%E6%88%B2%E8%AB%87" target="_blank" rel="noopener"
+>小刀遊戲談&lt;/a>，只要有更新影片或者直播我就一定會去看。最後我會選擇離開是因為某次更新之後有點傷到我最喜歡的角色，後來就沒玩了。&lt;/p>
+&lt;p>Roblox 我只有大該玩過幾個月，當時最愛玩的是 Mad City，因為我朋友退掉 TF2 之後就開始改玩這個了，我也是在 Mad City 賺了不少錢是真的玩的很開心，我是從第二紀開始玩的因此我有現在很少人有的滑板，有時候打開來玩都能拿出來炫一炫。&lt;/p>
+&lt;h2 id="遊戲對我的意義">遊戲對我的意義
+&lt;/h2>&lt;p>上面提到的很多遊戲早就沒有再更新，更勝者已經關掉倒閉了，但這代表著一切的努力都沒有意義嗎？其實我不這麼覺得，就像我前面那麼多的回憶，這些都是一軰子可以跟朋友聊天打屁的時候一起回憶的東西，每個談起來都可以談一整天也談不完，這些才是我覺得遊戲的意義。&lt;/p></description></item><item><title>學習英文單字的奇怪經驗</title><link>https://worldofwheat.github.io/p/weird-feeling-learning-english/</link><pubDate>Sat, 21 Sep 2024 00:00:00 +0800</pubDate><guid>https://worldofwheat.github.io/p/weird-feeling-learning-english/</guid><description>&lt;p>從前一年開始認真的去買單字書回來看，又花了一段時間把單字搬家到 Anki 然後就開始狂背單字。每次我背完一些特定的單字就會在幾天到幾周內無意中出現這個單字，然後這個單字就會被我記得超級清楚，更勝者有時間只是看一篇文章看不懂的單字就會在之後的幾部影片或者文章中出現，這個單字就被我記住了，世界真奇妙。&lt;/p></description></item><item><title>什麼是接地？</title><link>https://worldofwheat.github.io/p/what-is-ground/</link><pubDate>Wed, 18 Sep 2024 00:00:00 +0800</pubDate><guid>https://worldofwheat.github.io/p/what-is-ground/</guid><description>&lt;p>前幾天有人問了我一個問題，為什麼電路需要接到 GND？這個問題聽起來好像很簡單，但在場的另一個人也說的不清不楚，什麼接到地板、什麼電流流出去等等，因此我打算就我先前學習與實作的經驗來好好的討論這個問題。&lt;/p>
+&lt;h2 id="老掉牙的範例">老掉牙的範例
+&lt;/h2>&lt;p>相信大家如果有學過一點點的電學就會知道一個解釋電壓的例子，假設現在有一隻鳥站在一條 3000V 的電線上（假設沒有絕綠保護），那麼請問這支鳥會不會被電死？不管是你從生活中還是在課本上看到的答案都是「否」，但如果再細想一下就會發現這件事好像怪怪的，為什麼 3000V 的電壓在鳥的身上卻什麼事都沒有發現？&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/aTTLpBn.png"
+loading="lazy"
+>&lt;/p>
+&lt;p>答案就出在電壓是一個相當的概念，我們上面講到 3000V，那是我們實際上去量測得到的電壓，這個電壓是相對於大地的電壓，而實際上如果那隻鳥拿著電錶去量測自己的話牠會量到自己是 0V，因為牠並沒有任何的參考點，唯一的參考點就是那根電線。&lt;/p>
+&lt;p>要了解接地之前要先知道我們常說的電壓在說的其實是「電位差」，要有電位差才有電流。&lt;/p>
+&lt;h2 id="在直流的情況下">在直流的情況下
+&lt;/h2>&lt;p>一般來說在直流電路中接地通常指的就是負極，因為負極一般來說提供的就是一個參考點，但需要注意負極不一定是 0V 喔！例如有一個電路是正極是 0V 但負極卻是可怕的 -400V，這個時候你去摸的話一樣是會觸電的，因為這跟正極是 400V 負極 0V 是完全相同的概念，這種狀況一般會出現在整流電路詳細可以看看&lt;a class="link" href="./#%e9%80%b2%e9%9a%8e%e8%ad%b0%e9%a1%8c%e5%9c%a8%e7%9b%b4%e6%b5%81%e8%b7%9f%e4%ba%a4%e6%b5%81%e6%b7%b7%e5%90%88%e7%9a%84%e6%83%85%e6%b3%81%e4%b8%8b" >test&lt;/a>。&lt;/p>
+&lt;h2 id="在交流的情況下">在交流的情況下
+&lt;/h2>&lt;p>交流的情況相比直流就複雜很多，因為交流是不分正負的。相信大家應該或多或少都有聽過中性線，而這個中性線其實就是參考點，也就是說交流的電壓差是建立在一根 0V 的線上面的，但這根線是接地嗎？&lt;/p>
+&lt;p>要了解這個問題要先知道交流電是怎麼來的，不管是用什麼樣的方式產生了熱能最後都會到一個叫推動渦輪機的步驟，其實就是一個馬達但是反過來變成我們去轉動它，而這個時候馬達的線圈就會產生出電力。上述的提到的知識其實有非常多的細節，但因為過於複雜因此這邊就不再闡述，這裡你完全可以假設產生出來的電力會由三條電線輸出，但這三條線實際上都是帶電的，一般都是給工廠等需要大量用電的用戶使用。&lt;/p>
+&lt;p>上面提到的三條線如果我們把其中一條給拉出來，那麼我們可以使用嗎？可以，而這根線就是所謂的「火線」，但是我們首先會面臨到一個問題，那就是只有一根線的話，那我要拿誰能參考呢？就跟最一開始的那個範例一樣，只有一根線沒有任何參考點是沒有辦法產生電壓差的，為了解決這個問題在發電廠（實際上可能變電所之類的）那邊會想辦生出一根相對於火線為 0V 的線當做參考點，而這根線就是所謂的「中性線」。&lt;/p>
+&lt;p>有了先備知識之後就可以進入接地的部分了，剛剛我有講到中性線，那這個時候應該大家就會想到中性線應該就是接地線吧？如果你說的只是要有一個參考點，那這根中性線確實是接地線沒錯，但如果你有看過一些課本之類的應該就會發現好像不是這樣，一般還會有另外一條接地線，那這條又是什麼？實際上中性線跟接地線是連在一起的，但因為一般的電器在設計的時候為了安全才會有這種設計。&lt;/p>
+&lt;p>以烤麵包機為例我們假設外殼是金屬製的，那如果今天火線因為人為或者意外不小心的去接觸到外殼，那麼這根 110V 的火線就直接接到了麵包機上面，這個時候只要我們不小心去摸到的話就會有觸電的感覺，那為了避免這種狀況接地線通常會接到金屬外殼上，這個時候如果火線去碰到外殼的話其實就相當於短路，這個時候配電箱裡面的斷路器就會直接跳脫。&lt;/p>
+&lt;p>&lt;img src="https://upload.wikimedia.org/wikipedia/commons/f/fd/Jtecul.jpg"
+loading="lazy"
+alt="斷路器實拍"
+>&lt;/p>
+&lt;p>接著再講一個狀況，如果大家有看過&lt;a class="link" href="https://www.youtube.com/watch?v=6K0guFvBKkA" target="_blank" rel="noopener"
+>這部影片&lt;/a>的話應該會有一個問題，如果上面講到的中性線跟接地線其實是連在一起的，那為什麼還要特別去做接地銅棒這種東西？這其實是因為把中性線跟接地線連接在一起是比較簡便的做法，如果需要更高要求的建築就會做到影片那種接地，以銅棒插入到大地來跟變電所的銅棒透過大地連接，如果火線去碰觸到電器的金屬外殼的話電流就會直接從大地流出去，但這代表銅棒跟大地連接的電阻也不能太大，這也是為什麼影片中要去量測地電阻的原因。&lt;/p>
+&lt;h3 id="漏電斷路器">漏電斷路器
+&lt;/h3>&lt;p>想像一下火線因為破損導致接觸到金屬的水管，這個時候裡面的水也會代有電壓，但因為水管並沒有跟中性線連接，因此沒辦法像火線去接觸到接地線一樣讓斷路器跳脫，那如果人去摸到的話可是會觸電的喔！為了解決這個問題因此才有了漏電斷路器這個產品，它會去偵測流出的電流跟流入的電流有沒有相同，如果不相同的話則會直接跳脫，但因為相比起一般的斷路器帶有漏電保護功能的價格較高，因此通常只會出現在浴室或者飲水機這種跟水有關的地方。&lt;/p>
+&lt;img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Residual_current_device_2pole.jpg/800px-Residual_current_device_2pole.jpg" width="200px"/>
+&lt;h3 id="中性線怎麼變出來的">中性線怎麼變出來的
+&lt;/h3>&lt;p>一般來說由發電廠發出來的電是不會直接供應給用戶做使用的，一定會經過變電所升壓或者降壓之後才會輸出給用戶使用，而中性線就是由變電所中的變壓器接出來的，三相電在變壓器中有兩種繞法分別為 Delta 和 Y 型繞法，兩者都有辦法抽頭出中性線，下面左圖為 Y 型接法抽頭、右圖為 Delta 型接法抽頭。&lt;/p>
+&lt;div>
+&lt;img src="https://i.imgur.com/WAKLpnr.png" width="200px"/>
+&lt;img src="https://i.imgur.com/1jG4N4y.png" width="200px"/>
+&lt;/div>
+&lt;h2 id="進階議題在直流跟交流混合的情況下">進階議題：在直流跟交流混合的情況下
+&lt;/h2>&lt;p>&lt;img src="https://i.imgur.com/rYL4Bai.png"
+loading="lazy"
+>&lt;/p>
+&lt;p>這個狀況是一般人應該比較不會遇到，但在電子實驗中可是非常常出現的喔！在電子電路中有一個常見的開發板叫 Arduino，現在假設有兩塊 Arduino 插在同一台電腦上，那麼請問上面的 GND 是共地的嗎？正確答案是「是」，實際上連 Arduino 的 GND 跟隨便一個 USB 接口也都是共地的，因為像開發板的金屬部分一般來說都會跟 USB 的金屬殼連接，那這個金屬殼又連到哪裡呢？實際上最後都是接到電源供應器的接地，這裡一個有趣的地方是電源供應器同時有交流跟直流，那要怎麼樣區分哪邊才是正確的參考點？&lt;/p>
+&lt;p>這部分會牽扯到比較多的電路知識，我推薦&lt;a class="link" href="https://www.youtube.com/watch?v=MdPMeQ6h_Y4" target="_blank" rel="noopener"
+>這部影片&lt;/a>。簡單來說因為一些電路上面原因，因此你在混合電路的情況下你所以為的 GND 並不一定是 0V，但是那不用過於擔心這件事，因為一般來說市售的產品都已經做好了處理，所以你不會拿到一個負極是 110V 的電器。&lt;/p>
+&lt;p>在設計整流電路的時候要特別去注意這個問題，因為一不小心就會忘記負極其實在整流過後並不是 0V，但也會因為不同的電路設計而有不同的結果，這部分再自行研究。&lt;/p>
+&lt;h2 id="結論">結論
+&lt;/h2>&lt;p>接地是一個非常重要的知識，還記得以前在考證照的時候如果做完沒有接地的話是直接 0 分計算，但這個知識卻不太好理解的，這篇我以最直白的方式講述了接地的原理以及在直流跟交流的情況下分別代表的意義。&lt;/p></description></item><item><title>關於我使用了 Linux 一年的心得</title><link>https://worldofwheat.github.io/p/my-first-years-using-linux/</link><pubDate>Mon, 16 Sep 2024 00:00:00 +0800</pubDate><guid>https://worldofwheat.github.io/p/my-first-years-using-linux/</guid><description>&lt;p>在 2023 年二月份的時候我第一次知道 Docker 這個神器之後我就開始仔細的研究，但在某一次我發現到裡面的文件可以設定的權限跟網路上說的不一樣，在研究過後我才知道原來是 NTFS 這個格式搞的鬼，因為 Linux 預設都是裝在 ex 家族的檔案格式上，再加上看到了&lt;a class="link" href="https://www.linuxyes.com/blog/linuxyes-2/post/wsl-ubuntu-desktop-27" target="_blank" rel="noopener"
+>這篇文章&lt;/a>就決定裝個真的 Linux 來玩玩，但玩著玩著就發現其實平常用用也無不可啊，不知不覺就用了一整年了！&lt;/p>
+&lt;p>Linux 我覺得不是一個大家都適合的作業系統，因為使用上或多或少都會有需要處理的複雜問題，而且使用的時候是需要&lt;strong>學習&lt;/strong>的。大家在第一次接觸到電腦的時候應該只要在其它會的人稍微的講個幾分鐘應該就能做到很多事，要看個影片、查個資料應該都不是難事，但 Linux 非常的不同，從一開始的安裝到實際上使用，再到更多進階的應用例如架設伺服器等等，都有很多的知識需要學習，這也是很多人常常會說為什麼 Linux 這麼難用、很多事都做不了的原因。&lt;/p>
+&lt;h2 id="初見面">初見面
+&lt;/h2>&lt;p>第一次安裝 Linux 的時候其實沒有什麼特別的事，但這是因為我並沒有特別去學習相關的知識，因為 Linux Mint 給我的感覺就像是 Windows 一樣只是換成了 Linux 而以。安裝的一開始就有一個選項特別的吸引我「加密家目錄」，因為我並沒有特別去研究這個是什麼，所以就很高興的勾下去了。安裝完之後我用了幾天一切都很順暢，但因為先前我使用的是 Windows 10，因此有很多的資料要轉移、有很多東西要習慣，在東西搬完之後我就決定把 Windows 刪掉，結果在我把分區刪掉之後我的 Linux 就開不起來了！？&lt;/p>
+&lt;p>第一個嚴重的問題在我用了一星期就出現了，怎麼樣都開不起我的 Linux，這個時候我就想到我用一個隨身碟裝個簡易的系統把資料救出來，但記得我安裝的時候勾的那個「加密家目錄」嗎？一開始我並沒有想到，直到我到了 /home/worldofwheat 這個目錄我就發現不太對，為什麼裡面只有一個 .ecryptfs 資料夾？我才突然想到我的資料夾被加密了，這個時候我就馬上找解決辦法，花了我三四個小時才把我的資料救出來，而過程全部都是透過終端機操作，這大該也是我第一次在全終端機的介面上完成一件事，這裡我也建議如果第一次使用 Linux Mint 這個系統的人就別開加密了，處理起來相當的麻煩。&lt;/p>
+&lt;p>往後我就開始練習終端機，因為在以前的作業系統一切都是圖形化介面，做什麼事都要先想到從哪裡開始點、接下來要點什麼，而在 Linux 則開始一切都要在終端機上面進行，雖然說在 Linux Mint 也可以找到一些對應的操作，網路上的教學一切都是以終端機操作為主但這不是一件很簡單的事。&lt;/p>
+&lt;h2 id="那些讓我印象深刻的事">那些讓我印象深刻的事
+&lt;/h2>&lt;p>首先分享的是我花了最久才理解的東西「開機磁區」，這個其實就是我一開始 Linux 無法開機的原因，而當初我其實也有猜到是磁區被我用壞了，但我也不知道怎麼解決這個問題，但這個問題我在後面裝雙系統又遇到了一兩次，其實算是一個讓我感到滿煩燥的問題，後來我的解決方法都是使用 Linux Mint 啟動碟的「Boot Repair」這個功能來做到修復，但就算有了這個功能我還是要修很多次才能成功。&lt;/p>
+&lt;p>接著分享一個很怪的案例，在我安裝了某個奇怪的程式之後就發現了垃圾桶比我權限還要大的狀況，下圖為先前的截圖，這裡就可以帶到個 Linux 的檔案系統跟 Windows 差別很大的地方，一般來說在 Windows 不太會去在意檔案權限的部分，反正就我一個人在用而以通常也不會去特別設定，頂多就來個隱藏檔案，但在 Linux 每個檔案和資料夾都有分為 r w x 三個屬性分別為讀、寫、執行，並且是經常變更的屬性，但這部分也就不再贅述，如果有興趣再自行研究。&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/KZoqsGh.png"
+loading="lazy"
+>&lt;/p>
+&lt;p>在 Linux 上如果你安裝的不是基於 Debian 的應該會覺得很痛苦，因為在 Windows 上面天天在用的程式突然變的超級難安裝，甚至可能直接沒有對應的版本，這個是讓最回到 Windows 而不使用 Linux 的原因，但因為我選用的版本就是基於 Debian 的，而且 Mint 還有內建的商店，因此想要什麼應用程式只要簡單的安裝即可，而且還可以開啟自動更新，但仍然有一些被我認為十分「頑強」的應用程式就是死都不上架，我目前覺得最麻煩的一定是 Discord，因為每次都不會自動更新，再加上我還要安裝 Vencord，因此每次安裝都要花掉很多時間，但是不更新又不給用，真的是很煩的事。大部分在 Windows 的應用程式都可以試試看 Wine 這款轉譯器，雖然我有試成功的軟體不多，但如果你有在 Steam 上面玩遊戲，也可以直接開啟 Steam 特製轉譯器就可以玩很多的不支援 Linux 的遊戲，但我必需要說效能沒有到很好，大該就打個八折這樣。&lt;/p>
+&lt;p>以前在 Windows 上面有時候會遇到想要用某個軟體卻因為電腦太舊、沒有相關依賴套件等等就無法安裝，但在 Linux 這個問題非常的少見，因為我自己使用的系統是基於 Debian 的，大部分的安裝包都可以在安裝的時候自動把依賴項安裝好，而且 Linux 也不會因為作業系統太舊就不給你裝軟體的問題，這也是我覺得最方便的地方。前面說到了方便是建立在已經有人幫你完成打包這個動作，如果沒有的話會需要面對一個很困難的過程稱為「編譯」，從原始碼開始編譯軟體的過程中可能會發生很多問題，但幸運的是在我使用這一年多裡我只編譯過兩三次而以，其於的通常都已經幫你打包好只需要安裝即可，下圖為從原始碼編譯過程的圖片。&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/CDMOhrh.png"
+loading="lazy"
+>&lt;/p>
+&lt;h2 id="想入坑-linux-前請先想好">想入坑 Linux 前請先想好
+&lt;/h2>&lt;p>如果今天你是一名在 Windows 上使用了多年的使用者（像我一樣），那你想要切換到 Linux 應該不會是什麼很難的事，因為在前人的努力下很多功能已經很人性化而且操作跟 Windows 也不會差到哪裡，但就算在怎麼像還是有些事情需要終端機的幫忙，如果你是無法接受調個設定都需要靠文字才能解決的話，那我覺得使用上你應該會覺得滿痛苦的。以我自己為例轉換最痛苦的還是終端機，而且加上我自己有在研究伺服器架設等等課題，因此經常需要去編輯系統的檔案，但是偏偏 Linux 的檔案目錄又跟 Windows 完全不一樣，所以一開始就常常出現找不到哪個東西放在哪個目錄的狀況。&lt;/p>
+&lt;p>如果今天你對於電腦十分的不熟悉，例如打開 Word 並且存檔都有困難的話，那我十分的不推薦 Linux 這套作業系統，除非你決定花費比平常人多的時間來學習，而且我不覺得剛接觸到電腦的人會覺得終端機是一件很簡單的事，在理解了之後其實滿簡單的，但操作上非常的不直覺，可能你需要先在 Windows 上練習一段時間再轉換跑道會比較容易，但如果你打算真心的學習這套作業系統的話，我覺得試試也無不可。&lt;/p>
+&lt;h2 id="關於學習">關於學習
+&lt;/h2>&lt;p>Linux 讓人又愛又恨的點就是要學的東西很多，常常卡了半天的問題在學習完一些知識之後就能迎刃而解，這大該就是 Linux 讓人迷人的點，如果想要學習知識我推薦&lt;a class="link" href="https://linux.vbird.org/" target="_blank" rel="noopener"
+>鳥哥的 Linux 私房菜&lt;/a>，裡面有兩個部分分別是「基礎自我學習」及「伺服器架設篇」，雖然你使用的版本可能跟教學的版本不同，但這其實並沒有什麼影響，因為只要是 Linux kernal 其實概念都是大同小異的，上面提到的兩篇我覺得至少要看過基礎自我學習這篇，這可以讓你對於 Linux 更熟悉，不一定要熟讀，但一定要有看過。如果你實在不是很想要為了使用電腦而去學習的話，那麼 Linux 可能不會是你最好的選擇，你可以選擇其它有更多人用，並且更加直覺的作業系統。&lt;/p>
+&lt;h2 id="說到底為什麼要用-linux">說到底，為什麼要用 Linux
+&lt;/h2>&lt;p>這個問題我非常推薦這篇&lt;a class="link" href="https://wiwi.blog/docs/tech/your-computer-is-not-yours/" target="_blank" rel="noopener"
+>文章&lt;/a>，對我來說還是那份使用開源軟體的安心感，簡單來說就是這套系統是我有所掌握的，我使用了一年的 Linux 老實說我覺得我對它的掌握度比我用了好幾年的 Windows 還要高，因為 Linux 會隨著使用的過程中去發現到某些功能，而這項功能就不太會忘記了，而且大部分的問題在網路上都是可以找到答案的，不會有遇到奇怪的問題卻找不到答案的狀況。再者，先前使用的 Windows 是使用特殊管道取得的，隨著長大其實還是會覺得這樣不太妥當，所以才會在去年有了直接搬到 Linux 的想法。&lt;/p>
+&lt;h2 id="結語">結語
+&lt;/h2>&lt;p>這篇其實我想寫一段時間了，但因為之前一直在研究各種靜態網頁框架又剛好卡到學校的專案所才拖到現在，在寫這篇的時候我回想了這一年多的大小事，其實還有很多我沒有講到的東西，但我相信每個人接觸到 Linux 會遇到的問題也一定不同，我有朋友也遇過 root 密碼忘記這種事，也遇到裝 Disocrd 裝了一整天這種平常人做夢也想不到的事，最後我想要說的是只要抱著一顆「學習」的心來使用有一天你也能變成 Linux 大師。&lt;/p></description></item><item><title>Captive Portal 實驗</title><link>https://worldofwheat.github.io/p/captive-portal-experiment/</link><pubDate>Sat, 14 Sep 2024 21:00:00 +0800</pubDate><guid>https://worldofwheat.github.io/p/captive-portal-experiment/</guid><description>&lt;p>相信大家在去如火車站之類的地方都會發現到很多免費的網路，這個時候心動的點下去之後卻跳出了一個登入畫面，一般來說需要輸入身份證之類的資料才能使用。&lt;/p>
+&lt;p>上面提到的就是所謂的強制門戶（Captive Portal），這個功能是讓使用者驗證的階段改用網頁來進行，因為透過網頁就可以做到同一組帳號密碼在任何地方都能登入的功能，這跟大家在家裡使用的密碼登入的原理不同，前者是先讓使用者連接再驗證而後者是先驗證密碼再讓人連接。&lt;/p>
+&lt;h2 id="事先聲明">事先聲明
+&lt;/h2>&lt;ul>
+&lt;li>本篇教學提到的任何漏洞僅用於教學，不得用於非法用途&lt;/li>
+&lt;li>所有的測試不保證在所有的環境皆可使用，僅在我本人的電腦上測試成功&lt;/li>
+&lt;/ul>
+&lt;h2 id="在實驗前我需要準備什麼">在實驗前我需要準備什麼？
+&lt;/h2>&lt;p>軟體跟硬體在這次的實驗都有需要準備的東西，而且我建議你需要有一定的基礎網路知識再開始學習，因為我不對再對一些基本的知識做解釋。&lt;/p>
+&lt;h3 id="硬體">硬體
+&lt;/h3>&lt;ul>
+&lt;li>一台主機
+&lt;ul>
+&lt;li>可以是電腦、樹苺派等，但是我推薦使用 Linux 作業系統，Windows 理論上也做到的但我沒有實驗過&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>一台可以連接 Wi-Fi 的設備
+&lt;ul>
+&lt;li>用於測試，我推薦使用 Android、Windows、iOS 方便測試&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>一台 AP
+&lt;ul>
+&lt;li>可以不用是無線路由器，也可以是無線網卡，但是需要注意在生產環境上我不推薦使用無線網卡&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h3 id="軟體">軟體
+&lt;/h3>&lt;p>因為我本人僅在 kali Linux 上實驗，因此我不提供其它作業系統的軟體，如果有需要請自行到網路上尋找&lt;/p>
+&lt;ul>
+&lt;li>iptables
+&lt;ul>
+&lt;li>核心部份，用於做 NAT&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>Dnsmasq
+&lt;ul>
+&lt;li>因為要觸發 Captive Portal 需要有 DNS 的協助，可以使用其它 DNS 伺服器軟體&lt;/li>
+&lt;li>本次實驗因為使用了無線網卡，因此在 Linux 需要手動做 DHCP，而 Dnsmasq 剛好有 DHCP 的功能&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>web server
+&lt;ul>
+&lt;li>需要準備一個用於驗證使用者的網頁，本次實驗使用 flask&lt;/li>
+&lt;li>這部分也是最核心的部分，驗證和一般的網頁服務沒有差別&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>hostapd
+&lt;ul>
+&lt;li>這次的實驗我使用了 &lt;a class="link" href="https://www.tp-link.com/tw/home-networking/adapter/tl-wn722n/" target="_blank" rel="noopener"
+>TL-WN722N&lt;/a> 這款無線網卡做為熱點，你可以選擇任何可以做到熱點功能的網卡，在生產環境中我不推薦使用無線網卡，應該使用無路路由器&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h2 id="強制門戶是怎麼做到的">強制門戶是怎麼做到的？
+&lt;/h2>&lt;p>當一台手機連接到帶有 Captive Portal 的 AP 時，手機會先發起一條 DNS 請求，這條 DNS 請求一般來說會解析到一個事先約定好的網站，而當 AP 需要驗證或者不可用的時候則會返回其它的結果，手機也是靠這點做到判斷一個熱點有沒有網路及需不需要驗證。當 DNS 請求被解析後如果網站並非手機預其的網站則會將使用者跳轉到 Captive Portal，此時只需要驗證成功就可以連上網路。&lt;/p>
+&lt;p>需要注意到提供驗證的網頁不可為 HTTPS，因為手機預期的域名和登入畫面上的憑證不同，因此會出現網站不安全的狀況。&lt;/p>
+&lt;h3 id="技術細節">技術細節
+&lt;/h3>&lt;p>上敘提到的 DNS 請求在不同的裝置上也有所不同，下方是常見的 DNS 請求列表：&lt;/p>
+&lt;ul>
+&lt;li>clients3.google.com&lt;/li>
+&lt;li>connectivitycheck.gstatic.com&lt;/li>
+&lt;li>connectivitycheck.android.com&lt;/li>
+&lt;li>detectportal.firefox.com&lt;/li>
+&lt;li>&lt;a class="link" href="https://www.msftncsi.com" target="_blank" rel="noopener"
+>www.msftncsi.com&lt;/a>&lt;/li>
+&lt;li>captive.apple.com&lt;/li>
+&lt;/ul>
+&lt;p>上面那些域名就是每個不同的系統用來判斷是否可以連線及是否有 Captive Portal 的基準，因此想要觸發強制門戶的方法就是透過 iptables 的 NAT 表中的 PREROUTING 鏈做到的，因為 DNS 是明文請求，因此只需要目標為 53 號端口的連結指向到 DNS 伺服器就可以做到重定向，而這裡的 DNS 伺服器需要自行架設，這次的實驗使用 Dnsmasq。&lt;/p>
+&lt;h2 id="開始實驗吧">開始實驗吧
+&lt;/h2>&lt;p>我假設大家都已經準備好了軟硬體，因此這邊我就直接跳過安裝階段&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>將要用來處理驗證的介面卡準備好，可以是無線網卡或者路由器，接著將介面卡指定一個 IP，需要注意這裡的子網域應該要是 /24 才能分配給其它連入的裝置 IP&lt;/p>
+&lt;ul>
+&lt;li>這次實驗我使用的是無線網卡，&lt;a class="link" href="https://gist.github.com/WorldOfWheat/d3fad3f823be85be22f995e88b3691b3" target="_blank" rel="noopener"
+>hostapd 範例&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>先準備好 iptables，下方我提供一個我寫的範例，&lt;strong>我強烈建議將註解讀一篇&lt;/strong>，在理解了之後才能在自己的主機上也做出一樣的效果&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;span class="lnt">30
+&lt;/span>&lt;span class="lnt">31
+&lt;/span>&lt;span class="lnt">32
+&lt;/span>&lt;span class="lnt">33
+&lt;/span>&lt;span class="lnt">34
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="line">&lt;span class="cl">&lt;span class="cp">#!bin/sh
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp">&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 下面兩個是最主要的變數&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># INTERFACE 代表的是 AP 的介面，不論這邊使用的是無線網卡還是路由器都是一樣的&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># WEBSERVER 代表的是提供驗證的網頁伺服器，要確定是可以連接到的&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nv">INTERFACE&lt;/span>&lt;span class="o">=&lt;/span>wlan0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nv">WEBSERVER&lt;/span>&lt;span class="o">=&lt;/span>192.168.0.68
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 下面四條會把 filter 和 nat 表完全清空，實驗為了方便才會清空，執行前請特別注意&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">iptables -t filter -F
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">iptables -t nat -F
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">iptables -t filter -X
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">iptables -t nat -X
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># FORWARD 鏈預設設為 DROP&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 這步非常的重要，否則就會發生未經驗證，但是卻可以透過 IP 直接對外連接的狀況。實際上的表現為有些時候可以連接有些時候不行&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">iptables -P FORWARD DROP
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># AUTHORIZED 這條鏈用於新增已經驗證的使用者&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">iptables -N AUTHORIZED
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 當使用者發送封包的時候先到 AUTHORIZED 檢查，如果未經驗證的話則會往下一條&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">iptables -A FORWARD -i &lt;span class="nv">$INTERFACE&lt;/span> -j AUTHORIZED
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 放行所有由介面卡流出的封包，因為在輸入已經做到管制，因此輸出一般來說不就做管制&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">iptables -A FORWARD -o &lt;span class="nv">$INTERFACE&lt;/span> -j ACCEPT
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># AUTHORIZED 這條鏈用於新增已經驗證的使用者&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 需要注意 filter 和 nat 的鏈不共用&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">iptables -t nat -N AUTHORIZED
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 將已經驗證的使用者跳過 DNS 重定向&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">iptables -t nat -A PREROUTING -i &lt;span class="nv">$INTERFACE&lt;/span> -j AUTHORIZED
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 如果前一翛規則還沒驗證通過則進行 DNS 自定向&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">iptables -t nat -A PREROUTING -i &lt;span class="nv">$INTERFACE&lt;/span> -p udp --dport &lt;span class="m">53&lt;/span> -j DNAT --to-destination &lt;span class="nv">$WEBSERVER&lt;/span>:53
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 因為實驗中的主要透過 eth0 來連入外網，因此需要做 SNAT 才能連上外網&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ol start="2">
+&lt;li>準備好 Dnsmasq，下面我一樣寫了一個範例，如果你使用自己的 DNS 軟體再自行研究&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"># 指定介面卡，這裡的介面卡和第一步的介面卡相同
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface=wlan0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 要監聽哪個 IP，和第一步的指配給介面卡的 IP 相同
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">listen-address=10.1.0.1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 設定分配的連入裝置的 IP 子網域
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">dhcp-range=10.1.0.2,10.1.0.254,1h
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 設定分配的連入裝置的 IP 子網域遮罩
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">dhcp-option=1,255.255.255.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 設定分配的連入裝置的預設 DNS 伺服器，需要注意這裡的 DNS 不可以是用於重定向的伺服器，否則會造成設備強制門戶偵測錯誤
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">dhcp-option=6,1.1.1.1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># DNS 監聽埠號
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">port=53
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 下面代表將 Captive Portal 偵測用的域名重定向到自己的 DNS 伺服器
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 下面三個是 Android 的偵測域名，別的廠排可能會有別的域名，這點再自行測試
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">address=/clients3.google.com/10.1.0.1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">address=/connectivitycheck.gstatic.com/10.1.0.1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">address=/connectivitycheck.android.com/10.1.0.1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 下面為 Firefox 瀏覽器的偵測域名
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">address=/detectportal.firefox.com/10.1.0.1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 下面為 Windows 的偵測域名
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">address=/www.msftncsi.com/10.1.0.1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 下面為 Apple 產品的偵測域名
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">address=/captive.apple.com/10.1.0.1
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ol start="3">
+&lt;li>準備用於驗證的網頁伺服器，因為伺服器會有各種需求，以下為簡易的範例，實際上的驗證伺服器並不會這麼簡單
+&lt;ul>
+&lt;li>本次實驗使用的網頁後端為 Python 的 Flask，其它框架理論上也可以做到相同的事&lt;/li>
+&lt;li>驗證伺服器和普通的網頁服務一樣，所有該注意的漏洞一樣也需要注意，而且因為其特殊性更需要注意，下方這個案例就說明了不正確的設定會造成什麼樣的狀況
+&lt;ul>
+&lt;li>&lt;a class="link" href="https://blog.duckll.tw/post/howihackitaiwan/" target="_blank" rel="noopener"
+>漏洞案例&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ol>
+&lt;script src="https://gist.github.com/WorldOfWheat/0ace701b01f286ccd546c2103cd2adc0.js">&lt;/script>
+&lt;ol start="4">
+&lt;li>確定 Dnsmasq、iptables、熱點、驗證伺服器都已經啟動，此時連線後應該會自動跳轉到驗證伺服器，再輸入帳號密碼後則會連線成功&lt;/li>
+&lt;/ol>
+&lt;h2 id="結論">結論
+&lt;/h2>&lt;p>強制門戶可以在 2024 年已經不在那麼的常見，大部分的學校都已經改為 WAP2-Enterprise 這種驗證方式，雖然這樣的驗證方式在錯誤的配置方式仍然充滿了漏洞，但這還是比強制門戶好了很多，因為強制門戶相對有比較多的漏洞可以繞過驗證。&lt;/p>
+&lt;p>這次的實驗我花了很多時間在除錯上，也是第一次知道強制門戶是怎麼樣做到在連入的時候跳出登入畫面的，算是解答了我多年前的疑惑。&lt;/p></description></item><item><title>演算法出題指南</title><link>https://worldofwheat.github.io/p/algorithm-problem-reference/</link><pubDate>Sat, 13 Jul 2024 00:00:00 +0800</pubDate><guid>https://worldofwheat.github.io/p/algorithm-problem-reference/</guid><description>&lt;p>不管在 Zerojudge、 Codeforces 等平台上有許多的練習題。這題題目都是由前人花很多時間準備出來的，但也因為出題成本的降低，因此常常出現題述未清楚標示或者測資有問題的題目。&lt;/p>
+&lt;p>下方是我在出了幾次題目，並且整合其它出題者的習慣整理而成的。下方會把一個題目的核心部分拆開，並且寫出每項應注意的事項，供您參考。&lt;/p>
+&lt;h2 id="題述">題述
+&lt;/h2>&lt;ul>
+&lt;li>中文排版請遵照&lt;a class="link" href="https://github.com/sparanoid/chinese-copywriting-guidelines" target="_blank" rel="noopener"
+>中文文案排版指北&lt;/a>&lt;/li>
+&lt;li>數學式請使用 Latex 語法，大部分的 OJ 都應該支援 Latex 語法
+&lt;ul>
+&lt;li>雖然常常出現只有一個英文代號的段落，但為了題述整齊請也使用 Latex 輸入
+&lt;ul>
+&lt;li>錯誤：第一行包含一個正整數 n。&lt;/li>
+&lt;li>正確：第一行包含一個正整數 $n$。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>乘法符號為 $\cdot$ 或者 $\times$，不是 $*$
+&lt;ul>
+&lt;li>錯誤：$5*3=15$&lt;/li>
+&lt;li>正確：$5 \times 3 = 15$&lt;/li>
+&lt;li>正確：$5 \cdot 3 = 15$&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>輸入格式應清楚標示
+&lt;ul>
+&lt;li>不應使用例如「數字」、「數值」等模凌兩可模的詞
+&lt;ul>
+&lt;li>整數範圍 $(-\infty,\infty)$&lt;/li>
+&lt;li>正整數範圍 $[0,\infty)$&lt;/li>
+&lt;li>負整數範圍 $(\infty,0]$&lt;/li>
+&lt;li>假設第一行會輸入一個 $n \in [1, 100]$
+&lt;ul>
+&lt;li>錯誤：第一行輸入一個數字&lt;/li>
+&lt;li>錯誤：第一行輸入一個數值&lt;/li>
+&lt;li>錯誤：第一行輸入一個變數&lt;/li>
+&lt;li>正確：第一行輸入一個正整數&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>每行有幾個輸入，輸入是什麼格式（正整數、負整數、整數、小數）&lt;/li>
+&lt;li>每一個輸入對應到題述的意義務必要清楚標示&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>測資範圍應清楚標示
+&lt;ul>
+&lt;li>假設輸入一個 $n \in [1, 2 \times 10^5]$
+&lt;ul>
+&lt;li>錯誤：$n$ 很大&lt;/li>
+&lt;li>錯誤：$n$ 為 int 裝的下的範圍&lt;/li>
+&lt;li>錯誤：$n \leq 2 \times 10^5$&lt;/li>
+&lt;li>正確：$1 \leq n \leq 2 \times 10^5$&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>使用到特定字串輸入，應寫明會有哪些字串。
+&lt;ul>
+&lt;li>假設輸入包含一個字串 $s$，代表 &amp;ldquo;add&amp;rdquo;, &amp;ldquo;query&amp;rdquo; 這兩個操作
+&lt;ul>
+&lt;li>正確：$s \in {\text{&amp;ldquo;add&amp;rdquo;}, \text{&amp;ldquo;query&amp;rdquo;}}$&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>若題目為多筆測資一定要標示
+&lt;ul>
+&lt;li>例如 &lt;strong>本題為多筆測資&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>若題目要使用特定的輸入做為結尾，請一定要標示
+&lt;ul>
+&lt;li>例如 &lt;strong>輸入 $0$ 代表輸入結束&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>分段給分規則應清楚標示
+&lt;ul>
+&lt;li>若某一段測資有附加條件（例如需要通過範例測資），則應在配分欄標示
+&lt;ul>
+&lt;li>例如 &lt;strong>附加條件：通過範測&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>每一段測資範圍應在配分欄標示
+&lt;ul>
+&lt;li>例如
+&lt;ol>
+&lt;li>&lt;strong>測資範圍：$1 \leq n \leq 2 \times 10^5$&lt;/strong>&lt;/li>
+&lt;li>&lt;strong>測資範圍：題目範圍&lt;/strong>&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h2 id="測資">測資
+&lt;/h2>&lt;ul>
+&lt;li>需滿足題述的限制
+&lt;ul>
+&lt;li>例如 $n \leq 500$，那就不能出現 $n=501$ 的狀況，就算解答程式可以給出相對應的輸出也不行&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>一定要將題目給定的限制出滿
+&lt;ul>
+&lt;li>例如 $0 \leq n \leq 500$ 就至少要各有有一筆測資為 $n = 0$ 和 $n=500$。&lt;/li>
+&lt;li>假設有兩個主要變數 $n,m$ 則這兩個變數都應該要有最大和最小的組合
+&lt;ul>
+&lt;li>主要變數指的是會去變動到時間複雜度的參數&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>除非是特殊題目，否則測資數量不能太少。如果測資數量不夠很容易被特判
+&lt;ul>
+&lt;li>個人建議至少 $20$ 筆以上&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>如果需要分段給分，請確保每一個分段都有對應的測資&lt;/li>
+&lt;li>注意 IO 速度問題，太慢會 TLE
+&lt;ul>
+&lt;li>IO 優化沒辦法保證所有寫題目的人都知道，如果題目需要 IO 優化才能過，則請自行斟酌&lt;/li>
+&lt;li>因為題目可能會有各種程式語言，IO 優化技巧請自行上網查詢&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h2 id="解答程式">解答程式
+&lt;/h2>&lt;ul>
+&lt;li>至少需要有兩份完全獨立的解答程式可以得到相同的結果
+&lt;ul>
+&lt;li>最好是找到其它人幫忙驗題，如果沒有可以自行寫兩份解答驗證&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>如果有使用分段給分，至少每一種分段都寫一份程式碼，確定只能拿到對應的分數&lt;/li>
+&lt;li>在確定解答正確之後，可以試著修改程式，確定測資可以找出有錯誤的程式&lt;/li>
+&lt;/ul>
+&lt;h2 id="小技巧">小技巧
+&lt;/h2>&lt;p>若一個題目為分段給分，則可以寫一份滿分的解答程式，再寫一份僅部份分的程式，則只需要比對部份分兩份解答是否一樣，大該就能確定解答的正確性。&lt;/p></description></item><item><title>StrongSwan 實驗</title><link>https://worldofwheat.github.io/p/strongswan-experiment/</link><pubDate>Fri, 12 Jul 2024 00:00:00 +0800</pubDate><guid>https://worldofwheat.github.io/p/strongswan-experiment/</guid><description>&lt;p>我的手機不知道在哪一年的更新之後，內建的 VPN 就只剩下 IKEv2/IPsec 這種方式了，又不知道在哪天我就開始想要自己架一個 VPN 伺服器，2024 年的寒假我就開始研究怎麼樣用 VPN 連線回家。&lt;/p>
+&lt;p>因為系統是 Linux，第一個在網路上找到的就是 strongSwan 這套軟體，然後又找了一下網路上的教學，但我照著教學不知道為什麼就是連線不了，憑證也是簽了又刪無數次。但我沒有因此放棄，我直接去看官方文件，官方的文件都是用 swanctl 設定檔的格式寫的，我本來還堅持用 strongSwan 的預設格式，因為網路上的教學撰寫的時間久遠，我最一開始接觸到的就是如此，但在試用之後才發現 swanctl 的設定檔更加的人性化，比原本的格式不知道好了多少。strongSwan 官方還給出了大部分設定的&lt;a class="link" href="https://docs.strongswan.org/docs/5.9/index.html" target="_blank" rel="noopener"
+>範例&lt;/a>，應該百分之九十的情況都可以處理。&lt;/p>
+&lt;p>因此我決定寫一篇相對比較新的教學，也算是做個紀錄，給未來想要架設的人有個方向。&lt;/p>
+&lt;h2 id="概要">概要
+&lt;/h2>&lt;p>以下是我自己整理的重點：&lt;/p>
+&lt;ul>
+&lt;li>IPsec 用於保護兩個節點之間的資料傳輸，使用 UDP 協議傳輸&lt;/li>
+&lt;li>IPsec 在開始傳輸之前需要先進行金錀協商和身份驗證，而實作方法常見的有 L2TP 或 IKEv2，因此常常可以在手機看到 L2TP/IPsec 或 IKEv2/IPsec，而 strongSwan 提供的是 IKEv2/IPsec&lt;/li>
+&lt;li>IKEv2 分為兩步
+&lt;ul>
+&lt;li>第一步兩個節點會協商出保護第二步的密鑰和後續必要的資訊&lt;/li>
+&lt;li>第二步會進行身份驗證及協商出 IPsec 的密鑰，此時的封包受到第一步協商出的密鑰加密&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>理論上不存在伺服端跟客戶端，但實際上還是會有一端當成伺服器&lt;/li>
+&lt;li>伺服端跟客戶端都需要設定驗證方式，只有在兩邊都驗證通過才能連線&lt;/li>
+&lt;li>驗證方式有憑證、EAP、PSK 三種，EAP 在易用性跟安全性上取得了平衡
+&lt;ul>
+&lt;li>EAP 如果想要也可以用第三方伺服器驗證（RADIUS）&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>伺服器一般來說都會用憑證做為自身的憑證方式，手機版 strongSwan 客戶端也只能連線使用憑證驗證的伺服器&lt;/li>
+&lt;/ul>
+&lt;h2 id="連接握手">連接握手
+&lt;/h2>&lt;p>下方使用設定如下：&lt;/p>
+&lt;ul>
+&lt;li>伺服器為憑證驗證&lt;/li>
+&lt;li>客戶端為 EAP 驗證&lt;/li>
+&lt;/ul>
+&lt;p>IKEv2 握手有四步：&lt;/p>
+&lt;ol>
+&lt;li>客戶端對伺服器握手&lt;/li>
+&lt;li>伺服器返回握手，如果有開啟憑證請求會在這一步傳送&lt;/li>
+&lt;li>客戶端返回對應的驗證方式，這裡是 EAP。若有開啟憑證請求也會一同傳送&lt;/li>
+&lt;li>伺服器返回憑證&lt;/li>
+&lt;/ol>
+&lt;ul>
+&lt;li>在握手的前兩步雙方會協商出密鑰保護第三步和第四步&lt;/li>
+&lt;li>憑證請求的目地在於雙方皆可以設定不主動傳送憑證，若不主動傳送則需要憑證請求才能得到憑證
+&lt;ul>
+&lt;li>例如 Windows 或 strongSwan-network-manager 皆不會主動傳送憑證&lt;/li>
+&lt;li>憑證請求較消耗流量，可以自行決定是否開啟&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>&lt;a class="link" href="https://www.cnblogs.com/efzju/p/5041797.html" target="_blank" rel="noopener"
+>參考資料&lt;/a>&lt;/p>
+&lt;h2 id="架設">架設
+&lt;/h2>&lt;p>以下是我自己整理的重點：&lt;/p>
+&lt;ul>
+&lt;li>如果使用 Docker 要開始 privileged 才能使用&lt;/li>
+&lt;li>strongswan 需要在 ipsec 這個套件上面運作，在安裝 strongswan 的時候會自動連同 ipsec 一起安裝&lt;/li>
+&lt;li>新版的 strongswan 使用 swanctl 來管理各種設定，網路上有些教學使用僅 strongSwan 的設定檔，兩者功能相同&lt;/li>
+&lt;li>架設需要安裝套件，下方列出的套件皆可使用 apt 安裝
+&lt;ul>
+&lt;li>&lt;code>iptables&lt;/code> 流量轉發用，不裝僅能連線但沒有網路&lt;/li>
+&lt;li>&lt;code>strongswan&lt;/code> 核心&lt;/li>
+&lt;li>&lt;code>strongswan-swanctl&lt;/code> 管理 strongswan 的設定檔等，強烈推薦使用&lt;/li>
+&lt;li>&lt;code>strongswan-pki&lt;/code> 可由 OpenSSL 替代&lt;/li>
+&lt;li>&lt;code>libstrongswan-extra-plugins&lt;/code> 加解密等等的算法套件&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>若直接安裝套件有些功能無法使用，例如 TPM 等等，因此特殊功能需要自行編譯&lt;/li>
+&lt;li>需要準備伺服器用的憑證&lt;/li>
+&lt;li>伺服器的封包轉發和 iptables 流量轉發要設定才能連到外網&lt;/li>
+&lt;/ul>
+&lt;h2 id="憑證">憑證
+&lt;/h2>&lt;p>以下是我自己整理的重點：&lt;/p>
+&lt;ul>
+&lt;li>一定要先懂基本的 PKI，可以參考&lt;a class="link" href="https://www.youtube.com/watch?v=vVbLSba6vOI" target="_blank" rel="noopener"
+>這部影片&lt;/a>&lt;/li>
+&lt;li>能不自簽就不自簽，因為細節非常多，一個不小心就不能連線
+&lt;ul>
+&lt;li>我自己測試了網路上申請的憑證 Buypass、Let&amp;rsquo;s Encrypt 皆沒有問題&lt;/li>
+&lt;li>從網路上申請的憑證一定需要域名，換句話說不想自簽就一定需要有域名&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>如果客戶端要使用憑證做為驗證，除非客戶端有辦法從網路上申請到憑證，否則一定需要自簽&lt;/li>
+&lt;/ul>
+&lt;p>申請憑證重點如下：&lt;/p>
+&lt;ul>
+&lt;li>一定需要域名，沒有域名無法申請&lt;/li>
+&lt;li>推薦 Let&amp;rsquo;s Encrypt 的憑證，註冊方法可以參考官方文件
+&lt;ul>
+&lt;li>自動化申請可以使用 Certbot，使用方法可以參考&lt;a class="link" href="https://certbot.eff.org/" target="_blank" rel="noopener"
+>官方文件&lt;/a>，這個是最簡單的方法&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>自簽憑證重點：&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>如果沒有域名，則自簽憑證內容的所有域名都以 IP 代替&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>手機版 strongSwan 跟 Windows 當客戶端連線對憑證各自不同的要求，自簽一定需要注意&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>需要準備根憑證，只有被根憑證簽屬的憑證才可以被信任，因此根憑證的私鑰強烈建議要加密&lt;/p>
+&lt;ul>
+&lt;li>假設客戶端使用自簽憑證做為驗證手段，則伺服端一定要有根憑證才可以驗證，反之亦然&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>所有憑證需要是 X509v3 的版本才能使用，因為需要有一些額外的資訊用於驗證&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>過程中所有的金鑰生成請使用 RSA 或 ECDSA，因為本人在測試時發現會發生錯誤&lt;/p>
+&lt;ul>
+&lt;li>我僅在 Zenfone 8 和 Windows 10 上進行測試，其它系統因為我也沒有，所以無法測試&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>Android 和 Windows 憑證安裝使用 PKCS#12 格式&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>CN 和 SAN 一定要設定成域名，缺一不可&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Extended Key Usage 需要有 TLS Web Server Authentication&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>伺服器憑證我推薦使用 OpenSSL 簽發，因為需要比較多細項，建議使用設定檔或 pki 生成&lt;/p>
+&lt;details>
+&lt;summary>伺服器憑證設定檔範例&lt;/summary>
+```plaintext
+[ req ]
+prompt = no
+# 天數
+days = 30
+distinguished_name = req_distinguished_name
+req_extensions = v3_req
+&lt;p>[ req_distinguished_name ]&lt;/p>
+&lt;h1 id="根域名">根域名
+&lt;/h1>&lt;p>commonName = worldofwheat.us.to&lt;/p>
+&lt;p>[ v3_req ]
+basicConstraints = critical, CA:FALSE
+extendedKeyUsage = serverAuth
+subjectAltName = @sans&lt;/p>
+&lt;p>[ sans ]&lt;/p>
+&lt;h1 id="ikev2-主要驗的就是下面的值可以新增多筆紀錄">IKEv2 主要驗的就是下面的值，可以新增多筆紀錄
+&lt;/h1>&lt;p>DNS.0 = worldofwheat.us.to
+DNS.1 = vpn.worldofwheat.us.to&lt;/p>
+&lt;h1 id="dns1--testworldofwheatusto">DNS.1 = test.worldofwheat.us.to
+&lt;/h1>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">&amp;lt;/details&amp;gt;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;/li>
+&lt;/ul>
+&lt;p>常用指令如下，OpenSSL 和 pki 指令功能相同：&lt;/p>
+&lt;ul>
+&lt;li>過程中需要動用到很多指令的操作。strongSwan 官方有給出 pki 這套工具，也可以使用 OpenSSL 代替&lt;/li>
+&lt;li>生成私鑰
+&lt;ul>
+&lt;li>&lt;code>openssl genpkey -outform pem -algorithm rsa -pkeyopt rsa_keygen_bits:4096 -quiet -out &amp;lt;私鑰路徑&amp;gt;&lt;/code>&lt;/li>
+&lt;li>&lt;code>pki --gen --type rsa --size 4096 --outform pem &amp;gt; &amp;lt;私鑰路徑&amp;gt;&lt;/code>&lt;/li>
+&lt;li>如果私鑰需要加密，則可以在 OpenSSL 的指令內加上 &lt;code>-aes256&lt;/code> 來啟用&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>識別名稱只需要填寫 CN 就足夠了，如果有其它欄位需求在按照相同的格式填入&lt;/li>
+&lt;li>根憑自簽指令如下：
+&lt;ul>
+&lt;li>根憑證一般有效時間都會比較長，下方範例為 3650 天
+&lt;details>
+&lt;summary>OpenSSL&lt;/summary>
+```bash
+openssl req -key &lt;根憑證私鑰路徑> -out &lt;憑證路徑> \
+-x509 -days 3650 -subj /C=NO/
+```
+&lt;/details>
+&lt;details>
+&lt;summary>pki&lt;/summary>
+```bash
+pki --self --in &lt;根憑證私鑰路徑> \
+--type priv --outform pem --lifetime 3650 \
+--dn "CN=域名" > &lt;憑證路徑>
+```
+&lt;/details>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>簽發憑證指令如下：
+&lt;details>
+&lt;summary>OpenSSL&lt;/summary>
+OpenSSL 需要先有 CSR 才能簽憑證，因此分為兩步
+```bash
+openssl req -new -key &lt;私鑰路徑> -out &lt;CSR 路徑> -config &lt;設定檔路徑>
+openssl req -x509 -in &lt;CSR 路徑> -out &lt;憑證路徑> -CA &lt;根憑證路徑> -CAkey &lt;根憑證私鑰路徑>
+```
+&lt;/details>
+&lt;details>
+&lt;summary>pki&lt;/summary>
+```bash
+pki --pub --in &lt;私鑰路徑> | \
+pki --issue --cakey &lt;根憑證私鑰路徑> --cacert &lt;根憑證路徑> \
+--dn "CN=域名" --lifetime &lt;有效天數> \
+--flag serverAuth --outform pem > &lt;憑證路徑>.pem
+```
+&lt;/details>
+&lt;/li>
+&lt;li>查看憑證資訊
+&lt;ul>
+&lt;li>&lt;code>openssl x509 -in &amp;lt;憑證路徑&amp;gt; -text -noout&lt;/code>&lt;/li>
+&lt;li>&lt;code>pki --print --in &amp;lt;憑證路徑&amp;gt;&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h2 id="設定檔">設定檔
+&lt;/h2>&lt;ul>
+&lt;li>
+&lt;p>下方僅給出本人使用過的範例，更多範例可以參考(官方文件)[https://docs.strongswan.org/docs/5.9/config/IKEv2.html]&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>配置資料夾預設位於 &lt;code>/etc/swanctl/&lt;/code> 底下&lt;/p>
+&lt;ul>
+&lt;li>設定檔放在 &lt;code>conf.d/&lt;/code> 底下，需要自行創建檔案
+&lt;ul>
+&lt;li>設定檔副檔名為 &lt;code>.conf&lt;/code>&lt;/li>
+&lt;li>可以有多組設定檔，並且所有設定檔都會在開啟時讀取&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>憑證放在 &lt;code>x509/&lt;/code> 底下&lt;/li>
+&lt;li>私鑰放在 &lt;code>private/&lt;/code> 底下
+&lt;ul>
+&lt;li>憑證和私鑰需要對應才能使用，缺一不可&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>根憑證放在 &lt;code>x509ca&lt;/code> 底下
+&lt;ul>
+&lt;li>憑證鏈可以包成一個檔案放入&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>Windows 對於 IKEv2 握手算法有限制，可以參考下方的列表&lt;/p>
+&lt;details>
+&lt;summary>可用選項&lt;/summary>
+&lt;p>3DES 系列
+&lt;code>3des-sha1-prfsha1-modp1024&lt;/code>
+&lt;code>3des-sha256-prfsha256-modp1024&lt;/code>
+&lt;code>3des-sha384-prfsha384-modp1024&lt;/code>&lt;/p>
+&lt;p>AES CBC 系列
+&lt;code>aes128-sha1-prfsha1-modp1024&lt;/code>
+&lt;code>aes128-sha256-prfsha256-modp1024&lt;/code>
+&lt;code>aes128-sha384-prfsha384-modp1024&lt;/code>
+&lt;code>aes192-sha1-prfsha1-modp1024&lt;/code>
+&lt;code>aes192-sha256-prfsha256-modp1024&lt;/code>
+&lt;code>aes192-sha384-prfsha384-modp1024&lt;/code>
+&lt;code>aes256-sha1-prfsha1-modp1024&lt;/code>
+&lt;code>aes256-sha256-prfsha256-modp1024&lt;/code>
+&lt;code>aes256-sha384-prfsha384-modp1024&lt;/code>&lt;/p>
+&lt;p>AES GCM 系列
+&lt;code>aes128gcm128-prfsha1-modp1024&lt;/code>
+&lt;code>aes128gcm128-prfsha256-modp1024&lt;/code>
+&lt;code>aes128gcm128-prfsha384-modp1024&lt;/code>
+&lt;code>aes256gcm128-prfsha1-modp1024&lt;/code>
+&lt;code>aes256gcm128-prfsha256-modp1024&lt;/code>
+&lt;code>aes256gcm128-prfsha384-modp1024&lt;/code>&lt;/p>
+&lt;/details>
+&lt;/li>
+&lt;/ul>
+&lt;details>
+&lt;summary>範例&lt;/summary>
+&lt;ul>
+&lt;li>下方會給出最基本的設定檔範例，可以按照範例修改&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;span class="lnt">30
+&lt;/span>&lt;span class="lnt">31
+&lt;/span>&lt;span class="lnt">32
+&lt;/span>&lt;span class="lnt">33
+&lt;/span>&lt;span class="lnt">34
+&lt;/span>&lt;span class="lnt">35
+&lt;/span>&lt;span class="lnt">36
+&lt;/span>&lt;span class="lnt">37
+&lt;/span>&lt;span class="lnt">38
+&lt;/span>&lt;span class="lnt">39
+&lt;/span>&lt;span class="lnt">40
+&lt;/span>&lt;span class="lnt">41
+&lt;/span>&lt;span class="lnt">42
+&lt;/span>&lt;span class="lnt">43
+&lt;/span>&lt;span class="lnt">44
+&lt;/span>&lt;span class="lnt">45
+&lt;/span>&lt;span class="lnt">46
+&lt;/span>&lt;span class="lnt">47
+&lt;/span>&lt;span class="lnt">48
+&lt;/span>&lt;span class="lnt">49
+&lt;/span>&lt;span class="lnt">50
+&lt;/span>&lt;span class="lnt">51
+&lt;/span>&lt;span class="lnt">52
+&lt;/span>&lt;span class="lnt">53
+&lt;/span>&lt;span class="lnt">54
+&lt;/span>&lt;span class="lnt">55
+&lt;/span>&lt;span class="lnt">56
+&lt;/span>&lt;span class="lnt">57
+&lt;/span>&lt;span class="lnt">58
+&lt;/span>&lt;span class="lnt">59
+&lt;/span>&lt;span class="lnt">60
+&lt;/span>&lt;span class="lnt">61
+&lt;/span>&lt;span class="lnt">62
+&lt;/span>&lt;span class="lnt">63
+&lt;/span>&lt;span class="lnt">64
+&lt;/span>&lt;span class="lnt">65
+&lt;/span>&lt;span class="lnt">66
+&lt;/span>&lt;span class="lnt">67
+&lt;/span>&lt;span class="lnt">68
+&lt;/span>&lt;span class="lnt">69
+&lt;/span>&lt;span class="lnt">70
+&lt;/span>&lt;span class="lnt">71
+&lt;/span>&lt;span class="lnt">72
+&lt;/span>&lt;span class="lnt">73
+&lt;/span>&lt;span class="lnt">74
+&lt;/span>&lt;span class="lnt">75
+&lt;/span>&lt;span class="lnt">76
+&lt;/span>&lt;span class="lnt">77
+&lt;/span>&lt;span class="lnt">78
+&lt;/span>&lt;span class="lnt">79
+&lt;/span>&lt;span class="lnt">80
+&lt;/span>&lt;span class="lnt">81
+&lt;/span>&lt;span class="lnt">82
+&lt;/span>&lt;span class="lnt">83
+&lt;/span>&lt;span class="lnt">84
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">connections {
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> rw-eap-mschapv2 {
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> version = 2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> # 是否傳送憑證給終端，一定要開啟，因為這裡使用 PKI 進行身份驗證
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> # 可選 never、ifasked、always
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> # never：不傳送
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> # ifasked：收到憑證請求才傳送
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> # always：主動傳送
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> # 預設為 ifasked
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> send_cert = always
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> # 是否傳送憑證請求
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> # 預設為 yes
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> send_certreq = no
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> # 如果資料比較大，是否要進行分割
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> # 可選 yes、accept、force、no
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> # yes：只要對方同意則資料進行分割
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> # accept：本身的資料不分割，但通知對方可以接收資料分割
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> # force：所有資料皆分割
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> # no：自已不分割，並且告知對方不可分割
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> # 預設為 yes
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> fragmentation = yes
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> # 指定 DHCP 池
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> pools = rw_pool
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> # IKEv2 加密算法
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> # 可以選擇多個加密算法，使用逗號分開
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> # 需要注意 Windows 和 strongSwan-network-manager
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> proposals = chacha20poly1305-prfsha512-modp4096,aes256gcm128-prfsha256-modp1024,aes256-sha1-prfsha1-modp4096
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> # 是否允許多個客戶端
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> # 預設為 yes
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> mobike = yes
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> # 伺服器驗證
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> local {
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> auth = pubkey
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> # 憑證名稱
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> certs = test-server.crt
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> # 填入連接時的域名或者 IP
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> id = vpn.worldofwheat.cloudns.ch
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> }
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> # 客戶端驗證
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> remote {
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> # 客戶端驗證方式，可以參考官方文件
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> auth = eap-mschapv2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> id = %any
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> }
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> # IPsec 選項
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> children {
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> rw-eap-mschapv2 {
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> local_ts = 0.0.0.0/0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> # 加密算法
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> esp_proposals = chacha20poly1305,aes256-sha1,aes256gcm128
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> }
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> }
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> }
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">}
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># DHCP 池
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">pools {
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> rw_pool {
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> addrs = 192.168.10.0/24
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> }
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">}
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 機密資訊
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">secrets {
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> # 處理加密過的私鑰
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> private-server {
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> file = &amp;#34;private.key&amp;#34;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> secret = XXXXXX
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> }
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> # 設定一個 EAP 帳號
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> eap-Alice {
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> id = Alice
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> secret = XXXXX
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> }
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;/details>
+&lt;h2 id="指令操作">指令操作
+&lt;/h2>&lt;h2 id="如何-debug">如何 Debug
+&lt;/h2>&lt;p>第一件事是先學會 IKEv2/IPsec 連線時候的握手協議，我推薦&lt;a class="link" href="https://www.cnblogs.com/efzju/p/5041797.html" target="_blank" rel="noopener"
+>這篇&lt;/a>，只有學會了握手協議下面提到的工具才有用。&lt;/p>
+&lt;p>debug 一定要會的方法：&lt;/p>
+&lt;ul>
+&lt;li>swanctl &amp;ndash;log
+&lt;ul>
+&lt;li>swanctl 提供的指令，可以讓連線過程中的所有封包都紀錄下來&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>手機版 strongSwan
+&lt;ul>
+&lt;li>原生的 UI 沒有辦法提供 log，基本上完全沒辦法 debug&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>Windows 事件檢視器
+&lt;ul>
+&lt;li>Windows 問題很多而且 debug 相對困難，連線出現問題的時候只會給出沒有任何幫助的訊息。事件檢視器可以給出錯誤碼，可以到網路上查找對應的問題。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul></description></item><item><title>Archives</title><link>https://worldofwheat.github.io/archives/</link><pubDate>Sun, 06 Mar 2022 00:00:00 +0000</pubDate><guid>https://worldofwheat.github.io/archives/</guid><description/></item><item><title>Links</title><link>https://worldofwheat.github.io/links/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://worldofwheat.github.io/links/</guid><description>&lt;p>下面提供可以聯絡到我的方式，有空歡迎來找我聊天喔！&lt;/p></description></item><item><title>Search</title><link>https://worldofwheat.github.io/search/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://worldofwheat.github.io/search/</guid><description/></item></channel></rss>

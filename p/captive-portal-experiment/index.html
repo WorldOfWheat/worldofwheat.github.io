@@ -1,0 +1,137 @@
+<!doctype html><html lang=zh-tw dir=ltr><head><meta charset=utf-8><meta name=viewport content='width=device-width,initial-scale=1'><meta name=description content="實作 Wi-Fi 登入畫面實作"><title>Captive Portal 實驗</title>
+<link rel=canonical href=https://worldofwheat.github.io/p/captive-portal-experiment/><link rel=stylesheet href=/scss/style.min.663803bebe609202d5b39d848f2d7c2dc8b598a2d879efa079fa88893d29c49c.css><meta property='og:title' content="Captive Portal 實驗"><meta property='og:description' content="實作 Wi-Fi 登入畫面實作"><meta property='og:url' content='https://worldofwheat.github.io/p/captive-portal-experiment/'><meta property='og:site_name' content='小麥的異想世界'><meta property='og:type' content='article'><meta property='article:section' content='Post'><meta property='article:published_time' content='2024-09-14T21:00:00+08:00'><meta property='article:modified_time' content='2024-09-14T21:00:00+08:00'><meta name=twitter:title content="Captive Portal 實驗"><meta name=twitter:description content="實作 Wi-Fi 登入畫面實作"><link rel="shortcut icon" href=/favicon.png></head><body class=article-page><script>(function(){const e="StackColorScheme";localStorage.getItem(e)||localStorage.setItem(e,"auto")})()</script><script>(function(){const t="StackColorScheme",e=localStorage.getItem(t),n=window.matchMedia("(prefers-color-scheme: dark)").matches===!0;e=="dark"||e==="auto"&&n?document.documentElement.dataset.scheme="dark":document.documentElement.dataset.scheme="light"})()</script><div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky"><button class="hamburger hamburger--spin" type=button id=toggle-menu aria-label=切換選單>
+<span class=hamburger-box><span class=hamburger-inner></span></span></button><header><figure class=site-avatar><a href=/><img src=/img/avatar_hu10728238705677246849.png width=300 height=300 class=site-logo loading=lazy alt=Avatar></a></figure><div class=site-meta><h1 class=site-name><a href=/>小麥的異想世界</a></h1><h2 class=site-description>努力一定會有結果</h2></div></header><ol class=menu-social><li><a href=https://github.com/WorldOfWheat/ target=_blank title=GitHub rel=me><svg class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6.0 00-1.3-3.2 4.2 4.2.0 00-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3.0 00-6.2.0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2.0 00-.1 3.2A4.6 4.6.0 004 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></a></li></ol><ol class=menu id=main-menu><li><a href=/><svg class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="5 12 3 12 12 3 21 12 19 12"/><path d="M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/><path d="M9 21v-6a2 2 0 012-2h2a2 2 0 012 2v6"/></svg>
+<span>Home</span></a></li><li><a href=/archives/><svg class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><rect x="3" y="4" width="18" height="4" rx="2"/><path d="M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8"/><line x1="10" y1="12" x2="14" y2="12"/></svg>
+<span>Archives</span></a></li><li><a href=/search/><svg class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="10" cy="10" r="7"/><line x1="21" y1="21" x2="15" y2="15"/></svg>
+<span>Search</span></a></li><li><a href=/links/><svg class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M10 14a3.5 3.5.0 005 0l4-4a3.5 3.5.0 00-5-5l-.5.5"/><path d="M14 10a3.5 3.5.0 00-5 0l-4 4a3.5 3.5.0 005 5l.5-.5"/></svg>
+<span>Links</span></a></li><li class=menu-bottom-section><ol class=menu><li id=dark-mode-toggle><svg class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="8" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<svg class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="16" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<span>夜晚模式</span></li></ol></li></ol></aside><aside class="sidebar right-sidebar sticky"><section class="widget archives"><div class=widget-icon><svg class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg></div><h2 class="widget-title section-title">目錄</h2><div class=widget--toc><nav id=TableOfContents><ol><li><a href=#事先聲明>事先聲明</a></li><li><a href=#在實驗前我需要準備什麼>在實驗前我需要準備什麼？</a><ol><li><a href=#硬體>硬體</a></li><li><a href=#軟體>軟體</a></li></ol></li><li><a href=#強制門戶是怎麼做到的>強制門戶是怎麼做到的？</a><ol><li><a href=#技術細節>技術細節</a></li></ol></li><li><a href=#開始實驗吧>開始實驗吧</a></li><li><a href=#結論>結論</a></li></ol></nav></div></section></aside><main class="main full-width"><article class=main-article><header class=article-header><div class=article-details><header class=article-category><a href=/categories/%E5%AF%A6%E9%A9%97/>實驗</a></header><div class=article-title-wrapper><h2 class=article-title><a href=/p/captive-portal-experiment/>Captive Portal 實驗</a></h2><h3 class=article-subtitle>實作 Wi-Fi 登入畫面實作</h3></div><footer class=article-time><div><svg class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg>
+<time class=article-time--published>Sep 14, 2024</time></div><div><svg class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+<time class=article-time--reading>閱讀時間: 2 分鐘</time></div></footer></div></header><section class=article-content><p>相信大家在去如火車站之類的地方都會發現到很多免費的網路，這個時候心動的點下去之後卻跳出了一個登入畫面，一般來說需要輸入身份證之類的資料才能使用。</p><p>上面提到的就是所謂的強制門戶（Captive Portal），這個功能是讓使用者驗證的階段改用網頁來進行，因為透過網頁就可以做到同一組帳號密碼在任何地方都能登入的功能，這跟大家在家裡使用的密碼登入的原理不同，前者是先讓使用者連接再驗證而後者是先驗證密碼再讓人連接。</p><h2 id=事先聲明>事先聲明</h2><ul><li>本篇教學提到的任何漏洞僅用於教學，不得用於非法用途</li><li>所有的測試不保證在所有的環境皆可使用，僅在我本人的電腦上測試成功</li></ul><h2 id=在實驗前我需要準備什麼>在實驗前我需要準備什麼？</h2><p>軟體跟硬體在這次的實驗都有需要準備的東西，而且我建議你需要有一定的基礎網路知識再開始學習，因為我不對再對一些基本的知識做解釋。</p><h3 id=硬體>硬體</h3><ul><li>一台主機<ul><li>可以是電腦、樹苺派等，但是我推薦使用 Linux 作業系統，Windows 理論上也做到的但我沒有實驗過</li></ul></li><li>一台可以連接 Wi-Fi 的設備<ul><li>用於測試，我推薦使用 Android、Windows、iOS 方便測試</li></ul></li><li>一台 AP<ul><li>可以不用是無線路由器，也可以是無線網卡，但是需要注意在生產環境上我不推薦使用無線網卡</li></ul></li></ul><h3 id=軟體>軟體</h3><p>因為我本人僅在 kali Linux 上實驗，因此我不提供其它作業系統的軟體，如果有需要請自行到網路上尋找</p><ul><li>iptables<ul><li>核心部份，用於做 NAT</li></ul></li><li>Dnsmasq<ul><li>因為要觸發 Captive Portal 需要有 DNS 的協助，可以使用其它 DNS 伺服器軟體</li><li>本次實驗因為使用了無線網卡，因此在 Linux 需要手動做 DHCP，而 Dnsmasq 剛好有 DHCP 的功能</li></ul></li><li>web server<ul><li>需要準備一個用於驗證使用者的網頁，本次實驗使用 flask</li><li>這部分也是最核心的部分，驗證和一般的網頁服務沒有差別</li></ul></li><li>hostapd<ul><li>這次的實驗我使用了 <a class=link href=https://www.tp-link.com/tw/home-networking/adapter/tl-wn722n/ target=_blank rel=noopener>TL-WN722N</a> 這款無線網卡做為熱點，你可以選擇任何可以做到熱點功能的網卡，在生產環境中我不推薦使用無線網卡，應該使用無路路由器</li></ul></li></ul><h2 id=強制門戶是怎麼做到的>強制門戶是怎麼做到的？</h2><p>當一台手機連接到帶有 Captive Portal 的 AP 時，手機會先發起一條 DNS 請求，這條 DNS 請求一般來說會解析到一個事先約定好的網站，而當 AP 需要驗證或者不可用的時候則會返回其它的結果，手機也是靠這點做到判斷一個熱點有沒有網路及需不需要驗證。當 DNS 請求被解析後如果網站並非手機預其的網站則會將使用者跳轉到 Captive Portal，此時只需要驗證成功就可以連上網路。</p><p>需要注意到提供驗證的網頁不可為 HTTPS，因為手機預期的域名和登入畫面上的憑證不同，因此會出現網站不安全的狀況。</p><h3 id=技術細節>技術細節</h3><p>上敘提到的 DNS 請求在不同的裝置上也有所不同，下方是常見的 DNS 請求列表：</p><ul><li>clients3.google.com</li><li>connectivitycheck.gstatic.com</li><li>connectivitycheck.android.com</li><li>detectportal.firefox.com</li><li><a class=link href=https://www.msftncsi.com target=_blank rel=noopener>www.msftncsi.com</a></li><li>captive.apple.com</li></ul><p>上面那些域名就是每個不同的系統用來判斷是否可以連線及是否有 Captive Portal 的基準，因此想要觸發強制門戶的方法就是透過 iptables 的 NAT 表中的 PREROUTING 鏈做到的，因為 DNS 是明文請求，因此只需要目標為 53 號端口的連結指向到 DNS 伺服器就可以做到重定向，而這裡的 DNS 伺服器需要自行架設，這次的實驗使用 Dnsmasq。</p><h2 id=開始實驗吧>開始實驗吧</h2><p>我假設大家都已經準備好了軟硬體，因此這邊我就直接跳過安裝階段</p><ol><li><p>將要用來處理驗證的介面卡準備好，可以是無線網卡或者路由器，接著將介面卡指定一個 IP，需要注意這裡的子網域應該要是 /24 才能分配給其它連入的裝置 IP</p><ul><li>這次實驗我使用的是無線網卡，<a class=link href=https://gist.github.com/WorldOfWheat/d3fad3f823be85be22f995e88b3691b3 target=_blank rel=noopener>hostapd 範例</a></li></ul></li><li><p>先準備好 iptables，下方我提供一個我寫的範例，<strong>我強烈建議將註解讀一篇</strong>，在理解了之後才能在自己的主機上也做出一樣的效果</p></li></ol><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-sh data-lang=sh><span class=line><span class=cl><span class=cp>#!bin/sh
+</span></span></span><span class=line><span class=cl><span class=cp></span>
+</span></span><span class=line><span class=cl><span class=c1># 下面兩個是最主要的變數</span>
+</span></span><span class=line><span class=cl><span class=c1># INTERFACE 代表的是 AP 的介面，不論這邊使用的是無線網卡還是路由器都是一樣的</span>
+</span></span><span class=line><span class=cl><span class=c1># WEBSERVER 代表的是提供驗證的網頁伺服器，要確定是可以連接到的</span>
+</span></span><span class=line><span class=cl><span class=nv>INTERFACE</span><span class=o>=</span>wlan0
+</span></span><span class=line><span class=cl><span class=nv>WEBSERVER</span><span class=o>=</span>192.168.0.68
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 下面四條會把 filter 和 nat 表完全清空，實驗為了方便才會清空，執行前請特別注意</span>
+</span></span><span class=line><span class=cl>iptables -t filter -F
+</span></span><span class=line><span class=cl>iptables -t nat -F
+</span></span><span class=line><span class=cl>iptables -t filter -X
+</span></span><span class=line><span class=cl>iptables -t nat -X
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># FORWARD 鏈預設設為 DROP</span>
+</span></span><span class=line><span class=cl><span class=c1># 這步非常的重要，否則就會發生未經驗證，但是卻可以透過 IP 直接對外連接的狀況。實際上的表現為有些時候可以連接有些時候不行</span>
+</span></span><span class=line><span class=cl>iptables -P FORWARD DROP
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># AUTHORIZED 這條鏈用於新增已經驗證的使用者</span>
+</span></span><span class=line><span class=cl>iptables -N AUTHORIZED
+</span></span><span class=line><span class=cl><span class=c1># 當使用者發送封包的時候先到 AUTHORIZED 檢查，如果未經驗證的話則會往下一條</span>
+</span></span><span class=line><span class=cl>iptables -A FORWARD -i <span class=nv>$INTERFACE</span> -j AUTHORIZED
+</span></span><span class=line><span class=cl><span class=c1># 放行所有由介面卡流出的封包，因為在輸入已經做到管制，因此輸出一般來說不就做管制</span>
+</span></span><span class=line><span class=cl>iptables -A FORWARD -o <span class=nv>$INTERFACE</span> -j ACCEPT
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># AUTHORIZED 這條鏈用於新增已經驗證的使用者</span>
+</span></span><span class=line><span class=cl><span class=c1># 需要注意 filter 和 nat 的鏈不共用</span>
+</span></span><span class=line><span class=cl>iptables -t nat -N AUTHORIZED
+</span></span><span class=line><span class=cl><span class=c1># 將已經驗證的使用者跳過 DNS 重定向</span>
+</span></span><span class=line><span class=cl>iptables -t nat -A PREROUTING -i <span class=nv>$INTERFACE</span> -j AUTHORIZED
+</span></span><span class=line><span class=cl><span class=c1># 如果前一翛規則還沒驗證通過則進行 DNS 自定向</span>
+</span></span><span class=line><span class=cl>iptables -t nat -A PREROUTING -i <span class=nv>$INTERFACE</span> -p udp --dport <span class=m>53</span> -j DNAT --to-destination <span class=nv>$WEBSERVER</span>:53
+</span></span><span class=line><span class=cl><span class=c1># 因為實驗中的主要透過 eth0 來連入外網，因此需要做 SNAT 才能連上外網</span>
+</span></span><span class=line><span class=cl>iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+</span></span></code></pre></td></tr></table></div></div><ol start=2><li>準備好 Dnsmasq，下面我一樣寫了一個範例，如果你使用自己的 DNS 軟體再自行研究</li></ol><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl># 指定介面卡，這裡的介面卡和第一步的介面卡相同
+</span></span><span class=line><span class=cl>interface=wlan0
+</span></span><span class=line><span class=cl># 要監聽哪個 IP，和第一步的指配給介面卡的 IP 相同
+</span></span><span class=line><span class=cl>listen-address=10.1.0.1
+</span></span><span class=line><span class=cl># 設定分配的連入裝置的 IP 子網域
+</span></span><span class=line><span class=cl>dhcp-range=10.1.0.2,10.1.0.254,1h
+</span></span><span class=line><span class=cl># 設定分配的連入裝置的 IP 子網域遮罩
+</span></span><span class=line><span class=cl>dhcp-option=1,255.255.255.0
+</span></span><span class=line><span class=cl># 設定分配的連入裝置的預設 DNS 伺服器，需要注意這裡的 DNS 不可以是用於重定向的伺服器，否則會造成設備強制門戶偵測錯誤
+</span></span><span class=line><span class=cl>dhcp-option=6,1.1.1.1
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl># DNS 監聽埠號
+</span></span><span class=line><span class=cl>port=53
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl># 下面代表將 Captive Portal 偵測用的域名重定向到自己的 DNS 伺服器
+</span></span><span class=line><span class=cl># 下面三個是 Android 的偵測域名，別的廠排可能會有別的域名，這點再自行測試
+</span></span><span class=line><span class=cl>address=/clients3.google.com/10.1.0.1
+</span></span><span class=line><span class=cl>address=/connectivitycheck.gstatic.com/10.1.0.1
+</span></span><span class=line><span class=cl>address=/connectivitycheck.android.com/10.1.0.1
+</span></span><span class=line><span class=cl># 下面為 Firefox 瀏覽器的偵測域名
+</span></span><span class=line><span class=cl>address=/detectportal.firefox.com/10.1.0.1
+</span></span><span class=line><span class=cl># 下面為 Windows 的偵測域名
+</span></span><span class=line><span class=cl>address=/www.msftncsi.com/10.1.0.1
+</span></span><span class=line><span class=cl># 下面為 Apple 產品的偵測域名
+</span></span><span class=line><span class=cl>address=/captive.apple.com/10.1.0.1
+</span></span></code></pre></td></tr></table></div></div><ol start=3><li>準備用於驗證的網頁伺服器，因為伺服器會有各種需求，以下為簡易的範例，實際上的驗證伺服器並不會這麼簡單<ul><li>本次實驗使用的網頁後端為 Python 的 Flask，其它框架理論上也可以做到相同的事</li><li>驗證伺服器和普通的網頁服務一樣，所有該注意的漏洞一樣也需要注意，而且因為其特殊性更需要注意，下方這個案例就說明了不正確的設定會造成什麼樣的狀況<ul><li><a class=link href=https://blog.duckll.tw/post/howihackitaiwan/ target=_blank rel=noopener>漏洞案例</a></li></ul></li></ul></li></ol><script src=https://gist.github.com/WorldOfWheat/0ace701b01f286ccd546c2103cd2adc0.js></script><ol start=4><li>確定 Dnsmasq、iptables、熱點、驗證伺服器都已經啟動，此時連線後應該會自動跳轉到驗證伺服器，再輸入帳號密碼後則會連線成功</li></ol><h2 id=結論>結論</h2><p>強制門戶可以在 2024 年已經不在那麼的常見，大部分的學校都已經改為 WAP2-Enterprise 這種驗證方式，雖然這樣的驗證方式在錯誤的配置方式仍然充滿了漏洞，但這還是比強制門戶好了很多，因為強制門戶相對有比較多的漏洞可以繞過驗證。</p><p>這次的實驗我花了很多時間在除錯上，也是第一次知道強制門戶是怎麼樣做到在連入的時候跳出登入畫面的，算是解答了我多年前的疑惑。</p></section><footer class=article-footer><section class=article-copyright><svg class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><path d="M14.5 9a3.5 4 0 100 6"/></svg>
+<span>Licensed under CC BY-NC-SA 4.0</span></section></footer></article><aside class=related-content--wrapper><h2 class=section-title>相關文章</h2><div class=related-content><div class="flex article-list--tile"><article><a href=/p/strongswan-experiment/><div class=article-details><h2 class=article-title>StrongSwan 實驗</h2></div></a></article></div></div></aside><script src=https://utteranc.es/client.js repo=WorldOfWheat/worldofwheat.github.io issue-term=title label=Comment crossorigin=anonymous async></script><style>.utterances{max-width:unset}</style><script>let utterancesLoaded=!1;function setUtterancesTheme(e){let t=document.querySelector(".utterances iframe");t&&t.contentWindow.postMessage({type:"set-theme",theme:`github-${e}`},"https://utteranc.es")}addEventListener("message",e=>{if(e.origin!=="https://utteranc.es")return;utterancesLoaded=!0,setUtterancesTheme(document.documentElement.dataset.scheme)}),window.addEventListener("onColorSchemeChange",e=>{if(!utterancesLoaded)return;setUtterancesTheme(e.detail)})</script><footer class=site-footer><section class=copyright>&copy;
+2020 -
+2024 小麥的異想世界</section><section class=powerby>使用 <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> 建立<br>主題 <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.29.0>Stack</a></b> 由 <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a> 設計</section></footer><div class=pswp tabindex=-1 role=dialog aria-hidden=true><div class=pswp__bg></div><div class=pswp__scroll-wrap><div class=pswp__container><div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden"><div class=pswp__top-bar><div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+<button class="pswp__button pswp__button--share" title=Share></button>
+<button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button><div class=pswp__preloader><div class=pswp__preloader__icn><div class=pswp__preloader__cut><div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"><div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+</button>
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css crossorigin=anonymous></main></div><script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z+KMkF24hUW8WePSA9HM=" crossorigin=anonymous></script><script type=text/javascript src=/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js defer></script><script>(function(){const e=document.createElement("link");e.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",e.type="text/css",e.rel="stylesheet",document.head.appendChild(e)})()</script></body></html>
